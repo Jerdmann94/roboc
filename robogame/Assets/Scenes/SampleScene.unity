@@ -3077,6 +3077,8 @@ GameObject:
   - component: {fileID: 1177636553}
   - component: {fileID: 1177636552}
   - component: {fileID: 1177636554}
+  - component: {fileID: 1177636556}
+  - component: {fileID: 1177636555}
   m_Layer: 0
   m_Name: CombatManager
   m_TagString: Untagged
@@ -3099,6 +3101,7 @@ MonoBehaviour:
   enemiesDeck: {fileID: 11400000, guid: 367d3fedc4c376b41af2d674ff553825, type: 2}
   enemyPrefab: {fileID: 3531463545098643661, guid: 660297c4d233015468ca406c098317a9, type: 3}
   tilemap: {fileID: 21951901}
+  mouseHandler: {fileID: 1177636554}
 --- !u!4 &1177636553
 Transform:
   m_ObjectHideFlags: 0
@@ -3134,7 +3137,40 @@ MonoBehaviour:
   moveTile: {fileID: 11400000, guid: 4ee1e408284751440a760de87af1ee31, type: 2}
   player: {fileID: 7770915112476375863, guid: 0723b2c51d3c9874c875958605f3b986, type: 3}
   map: {fileID: 21951901}
-  selectedCard: {fileID: 0}
+  cardConfirmed: {fileID: 11400000, guid: 9ee26b5a083918f4a9ef2e51e9292a05, type: 2}
+  cardSelected: {fileID: 11400000, guid: aa5e0786daec9eb4f8413bd77314bfb3, type: 2}
+  cc: {fileID: 1177636556}
+  cs: {fileID: 1177636555}
+  selectedCardSet: {fileID: 11400000, guid: 6de5deab8cf4f6e42b5a2b1df3af8322, type: 2}
+--- !u!114 &1177636555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177636551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00dba480470b85647a54da5ec3b69be6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedCard: {fileID: 11400000, guid: 6de5deab8cf4f6e42b5a2b1df3af8322, type: 2}
+  mouseHandler: {fileID: 1177636554}
+--- !u!114 &1177636556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177636551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db8c67a108d317e43a2cf6c204258601, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedCard: {fileID: 11400000, guid: 6de5deab8cf4f6e42b5a2b1df3af8322, type: 2}
+  mouseHandler: {fileID: 1177636554}
+  attackEvent: {fileID: 11400000, guid: 16a7dbce07fcba542b760a2ea59ab75d, type: 2}
 --- !u!1 &1665762650
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,19 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using ScriptableObjects.GameEvent;
+using ScriptableObjects.Sets;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using static MouseHandler;
 
-public class CardSelected {
 
-	private readonly int[,] vectorChanger4cardinal = new int[,] { { 1, 0 }, { 0, -1 }, { 0, 1 }, { -1, 0 } };
-	private readonly int[,] vectorChanger16        = new int[,] {
-		                                                            { 1, 0 },{ 2, 0 }, { 0, -1 },{ 0, -2 }, { 0, 1 },{ 0, 2 }, { -1, 0 },{ -2, 0 },
-		                                                            { 1, -1 },{ 2, -1 }, { -1, -1 },{ -1, -2 }, { 1, 1 },{ 1, 2 }, { -1, 1 },{ -2, 1 },
-		                                                            { 1, -2 },{ 2, 1 },{ -2,-1},{ -1, 2 }
-	                                                            };
-	public void cardSelected(CardSO card) {
-		switch (card.name) {
+public class CardSelected : MonoBehaviour {
+	private readonly int[,] vectorChanger4cardinal = new int[,] {{1, 0}, {0, -1}, {0, 1}, {-1, 0}};
+
+	private readonly int[,] vectorChanger16 = new int[,] {
+		                                                     {1, 0}, {2, 0}, {0, -1}, {0, -2}, {0, 1}, {0, 2}, {-1, 0},
+		                                                     {-2, 0},
+		                                                     {1, -1}, {2, -1}, {-1, -1}, {-1, -2}, {1, 1}, {1, 2},
+		                                                     {-1, 1}, {-2, 1},
+		                                                     {1, -2}, {2, 1}, {-2, -1}, {-1, 2}
+	                                                     };
+
+	public SingleCardSet selectedCard;
+	public MouseHandler  mouseHandler;
+
+	public void cardSelected() {
+		Debug.Log("card selected");
+		switch (selectedCard.Card.name) {
 			case "Move":
 
 				basicMove();
@@ -25,11 +34,11 @@ public class CardSelected {
 			case "Special Move":
 				specialMove();
 				break;
-			
+
 			case "Special Attack":
 				specialAttack();
 				break;
-			
+
 			default:
 				Debug.Log("default case");
 				break;
@@ -46,7 +55,6 @@ public class CardSelected {
 
 	private void basicMove() {
 		highlightCells4Cardinals(mouseHandler.moveTile);
-
 	}
 
 	private void basicAttack() {
@@ -72,6 +80,7 @@ public class CardSelected {
 			}
 		}
 	}
+
 	private void highlight20Tiles(Tile tile) {
 		mouseHandler.possibleTiles = new ArrayList();
 		mouseHandler.possibleTilesPos = new ArrayList();

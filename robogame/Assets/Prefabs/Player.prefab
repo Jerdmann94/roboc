@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 2121580034234426071}
   - component: {fileID: 4190869955202655668}
   - component: {fileID: 7313842645001494605}
+  - component: {fileID: 3546993617048737741}
+  - component: {fileID: -144461518485479071}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -100,3 +102,49 @@ MonoBehaviour:
   canvas: {fileID: 0}
   handPoint1: {fileID: 0}
   handPoint2: {fileID: 0}
+  hp: {fileID: 11400000, guid: 14b65d6a77ef39d4a86052a28968b7b5, type: 2}
+  handSet: {fileID: 11400000, guid: 859ecb8f85d3a6e47af63062e861d911, type: 2}
+  deckSet: {fileID: 11400000, guid: 141410f94f53fe84e9b6912c146a9296, type: 2}
+  discardSet: {fileID: 11400000, guid: 9251eb29225162e4eb6b88aa653eb4dc, type: 2}
+--- !u!114 &3546993617048737741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7770915112476375863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48bcad12b46e5214eab989639ba0bb28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emitter: {fileID: 11400000, guid: 74a2076f0c54e974d886fe1618d1886e, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &-144461518485479071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7770915112476375863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5563acf639e5d6469c637447005fee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sets:
+  - {fileID: 11400000, guid: 4c4c17a4c8cb17e4ea6cb058c3b9cda0, type: 2}

@@ -16,3 +16,4 @@ MonoBehaviour:
   name: Special Attack
   cardDescription: Do special damage and stuff
   cardFlavor: Oh, so special
+  damage: 20

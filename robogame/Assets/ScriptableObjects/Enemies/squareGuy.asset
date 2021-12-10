@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 0
   name: Square
-  health: 10
+  health: 100
   attack: 1
   shape: {fileID: 7482667652216324306, guid: e99b9d23bd4577e4f8cb412038b33bc3, type: 3}
