@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using ScriptableObjects.Sets;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
@@ -10,11 +11,12 @@ using Random = UnityEngine.Random;
 public class CombatManager : MonoBehaviour {
 	public static CombatManager combatManager  = null;
 	private       ArrayList     enemiesToSpawn = new ArrayList();
-	public        ArrayList     aliveEnemies   = new ArrayList();
 	public        DeckSO        enemiesDeck;
 	public        GameObject    enemyPrefab;
 	public        Tilemap       tilemap;
-	public        MouseHandler  mouseHandler;
+	public        RunTimeSet    aliveEnemies;
+
+	public MouseHandler mouseHandler;
 
 
 	private void Awake() {
@@ -22,6 +24,8 @@ public class CombatManager : MonoBehaviour {
 		foreach (var VARIABLE in enemiesDeck.deck) {
 			enemiesToSpawn.Add(VARIABLE);
 		}
+
+		aliveEnemies.items = new List<GameObject>();
 	}
 
 	private void Start() {
@@ -33,8 +37,7 @@ public class CombatManager : MonoBehaviour {
 			var        tempPos = getEmptyGridPosition();
 			GameObject enemy   = Instantiate(enemyPrefab, tempPos, Quaternion.identity);
 			enemy.GetComponent<enemyDataHandler>().setUpEnemy((EnemySO) enemiesToSpawn[i]);
-			enemy.GetComponent<SpriteRenderer>().sortingOrder = 1;
-			aliveEnemies.Add(enemy);
+			aliveEnemies.items.Add(enemy);
 		}
 	}
 
@@ -55,7 +58,7 @@ public class CombatManager : MonoBehaviour {
 		foreach (Vector3Int pos in allPos) {
 			bool shouldAdd = true;
 			if (mouseHandler.player.transform.position != pos) {
-				foreach (GameObject e in aliveEnemies) {
+				foreach (GameObject e in aliveEnemies.items) {
 					var eGridPos = tilemap.WorldToCell(e.transform.position);
 					if (eGridPos == pos) {
 						shouldAdd = false;
@@ -72,6 +75,6 @@ public class CombatManager : MonoBehaviour {
 
 		int     index = Random.Range(0, possiblePos.Count);
 		Vector3 temp  = (Vector3) tilemap.GetCellCenterWorld((Vector3Int) possiblePos[index]);
-		return temp;
+		return new Vector3(temp.x, temp.y, 2);
 	}
 }
