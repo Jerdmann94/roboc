@@ -3101,6 +3101,7 @@ MonoBehaviour:
   enemiesDeck: {fileID: 11400000, guid: 367d3fedc4c376b41af2d674ff553825, type: 2}
   enemyPrefab: {fileID: 3531463545098643661, guid: 660297c4d233015468ca406c098317a9, type: 3}
   tilemap: {fileID: 21951901}
+  aliveEnemies: {fileID: 11400000, guid: bea0288599075004490f14b52fbedcc1, type: 2}
   mouseHandler: {fileID: 1177636554}
 --- !u!4 &1177636553
 Transform:
@@ -3136,6 +3137,7 @@ MonoBehaviour:
   attackTile: {fileID: 11400000, guid: a5ab754b138b9cd449eb20bf78f06ce9, type: 2}
   moveTile: {fileID: 11400000, guid: 4ee1e408284751440a760de87af1ee31, type: 2}
   player: {fileID: 7770915112476375863, guid: 0723b2c51d3c9874c875958605f3b986, type: 3}
+  targetPos: {fileID: 11400000, guid: 6ddacf19bb63d234b90e1ba16dc0d857, type: 2}
   map: {fileID: 21951901}
   cardConfirmed: {fileID: 11400000, guid: 9ee26b5a083918f4a9ef2e51e9292a05, type: 2}
   cardSelected: {fileID: 11400000, guid: aa5e0786daec9eb4f8413bd77314bfb3, type: 2}
@@ -3171,6 +3173,8 @@ MonoBehaviour:
   selectedCard: {fileID: 11400000, guid: 6de5deab8cf4f6e42b5a2b1df3af8322, type: 2}
   mouseHandler: {fileID: 1177636554}
   attackEvent: {fileID: 11400000, guid: 16a7dbce07fcba542b760a2ea59ab75d, type: 2}
+  targetPos: {fileID: 11400000, guid: 6ddacf19bb63d234b90e1ba16dc0d857, type: 2}
+  aliveEnemies: {fileID: 11400000, guid: bea0288599075004490f14b52fbedcc1, type: 2}
 --- !u!1 &1665762650
 GameObject:
   m_ObjectHideFlags: 0

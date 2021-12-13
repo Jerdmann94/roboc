@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using ScriptableObjects.Sets;
 using UnityEngine;
+using System.Linq;
 using static CombatManager;
 using static MouseHandler;
 
@@ -10,6 +11,8 @@ public class CardConfirmed : MonoBehaviour {
 	public SingleCardSet selectedCard;
 	public MouseHandler  mouseHandler;
 	public Vector3Event  attackEvent;
+	public Vector3IntSet targetPos;
+	public RunTimeSet aliveEnemies;
 
 	public void cardConfirmed() {
 		switch (selectedCard.Card.name) {
@@ -31,7 +34,7 @@ public class CardConfirmed : MonoBehaviour {
 	}
 
 	private void specialMoveConfirm() {
-		mouseHandler.player.transform.position = mouseHandler.map.GetCellCenterWorld(mouseHandler.targetPos);
+		mouseHandler.player.transform.position = mouseHandler.map.GetCellCenterWorld(targetPos.items[0]);
 	}
 
 	private void specialAttackConfirm() {
@@ -39,12 +42,15 @@ public class CardConfirmed : MonoBehaviour {
 	}
 
 	private void basicMoveConfirm() {
-		mouseHandler.player.transform.position = mouseHandler.map.GetCellCenterWorld(mouseHandler.targetPos);
+		mouseHandler.player.transform.position = mouseHandler.map.GetCellCenterWorld(targetPos.items[0]);
 	}
 
 	private void basicAttackConfirm() {
-		attackEvent.emit(mouseHandler.map.GetCellCenterWorld(mouseHandler.targetPos));
-		Debug.Log(mouseHandler.targetPos);
+		
+		
+		
+		//attackEvent.emit(mouseHandler.map.GetCellCenterWorld(targetPos.items[0]));
+		
 
 		// foreach (GameObject e in combatManager.aliveEnemies) {
 		//  

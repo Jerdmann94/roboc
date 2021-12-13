@@ -14,7 +14,7 @@ public class MouseHandler : MonoBehaviour {
 	public   Tile       attackTile;
 	public   Tile       moveTile;
 	public   GameObject player;
-	internal Vector3Int targetPos;
+	public Vector3IntSet targetPos;
 
 	internal ArrayList possibleTiles;
 	internal ArrayList possibleTilesPos;
@@ -30,16 +30,7 @@ public class MouseHandler : MonoBehaviour {
 
 
 	public SingleCardSet selectedCardSet;
-
-	private Vector3Int TargetPos {
-		get => targetPos;
-		set {
-			targetPos = value;
-			print(value);
-		}
-	}
-
-
+	
 	private void Awake() {
 		mouse = new MouseInput();
 		possibleTiles = new ArrayList();
@@ -69,15 +60,15 @@ public class MouseHandler : MonoBehaviour {
 		Vector3Int temp = new Vector3Int(gridPos.x, gridPos.y, 0);
 		map.SetTile(temp, targetTile);
 		print(gridPos);
-		TargetPos = gridPos;
+		targetPos.items.Add(gridPos);
 	}
 
 	//CARD/TILE UTILITY METHODS
 
 	public void confirm() {
 		cc.cardConfirmed();
-
 		resetTiles();
+		targetPos.items = new List<Vector3Int>();
 	}
 
 	public void playCard(CardSO card) {
