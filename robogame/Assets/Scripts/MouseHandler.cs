@@ -16,8 +16,8 @@ public class MouseHandler : MonoBehaviour {
 	public  GameObject    player;
 	public  Vector3IntSet targetPos;
 
-	internal ArrayList possibleTiles;
-	internal ArrayList possibleTilesPos;
+	internal List<Tile> possibleTiles;
+	internal List<Vector3Int> possibleTilesPos;
 	public   Tilemap   map;
 
 	public GameEvent cardConfirmed;
@@ -33,7 +33,7 @@ public class MouseHandler : MonoBehaviour {
 
 	private void Awake() {
 		mouse = new MouseInput();
-		possibleTiles = new ArrayList();
+		possibleTiles = new List<Tile>();
 		//cc = new CardConfirmed();
 		// cs = new CardSelected();
 		player = Instantiate(player, new Vector3(0.75f, 0, 0), Quaternion.identity);
@@ -59,7 +59,7 @@ public class MouseHandler : MonoBehaviour {
 		if (tile == null || possibleTiles.Contains(tile)) return;
 		Vector3Int temp = new Vector3Int(gridPos.x, gridPos.y, 0);
 		map.SetTile(temp, targetTile);
-		print(gridPos);
+		
 		targetPos.items.Add(gridPos);
 	}
 

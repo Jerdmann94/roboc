@@ -5,7 +5,7 @@ using ScriptableObjects.Sets;
 using UnityEngine;
 
 public class AddMeToSets : MonoBehaviour {
-	public List<RunTimeSet> sets;
+	public List<GORunTimeSet> sets;
 
 	// Start is called before the first frame update
 	private void Awake() {

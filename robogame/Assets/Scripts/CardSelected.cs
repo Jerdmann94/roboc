@@ -21,7 +21,7 @@ public class CardSelected : MonoBehaviour {
 	public MouseHandler  mouseHandler;
 
 	public void cardSelected() {
-		Debug.Log("card selected");
+		
 		switch (selectedCard.Card.name) {
 			case "Move":
 
@@ -63,8 +63,8 @@ public class CardSelected : MonoBehaviour {
 
 	//HIGHLIGHTING TILES METHODS
 	private void highlightCells4Cardinals(Tile tile) {
-		mouseHandler.possibleTiles = new ArrayList();
-		mouseHandler.possibleTilesPos = new ArrayList();
+		mouseHandler.possibleTiles = new List<Tile>();
+		mouseHandler.possibleTilesPos = new List<Vector3Int>();
 		Vector3 pos = mouseHandler.player.transform.position;
 		for (int i = 0; i < 4; i++) {
 			Vector3Int gridPos = mouseHandler.map.WorldToCell(pos);
@@ -82,8 +82,8 @@ public class CardSelected : MonoBehaviour {
 	}
 
 	private void highlight20Tiles(Tile tile) {
-		mouseHandler.possibleTiles = new ArrayList();
-		mouseHandler.possibleTilesPos = new ArrayList();
+		mouseHandler.possibleTiles = new List<Tile>();
+		mouseHandler.possibleTilesPos = new List<Vector3Int>();
 		Vector3 pos = mouseHandler.player.transform.position;
 		for (int i = 0; i < 20; i++) {
 			Vector3Int gridPos = mouseHandler.map.WorldToCell(pos);

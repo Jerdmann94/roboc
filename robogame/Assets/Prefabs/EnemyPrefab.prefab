@@ -366,6 +366,7 @@ MonoBehaviour:
   playerSet: {fileID: 11400000, guid: 4c4c17a4c8cb17e4ea6cb058c3b9cda0, type: 2}
   selectedCard: {fileID: 11400000, guid: 6de5deab8cf4f6e42b5a2b1df3af8322, type: 2}
   slider: {fileID: 6278727460649679531}
+  damageText: {fileID: 8177439232412767422, guid: 0d2f248c2dcd9b345baf45b87613cb17, type: 3}
 --- !u!114 &1951614735833151202
 MonoBehaviour:
   m_ObjectHideFlags: 0

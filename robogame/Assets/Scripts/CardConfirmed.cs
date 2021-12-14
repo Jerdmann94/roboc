@@ -4,15 +4,17 @@ using System.Collections.Generic;
 using ScriptableObjects.Sets;
 using UnityEngine;
 using System.Linq;
-using static CombatManager;
-using static MouseHandler;
+using System.Linq.Expressions;
+
+
+
 
 public class CardConfirmed : MonoBehaviour {
 	public SingleCardSet selectedCard;
 	public MouseHandler  mouseHandler;
 	public Vector3Event  attackEvent;
 	public Vector3IntSet targetPos;
-	public RunTimeSet    aliveEnemies;
+	public GORunTimeSet   aliveEnemies;
 
 	public void cardConfirmed() {
 		switch (selectedCard.Card.name) {
@@ -46,6 +48,12 @@ public class CardConfirmed : MonoBehaviour {
 	}
 
 	private void basicAttackConfirm() {
+		Debug.Log("basic attack confirm");
+		targetPos.items.ForEach(pos => {
+			                        Debug.Log(mouseHandler.map.GetCellCenterWorld(pos));
+			                        attackEvent.emit(mouseHandler.map.GetCellCenterWorld(pos));
+		                        });
+
 		//attackEvent.emit(mouseHandler.map.GetCellCenterWorld(targetPos.items[0]));
 
 

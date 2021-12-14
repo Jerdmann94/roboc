@@ -11,9 +11,10 @@ public class enemyDataHandler : MonoBehaviour {
 	public     int           health;
 	public     int           attack;
 	public     Sprite        shape;
-	public     RunTimeSet    playerSet;
+	public     GORunTimeSet   playerSet;
 	public     SingleCardSet selectedCard;
 	public     Slider        slider;
+	public     GameObject    damageText;
 
 
 	public void setUpEnemy(EnemySO enemySo) {
@@ -27,7 +28,10 @@ public class enemyDataHandler : MonoBehaviour {
 	}
 
 	public void takeDamage() {
+		GameObject damObj = Instantiate(damageText, transform.position, Quaternion.identity);
+		
 		health -= selectedCard.Card.doDamage();
 		slider.value = health;
+		Debug.Log(health);
 	}
 }

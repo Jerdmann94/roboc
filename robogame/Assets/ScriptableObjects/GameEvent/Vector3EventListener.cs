@@ -16,7 +16,7 @@ public class Vector3EventListener : MonoBehaviour {
 	}
 
 	public void onEmit(Vector3 vector3) {
-		if (vector3 == this.transform.position) {
+		if (vector3 == transform.position) {
 			response.Invoke();
 		}
 	}

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ScriptableObjects.Sets;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
@@ -9,18 +10,18 @@ using Random = UnityEngine.Random;
 
 [System.Serializable]
 public class CombatManager : MonoBehaviour {
-	public static CombatManager combatManager  = null;
-	private       ArrayList     enemiesToSpawn = new ArrayList();
-	public        DeckSO        enemiesDeck;
-	public        GameObject    enemyPrefab;
-	public        Tilemap       tilemap;
-	public        RunTimeSet    aliveEnemies;
+
+	private List<ScriptableObject> enemiesToSpawn = new List<ScriptableObject>();
+	public  DeckSO                 enemiesDeck;
+	public  GameObject             enemyPrefab;
+	public  Tilemap                tilemap;
+	public  GORunTimeSet aliveEnemies;
 
 	public MouseHandler mouseHandler;
 
 
 	private void Awake() {
-		combatManager = this;
+	
 		foreach (var VARIABLE in enemiesDeck.deck) {
 			enemiesToSpawn.Add(VARIABLE);
 		}
@@ -37,6 +38,7 @@ public class CombatManager : MonoBehaviour {
 			var        tempPos = getEmptyGridPosition();
 			GameObject enemy   = Instantiate(enemyPrefab, tempPos, Quaternion.identity);
 			enemy.GetComponent<enemyDataHandler>().setUpEnemy((EnemySO) enemiesToSpawn[i]);
+			enemy.GetComponent<SpriteRenderer>().sortingOrder = 2;
 			aliveEnemies.items.Add(enemy);
 		}
 	}
@@ -53,7 +55,7 @@ public class CombatManager : MonoBehaviour {
 		}
 
 
-		Debug.Log(allPos.Count);
+		
 
 		foreach (Vector3Int pos in allPos) {
 			bool shouldAdd = true;
@@ -75,6 +77,6 @@ public class CombatManager : MonoBehaviour {
 
 		int     index = Random.Range(0, possiblePos.Count);
 		Vector3 temp  = (Vector3) tilemap.GetCellCenterWorld((Vector3Int) possiblePos[index]);
-		return new Vector3(temp.x, temp.y, 2);
+		return temp;
 	}
 }
