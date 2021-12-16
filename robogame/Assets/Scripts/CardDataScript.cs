@@ -41,7 +41,7 @@ public class CardDataScript : MonoBehaviour , IPointerEnterHandler, IPointerExit
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        setDestination(new Vector3(transform.position.x, transform.position.y  + 0.8f, 0),0.2f);
+        setDestination(new Vector3(transform.position.x, transform.position.y  + 20f, 0),0.2f);
     }
     public void OnPointerExit(PointerEventData eventData)
     {
