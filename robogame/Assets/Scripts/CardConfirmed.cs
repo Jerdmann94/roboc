@@ -15,8 +15,28 @@ public class CardConfirmed : MonoBehaviour {
 	public Vector3Event  attackEvent;
 	public Vector3IntSet targetPos;
 	public GORunTimeSet   aliveEnemies;
+	public CardUIValue[] energyUIValues;
+	public PlayerStateManager playerStateManager;
+	[SerializeField] private GORunTimeSet handUIArray;
+	public CardSet handSet;
+	public CardSet deckSet;
+	public CardSet discardSet;
 
-	public void cardConfirmed() {
+	private void Awake()
+	{
+		selectedCard.Card = null;
+		targetPos.items = new List<Vector3Int>();
+	}
+
+	public void cardConfirmed()
+	{
+
+		if (selectedCard.Card == null)
+		{
+			Debug.Log("selected card is null");
+			return;
+		}
+		adjustEnergyValue();
 		switch (selectedCard.Card.name) {
 			case "Move":
 				basicMoveConfirm();
@@ -33,35 +53,49 @@ public class CardConfirmed : MonoBehaviour {
 			default:
 				break;
 		}
+
+
+		int r = selectedCard.Card.handPosition;
+		Debug.Log(r);
+		Destroy(handUIArray.items[r]);
+		handUIArray.items.RemoveAt(r);
+		discardSet.items.Add(handSet.items[r]);
+		handSet.items.RemoveAt(r);
+		playerStateManager.resetHandPosition();
+		targetPos.items = new List<Vector3Int>();
+	}
+
+	private void adjustEnergyValue()
+	{
+		foreach (var card in energyUIValues)
+		{
+			for (int i = 0; i < selectedCard.Card.cost.types.Length; i++) {
+				if (card.name != selectedCard.Card.cost.types[i].name) continue;
+				card.Value -= selectedCard.Card.cost.cost[i];
+			}
+			
+		}
 	}
 
 	private void specialMoveConfirm() {
-		mouseHandler.player.transform.position = mouseHandler.map.GetCellCenterWorld(targetPos.items[0]);
+		playerStateManager.player.transform.position = mouseHandler.map.GetCellCenterWorld(targetPos.items[0]);
 	}
 
 	private void specialAttackConfirm() {
-		Debug.Log("special attack");
+		targetPos.items.ForEach(pos => {
+			attackEvent.emit(mouseHandler.map.GetCellCenterWorld(pos));
+		});
 	}
 
 	private void basicMoveConfirm() {
-		mouseHandler.player.transform.position = mouseHandler.map.GetCellCenterWorld(targetPos.items[0]);
+		playerStateManager.player.transform.position = mouseHandler.map.GetCellCenterWorld(targetPos.items[0]);
 	}
 
 	private void basicAttackConfirm() {
-		Debug.Log("basic attack confirm");
 		targetPos.items.ForEach(pos => {
-			                        Debug.Log(mouseHandler.map.GetCellCenterWorld(pos));
+			                       // Debug.Log(mouseHandler.map.GetCellCenterWorld(pos));
 			                        attackEvent.emit(mouseHandler.map.GetCellCenterWorld(pos));
 		                        });
-
-		//attackEvent.emit(mouseHandler.map.GetCellCenterWorld(targetPos.items[0]));
-
-
-		// foreach (GameObject e in combatManager.aliveEnemies) {
-		//  
-		//  if (e.transform.position == mouseHandler.map.GetCellCenterWorld(mouseHandler.targetPos)) {
-		//   //e.GetComponent<enemyDataHandler>().takeDamage(mouseHandler.selectedCard.doDamage());
-		//  }
-		// }
+		
 	}
 }

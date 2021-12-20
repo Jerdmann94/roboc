@@ -19,6 +19,7 @@ public class CardSelected : MonoBehaviour {
 
 	public SingleCardSet selectedCard;
 	public MouseHandler  mouseHandler;
+	public PlayerStateManager playerStateManager;
 
 	public void cardSelected() {
 		
@@ -65,7 +66,7 @@ public class CardSelected : MonoBehaviour {
 	private void highlightCells4Cardinals(Tile tile) {
 		mouseHandler.possibleTiles = new List<Tile>();
 		mouseHandler.possibleTilesPos = new List<Vector3Int>();
-		Vector3 pos = mouseHandler.player.transform.position;
+		Vector3 pos = playerStateManager.player.transform.position;
 		for (int i = 0; i < 4; i++) {
 			Vector3Int gridPos = mouseHandler.map.WorldToCell(pos);
 			gridPos.x = gridPos.x + vectorChanger4cardinal[i, 0];
@@ -84,7 +85,7 @@ public class CardSelected : MonoBehaviour {
 	private void highlight20Tiles(Tile tile) {
 		mouseHandler.possibleTiles = new List<Tile>();
 		mouseHandler.possibleTilesPos = new List<Vector3Int>();
-		Vector3 pos = mouseHandler.player.transform.position;
+		Vector3 pos = playerStateManager.player.transform.position;
 		for (int i = 0; i < 20; i++) {
 			Vector3Int gridPos = mouseHandler.map.WorldToCell(pos);
 			gridPos.x = gridPos.x + vectorChanger16[i, 0];
@@ -95,7 +96,7 @@ public class CardSelected : MonoBehaviour {
 				mouseHandler.map.SetTile(gridPos, tile);
 			}
 			else {
-				Debug.Log("tile not found");
+				//Debug.Log("tile not found");
 			}
 		}
 	}

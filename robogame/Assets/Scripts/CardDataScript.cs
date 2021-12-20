@@ -32,7 +32,15 @@ public class CardDataScript : MonoBehaviour , IPointerEnterHandler, IPointerExit
     public void setUpCard(CardSO card,Vector3 initPosition) {
         this.card = card;
         nameText.text = card.name;
-        cardCost.text = card.cost.ToString();
+        if (card.cost.cost.Length > 1)
+        {
+            Debug.Log("need to set up multiple card costs still");
+        }
+        else
+        {
+            cardCost.text = card.cost.cost[0].ToString();
+        }
+        
         cardDescription.text = card.cardDescription;
         cardFlavor.text = card.cardFlavor;
         startPosition = initPosition;

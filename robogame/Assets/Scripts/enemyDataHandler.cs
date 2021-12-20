@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Pathfinding;
 using ScriptableObjects.Sets;
 using TMPro;
 using UnityEngine;
@@ -18,12 +19,14 @@ public class enemyDataHandler : MonoBehaviour {
 	public     GameObject    damageText;
 	private GameObject damObj;
 	public Canvas canvas;
+	public AIDestinationSetter setter;
 
 
 	private void Start()
 	{
 		canvas = GameObject.FindWithTag(
 			"canvas").GetComponent<Canvas>();
+		setter.target = playerSet.items[0].transform;
 	}
 
 	public void setUpEnemy(EnemySO enemySo) {

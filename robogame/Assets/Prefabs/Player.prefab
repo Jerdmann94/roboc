@@ -97,15 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24daaf47a3a6510489e88cab2e786129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deckData: {fileID: 11400000, guid: 349c93ea0ac51344f86c5af0640cdc35, type: 2}
-  cardUI: {fileID: 3251465617611174848, guid: be3b772fb32d3b140af21d0be346d587, type: 3}
-  canvas: {fileID: 0}
-  handPoint1: {fileID: 0}
-  handPoint2: {fileID: 0}
-  hp: {fileID: 11400000, guid: 14b65d6a77ef39d4a86052a28968b7b5, type: 2}
-  handSet: {fileID: 11400000, guid: 859ecb8f85d3a6e47af63062e861d911, type: 2}
-  deckSet: {fileID: 11400000, guid: 141410f94f53fe84e9b6912c146a9296, type: 2}
-  discardSet: {fileID: 11400000, guid: 9251eb29225162e4eb6b88aa653eb4dc, type: 2}
+  stats: {fileID: 11400000, guid: f355416e21619cd4e8738e23132a972a, type: 2}
 --- !u!114 &3546993617048737741
 MonoBehaviour:
   m_ObjectHideFlags: 0

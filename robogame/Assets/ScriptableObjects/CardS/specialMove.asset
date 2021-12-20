@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a578eb38723df19458daffe60f7ab287, type: 3}
   m_Name: specialMove
   m_EditorClassIdentifier: 
-  cost: 2
+  cost: {fileID: 11400000, guid: 7e8fa2d6bd125ef439920a1eb08b232f, type: 2}
   name: Special Move
   cardDescription: move 2 spaces in any direction
   cardFlavor: Freedom!
+  damage: 0
+  targets: 1
+  tileColor: {fileID: 11400000, guid: 4ee1e408284751440a760de87af1ee31, type: 2}

@@ -16,8 +16,12 @@ public class CombatManager : MonoBehaviour {
 	public  GameObject             enemyPrefab;
 	public  Tilemap                tilemap;
 	public  GORunTimeSet aliveEnemies;
-
 	public MouseHandler mouseHandler;
+	public TurnState combatState;
+	public PlayerStateManager playerStateManager;
+	public EnemyStateManager enemyStateManager;
+	
+	
 
 
 	private void Awake() {
@@ -25,12 +29,18 @@ public class CombatManager : MonoBehaviour {
 		foreach (var VARIABLE in enemiesDeck.deck) {
 			enemiesToSpawn.Add(VARIABLE);
 		}
-
 		aliveEnemies.items = new List<GameObject>();
 	}
 
 	private void Start() {
 		spawnEnemies();
+		
+		
+		
+		//STARTING COMBAT
+		combatState.startState();
+		
+		
 	}
 
 	private void spawnEnemies() {
@@ -42,7 +52,6 @@ public class CombatManager : MonoBehaviour {
 			aliveEnemies.items.Add(enemy);
 		}
 	}
-
 	private Vector3 getEmptyGridPosition() {
 		ArrayList allPos      = new ArrayList();
 		ArrayList possiblePos = new ArrayList();
@@ -53,30 +62,37 @@ public class CombatManager : MonoBehaviour {
 				allPos.Add(localPlace);
 			}
 		}
-
-
-		
-
 		foreach (Vector3Int pos in allPos) {
 			bool shouldAdd = true;
-			if (mouseHandler.player.transform.position != pos) {
+			if (playerStateManager.player.transform.position != pos) {
 				foreach (GameObject e in aliveEnemies.items) {
 					var eGridPos = tilemap.WorldToCell(e.transform.position);
 					if (eGridPos == pos) {
 						shouldAdd = false;
-						Debug.Log("enemy at this position already");
+						//Debug.Log("enemy at this position already");
 					}
 				}
-
 				if (shouldAdd) {
 					possiblePos.Add(pos);
 				}
 			}
 		}
-
-
 		int     index = Random.Range(0, possiblePos.Count);
 		Vector3 temp  = (Vector3) tilemap.GetCellCenterWorld((Vector3Int) possiblePos[index]);
 		return temp;
+	}
+
+
+	public void onGameStateChange() {
+		switch (combatState.CurrentRound.name) {
+			case"PlayerTurn":
+				playerStateManager.startState();
+				break;
+			case"EnemyTurn":
+				enemyStateManager.startState();
+				break;
+			default:
+				break;
+		}
 	}
 }

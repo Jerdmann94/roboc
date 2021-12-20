@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a578eb38723df19458daffe60f7ab287, type: 3}
   m_Name: basicAttack
   m_EditorClassIdentifier: 
-  cost: 1
+  cost: {fileID: 11400000, guid: 408237f024d665442a98c1369cf9454a, type: 2}
   name: Attack
   cardDescription: Attack a target in a sqaure next to you
   cardFlavor: Whack
   damage: 10
+  targets: 1
+  tileColor: {fileID: 11400000, guid: a5ab754b138b9cd449eb20bf78f06ce9, type: 2}

@@ -9,34 +9,30 @@ using UnityEngine.Tilemaps;
 public class MouseHandler : MonoBehaviour {
 	//public static MouseHandler  mouseHandler = null;
 	private MouseInput    mouse;
-	public  Tile          selectedTile;
+	
 	public  Tile          targetTile;
 	public  Tile          attackTile;
 	public  Tile          moveTile;
-	public  GameObject    player;
+	//public  GameObject    player;
 	public  Vector3IntSet targetPos;
-
+	
 	internal List<Tile> possibleTiles;
 	internal List<Vector3Int> possibleTilesPos;
 	public   Tilemap   map;
 
-	public GameEvent cardConfirmed;
-
-	public GameEvent cardSelected;
 
 	//public        CardSO        selectedCard;
 	public CardConfirmed cc;
 	public CardSelected  cs;
 
+	[SerializeField] private BoolValue playPhase;
 
 	public SingleCardSet selectedCardSet;
 
 	private void Awake() {
 		mouse = new MouseInput();
 		possibleTiles = new List<Tile>();
-		//cc = new CardConfirmed();
-		// cs = new CardSelected();
-		player = Instantiate(player, new Vector3(0.75f, 0, 0), Quaternion.identity);
+		
 	}
 
 	private void OnEnable() {
@@ -59,23 +55,28 @@ public class MouseHandler : MonoBehaviour {
 		if (tile == null || possibleTiles.Contains(tile)) return;
 		Vector3Int temp = new Vector3Int(gridPos.x, gridPos.y, 0);
 		map.SetTile(temp, targetTile);
-		
-		targetPos.items.Add(gridPos);
+		targetPos.items.Insert(0,gridPos);
+		checkLastTile();
 	}
+
+	
 
 	//CARD/TILE UTILITY METHODS
 
 	public void confirm() {
+		if (!playPhase.Value) return;
 		cc.cardConfirmed();
 		resetTiles();
 		targetPos.items = new List<Vector3Int>();
 	}
 
 	public void playCard(CardSO card) {
+		if (!playPhase.Value) return;
+		
 		resetTiles();
 		//selectedCard = card;
 		selectedCardSet.Card = card;
-
+   
 		cs.cardSelected();
 	}
 
@@ -83,6 +84,13 @@ public class MouseHandler : MonoBehaviour {
 	private void resetTiles() {
 		for (int i = 0; i < possibleTiles.Count; i++) {
 			map.SetTile((Vector3Int) possibleTilesPos[i], (TileBase) possibleTiles[i]);
+		}
+	}
+	private void checkLastTile() {
+		if (selectedCardSet.Card.targets >= targetPos.items.Count) {return;}
+		for (int i = targetPos.items.Count-1; i >= selectedCardSet.Card.targets; i--) {
+			map.SetTile(targetPos.items[i], selectedCardSet.Card.tileColor);
+			targetPos.items.RemoveAt(i);
 		}
 	}
 }
