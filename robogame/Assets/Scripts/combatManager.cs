@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using ScriptableObjects.Sets;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
@@ -15,27 +16,35 @@ public class CombatManager : MonoBehaviour {
 	public  DeckSO                 enemiesDeck;
 	public  GameObject             enemyPrefab;
 	public  Tilemap                tilemap;
-	public  GORunTimeSet aliveEnemies;
-	public MouseHandler mouseHandler;
+	public GORunTimeSet aliveEnemies;
 	public TurnState combatState;
 	public PlayerStateManager playerStateManager;
 	public EnemyStateManager enemyStateManager;
+	public Pathfinding2D pathfinder;
+	public Grid2D grid2D;
+	public MouseHandler mouseHandler;
+	
 	
 	
 
 
 	private void Awake() {
-	
+
+		
 		foreach (var VARIABLE in enemiesDeck.deck) {
 			enemiesToSpawn.Add(VARIABLE);
 		}
 		aliveEnemies.items = new List<GameObject>();
 	}
 
+	
+
 	private void Start() {
 		spawnEnemies();
-		
-		
+		// SPAWNING PLAYER THEN ENEMIES;
+		playerStateManager.initializePlayerState();
+		pathfinder.initializePathFinder();
+		enemyStateManager.initializeEnemyState();
 		
 		//STARTING COMBAT
 		combatState.startState();
@@ -47,7 +56,7 @@ public class CombatManager : MonoBehaviour {
 		for (int i = 0; i < enemiesToSpawn.Count; i++) {
 			var        tempPos = getEmptyGridPosition();
 			GameObject enemy   = Instantiate(enemyPrefab, tempPos, Quaternion.identity);
-			enemy.GetComponent<enemyDataHandler>().setUpEnemy((EnemySO) enemiesToSpawn[i]);
+			enemy.GetComponent<EnemyDataHandler>().setUpEnemy((EnemySO) enemiesToSpawn[i],grid2D);
 			enemy.GetComponent<SpriteRenderer>().sortingOrder = 2;
 			aliveEnemies.items.Add(enemy);
 		}
@@ -64,7 +73,7 @@ public class CombatManager : MonoBehaviour {
 		}
 		foreach (Vector3Int pos in allPos) {
 			bool shouldAdd = true;
-			if (playerStateManager.player.transform.position != pos) {
+			if (tilemap.WorldToCell(playerStateManager.player.transform.position) != pos) {
 				foreach (GameObject e in aliveEnemies.items) {
 					var eGridPos = tilemap.WorldToCell(e.transform.position);
 					if (eGridPos == pos) {
@@ -86,13 +95,16 @@ public class CombatManager : MonoBehaviour {
 	public void onGameStateChange() {
 		switch (combatState.CurrentRound.name) {
 			case"PlayerTurn":
+				mouseHandler.resetTiles();
 				playerStateManager.startState();
 				break;
 			case"EnemyTurn":
+				mouseHandler.resetTiles();
 				enemyStateManager.startState();
 				break;
 			default:
 				break;
 		}
 	}
+	
 }

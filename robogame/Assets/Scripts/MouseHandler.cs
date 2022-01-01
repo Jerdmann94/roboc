@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using ScriptableObjects.Sets;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -15,10 +16,12 @@ public class MouseHandler : MonoBehaviour {
 	public  Tile          moveTile;
 	//public  GameObject    player;
 	public  Vector3IntSet targetPos;
-	
-	internal List<Tile> possibleTiles;
+
+	public GORunTimeSet possibleTileGo;
+	//internal List<Tile> possibleTiles;
 	internal List<Vector3Int> possibleTilesPos;
 	public   Tilemap   map;
+	public TileRunTimeSet possibleTileSet;
 
 
 	//public        CardSO        selectedCard;
@@ -31,7 +34,7 @@ public class MouseHandler : MonoBehaviour {
 
 	private void Awake() {
 		mouse = new MouseInput();
-		possibleTiles = new List<Tile>();
+		possibleTileSet.items = new List<Tile>();
 		
 	}
 
@@ -52,7 +55,16 @@ public class MouseHandler : MonoBehaviour {
 		mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 		Vector3Int gridPos = map.WorldToCell(mousePosition);
 		Tile       tile    = map.GetTile<Tile>(gridPos);
-		if (tile == null || possibleTiles.Contains(tile)) return;
+		if (tile == null) {
+			Debug.Log("tile = null");
+			return;
+		}
+
+		if (!possibleTilesPos.Contains(gridPos)) {
+			Debug.Log("possible tiles does not contain tile" + possibleTileSet.items.Count);
+
+			return;
+		}
 		Vector3Int temp = new Vector3Int(gridPos.x, gridPos.y, 0);
 		map.SetTile(temp, targetTile);
 		targetPos.items.Insert(0,gridPos);
@@ -81,12 +93,18 @@ public class MouseHandler : MonoBehaviour {
 	}
 
 
-	private void resetTiles() {
-		for (int i = 0; i < possibleTiles.Count; i++) {
-			map.SetTile((Vector3Int) possibleTilesPos[i], (TileBase) possibleTiles[i]);
+	public void resetTiles() {
+		for (int i = 0; i < possibleTileSet.items.Count; i++) {
+			map.SetTile((Vector3Int) possibleTilesPos[i], (TileBase) possibleTileSet.items[i]);
 		}
+
+		possibleTileSet.items = new List<Tile>();
+		possibleTilesPos = new List<Vector3Int>();
+		
 	}
 	private void checkLastTile() {
+		Debug.Log(selectedCardSet.Card);
+		Debug.Log(targetPos.items);
 		if (selectedCardSet.Card.targets >= targetPos.items.Count) {return;}
 		for (int i = targetPos.items.Count-1; i >= selectedCardSet.Card.targets; i--) {
 			map.SetTile(targetPos.items[i], selectedCardSet.Card.tileColor);

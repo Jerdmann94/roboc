@@ -45,7 +45,7 @@ public class PlayerStateManager : MonoBehaviour
         }
         deckSet.items = Shuffle<CardSO>(deckSet.items);
         playPhase.Value = false;
-        player = Instantiate(player, new Vector3(0.75f, 0, 0), Quaternion.identity);
+        
         drawHand();
     }
 
@@ -201,5 +201,9 @@ public class PlayerStateManager : MonoBehaviour
         }
 
         return array;
+    }
+
+    public void initializePlayerState() {
+        player = Instantiate(player, new Vector3(0.75f, 0, 0), Quaternion.identity);
     }
 }

@@ -11,6 +11,10 @@ public class EnemySO : ScriptableObject {
     public     int         health;
     public     int         attack;
     public     Sprite      shape;
-
+    public int moveAmount;
+    public int attackRange;
+    public List<AbsAction> actions;
+    public EnemyAttackType attackType;
+    public TargetTypeSO targetType;
 }
 

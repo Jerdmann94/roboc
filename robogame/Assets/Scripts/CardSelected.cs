@@ -20,6 +20,8 @@ public class CardSelected : MonoBehaviour {
 	public SingleCardSet selectedCard;
 	public MouseHandler  mouseHandler;
 	public PlayerStateManager playerStateManager;
+	public TileRunTimeSet possibleTileSet;
+	
 
 	public void cardSelected() {
 		
@@ -64,7 +66,8 @@ public class CardSelected : MonoBehaviour {
 
 	//HIGHLIGHTING TILES METHODS
 	private void highlightCells4Cardinals(Tile tile) {
-		mouseHandler.possibleTiles = new List<Tile>();
+		possibleTileSet.items = new List<Tile>();
+		
 		mouseHandler.possibleTilesPos = new List<Vector3Int>();
 		Vector3 pos = playerStateManager.player.transform.position;
 		for (int i = 0; i < 4; i++) {
@@ -72,9 +75,11 @@ public class CardSelected : MonoBehaviour {
 			gridPos.x = gridPos.x + vectorChanger4cardinal[i, 0];
 			gridPos.y = gridPos.y + vectorChanger4cardinal[i, 1];
 			if (mouseHandler.map.HasTile(gridPos)) {
-				mouseHandler.possibleTiles.Add(mouseHandler.map.GetTile<Tile>(gridPos));
+				possibleTileSet.items.Add(mouseHandler.map.GetTile<Tile>(gridPos));
+				
 				mouseHandler.possibleTilesPos.Add(gridPos);
 				mouseHandler.map.SetTile(gridPos, tile);
+				
 			}
 			else {
 				Debug.Log("tile not found");
@@ -83,7 +88,8 @@ public class CardSelected : MonoBehaviour {
 	}
 
 	private void highlight20Tiles(Tile tile) {
-		mouseHandler.possibleTiles = new List<Tile>();
+		possibleTileSet.items = new List<Tile>();
+		
 		mouseHandler.possibleTilesPos = new List<Vector3Int>();
 		Vector3 pos = playerStateManager.player.transform.position;
 		for (int i = 0; i < 20; i++) {
@@ -91,9 +97,10 @@ public class CardSelected : MonoBehaviour {
 			gridPos.x = gridPos.x + vectorChanger16[i, 0];
 			gridPos.y = gridPos.y + vectorChanger16[i, 1];
 			if (mouseHandler.map.HasTile(gridPos)) {
-				mouseHandler.possibleTiles.Add(mouseHandler.map.GetTile<Tile>(gridPos));
+				possibleTileSet.items.Add(mouseHandler.map.GetTile<Tile>(gridPos));
 				mouseHandler.possibleTilesPos.Add(gridPos);
 				mouseHandler.map.SetTile(gridPos, tile);
+				
 			}
 			else {
 				//Debug.Log("tile not found");
