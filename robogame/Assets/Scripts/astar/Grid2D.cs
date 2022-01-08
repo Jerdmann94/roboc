@@ -12,7 +12,7 @@ public class Grid2D : MonoBehaviour
     public Vector3 gridWorldSize;
     public float nodeRadius;
     public Node2D[,] Grid;
-    public Tilemap obstaclemap;
+   
     public Tilemap defaultTileMap;
     public List<Node2D> path;
     Vector3 worldBottomLeft;
@@ -29,8 +29,8 @@ public class Grid2D : MonoBehaviour
         gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeDiameter);
         gridSizeY = Mathf.RoundToInt(gridWorldSize.y / nodeDiameter);
         CreateGrid();
-        gridSizeX = 13; //defaultTileMap.cellBounds.x;
-        gridSizeY = 13; //defaultTileMap.cellBounds.y;
+        gridSizeX = 17; //defaultTileMap.cellBounds.x;
+        gridSizeY = 17; //defaultTileMap.cellBounds.y;
     }
 
     
@@ -44,30 +44,43 @@ public class Grid2D : MonoBehaviour
         {
             for (int y = 0; y < gridSizeY; y++)
             {
+               
+                
                 //Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.up * (y * nodeDiameter + nodeRadius);
                 Vector3 worldPoint = defaultTileMap.GetCellCenterWorld(new Vector3Int(x+(int)worldBottomLeft.x, y+(int)worldBottomLeft.y, 0));
                 
                 Grid[x, y] = new Node2D(false, worldPoint, x, y);
+                
+                
+                if (!defaultTileMap.HasTile((defaultTileMap.WorldToCell(Grid[x,y].getWorldPosition())))) {
+                    continue;
+                }
 
-                if (obstaclemap.HasTile(obstaclemap.WorldToCell(Grid[x, y].worldPosition))|| !defaultTileMap.HasTile(defaultTileMap.WorldToCell(Grid[x,y].worldPosition)))
-                    Grid[x, y].SetObstacle(true);
-                else {
-                    Tile tile = defaultTileMap.GetTile<Tile>(defaultTileMap.WorldToCell(worldPoint));
-                    if (tile != null) {
-                        Grid[x, y].tile = tile;
-                        if (tile.name == "Isometric_Block_GlowLightBlue_00_1") {
-                            Grid[x, y].difficultyCost = 40;
-                            //Debug.Log("setting node difficulty");
+                //|| !defaultTileMap.HasTile(defaultTileMap.WorldToCell(Grid[x,y].worldPosition))
+                //if (obstaclemap.HasTile(obstaclemap.WorldToCell(Grid[x, y].worldPosition)))
+                    //Grid[x, y].SetObstacle(true);
+                    
+                    if (defaultTileMap.GetTile<Tile>((defaultTileMap.WorldToCell(worldPoint))).name == "Blue-Bumps" || !defaultTileMap.HasTile(defaultTileMap.WorldToCell(Grid[x,y].getWorldPosition())) ) {
+                        
+                        Grid[x, y].SetObstacle(true);
+                    }
+                    else {
+                        Tile tile = defaultTileMap.GetTile<Tile>(defaultTileMap.WorldToCell(worldPoint));
+                        if (tile != null) {
+                            Grid[x, y].tile = tile;
+                            if (tile.name == "Isometric_Block_GlowLightBlue_00_1") {
+                                Grid[x, y].difficultyCost = 40;
+                                //Debug.Log("setting node difficulty");
+                            }
                         }
                     }
-
                     GameObject temp = Instantiate(tiletext, worldPoint,  Quaternion.identity,canvas.transform);
                     temp.transform.localScale = new Vector3(0.05f, 0.05f, 1f);
                     temp.GetComponent<Text>().text = x + " " + y;
-                    Grid[x, y].SetObstacle(false);
-                }
-                    
-
+                    if (Grid[x,y].obstacle) {
+                        //Debug.Log(Grid[x,y].worldPosition + " " + worldPoint + " " + Grid[x,y].obstacle);
+                        temp.GetComponent<Text>().color = Color.red;
+                    }
 
             }
         }
@@ -123,18 +136,26 @@ public class Grid2D : MonoBehaviour
 
 
     public Node2D NodeFromWorldPoint(Vector3 worldPosition) {
-        int x = 0;
-        int y = 0;
+        int x = -1;
+        int y = -1;
        // int x = Mathf.RoundToInt(worldPosition.x+ (gridSizeX / 2));
         //int y = Mathf.RoundToInt(worldPosition.y + (gridSizeY / 2));
        // Debug.Log(worldPosition.x + " " + worldPosition.y);
         //Debug.Log(x + " "+y);
         foreach (var VARIABLE in Grid) {
-            if (VARIABLE.worldPosition == worldPosition) {
-                //Debug.Log("this is jank but works" + VARIABLE.worldPosition);
+            if (VARIABLE.getWorldPosition() == worldPosition) {
+                
                 x = VARIABLE.GridX;
                 y = VARIABLE.GridY;
+                //Debug.Log(worldPosition + " " + VARIABLE.getWorldPosition()+ " " +x + " " + y + Grid[x, y].getWorldPosition());
+               
+                break;
             }
+
+        }
+
+        if (x == -1 && y == -1) {
+            Debug.Log("Node not found!");
         }
         return Grid[x, y];
         //return Grid[(int) worldPosition.x, (int) worldPosition.y];
@@ -143,37 +164,37 @@ public class Grid2D : MonoBehaviour
 
     public void setEnemyAtPosition(GameObject enemy) {
         Node2D node = NodeFromWorldPoint(enemy.transform.position);
-        node.enemy = enemy;
+        node.setEnemy(enemy);
     }
     public void setEnemyAtPosition(GameObject enemy,Vector3 position) {
         Node2D node = NodeFromWorldPoint(position);
-        node.enemy = enemy;
+        node.setEnemy(enemy);
     }
     
     
     //Draws visual representation of grid
-    void OnDrawGizmos()
-    {
-        Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, gridWorldSize.y, 1));
-
-        if (Grid != null)
-        {
-            foreach (Node2D n in Grid)
-            {
-                if (n == null) {
-                    continue;
-                }
-                if (n.obstacle)
-                    Gizmos.color = Color.red;
-                else
-                    Gizmos.color = Color.clear;
-
-                //Debug.Log(path.Count);
-                if (path != null && path.Contains(n))
-                    Gizmos.color = Color.black;
-                Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeRadius));
-
-            }
-        }
-    }
+    // void OnDrawGizmos()
+    // {
+    //     Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, gridWorldSize.y, 1));
+    //
+    //     if (Grid != null)
+    //     {
+    //         foreach (Node2D n in Grid)
+    //         {
+    //             if (n == null) {
+    //                 continue;
+    //             }
+    //             if (n.obstacle)
+    //                 Gizmos.color = Color.red;
+    //             else
+    //                 Gizmos.color = Color.clear;
+    //
+    //             //Debug.Log(path.Count);
+    //             if (path != null && path.Contains(n))
+    //                 Gizmos.color = Color.black;
+    //             Gizmos.DrawCube(n.getWorldPosition(), Vector3.one * (nodeRadius));
+    //
+    //         }
+    //     }
+    // }
 }

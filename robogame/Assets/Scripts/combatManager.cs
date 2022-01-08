@@ -13,7 +13,7 @@ using Random = UnityEngine.Random;
 public class CombatManager : MonoBehaviour {
 
 	private List<ScriptableObject> enemiesToSpawn = new List<ScriptableObject>();
-	public  DeckSO                 enemiesDeck;
+	public  EnemyList                 enemiesDeck;
 	public  GameObject             enemyPrefab;
 	public  Tilemap                tilemap;
 	public GORunTimeSet aliveEnemies;
@@ -58,6 +58,8 @@ public class CombatManager : MonoBehaviour {
 			GameObject enemy   = Instantiate(enemyPrefab, tempPos, Quaternion.identity);
 			enemy.GetComponent<EnemyDataHandler>().setUpEnemy((EnemySO) enemiesToSpawn[i],grid2D);
 			enemy.GetComponent<SpriteRenderer>().sortingOrder = 2;
+			enemy.name = i.ToString();
+			enemy.GetComponent<EnemyDataHandler>().name = i.ToString();
 			aliveEnemies.items.Add(enemy);
 		}
 	}
@@ -85,9 +87,13 @@ public class CombatManager : MonoBehaviour {
 					possiblePos.Add(pos);
 				}
 			}
+			else {
+				//Debug.Log("this is player position " + pos);
+			}
 		}
 		int     index = Random.Range(0, possiblePos.Count);
 		Vector3 temp  = (Vector3) tilemap.GetCellCenterWorld((Vector3Int) possiblePos[index]);
+		//Debug.Log(temp);
 		return temp;
 	}
 
@@ -95,6 +101,7 @@ public class CombatManager : MonoBehaviour {
 	public void onGameStateChange() {
 		switch (combatState.CurrentRound.name) {
 			case"PlayerTurn":
+				
 				mouseHandler.resetTiles();
 				playerStateManager.startState();
 				break;

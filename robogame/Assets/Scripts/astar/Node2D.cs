@@ -7,14 +7,23 @@ public class Node2D
 {
 	public int gCost, hCost,difficultyCost,enemyCost;
 	public bool obstacle;
-	public Vector3 worldPosition;
+	private Vector3 worldPosition;
 	
 
 	public int GridX, GridY;
 	public Node2D parent;
 
 	public Tile tile;
-	public GameObject enemy = null;
+	private GameObject enemy = null;
+
+
+	public void setEnemy(GameObject obj) {
+		enemy = obj;
+	}
+
+	public GameObject getEnemy() {
+		return enemy;
+	}
 
 
 	public Node2D(bool _obstacle, Vector3 _worldPos, int _gridX, int _gridY)
@@ -46,6 +55,11 @@ public class Node2D
 
 	public void SetObstacle(bool isOb)
 	{
+		
 		obstacle = isOb;
+	}
+
+	public Vector3 getWorldPosition() {
+		return worldPosition;
 	}
 }

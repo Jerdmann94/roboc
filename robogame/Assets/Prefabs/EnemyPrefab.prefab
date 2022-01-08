@@ -397,25 +397,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5de9de9bfec4ed1478308cab058c6fbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 0
-  name: 
-  health: 0
-  attack: 0
-  shape: {fileID: 0}
-  attackRange: 0
   playerSet: {fileID: 11400000, guid: 4c4c17a4c8cb17e4ea6cb058c3b9cda0, type: 2}
   selectedCard: {fileID: 11400000, guid: 6de5deab8cf4f6e42b5a2b1df3af8322, type: 2}
   slider: {fileID: 407863299355176406}
   damageText: {fileID: 8914688676476180501, guid: d83276dfe421bff40923fef8e0beec23, type: 3}
-  target: {fileID: 0}
-  canvas: {fileID: 0}
-  moveAmount: 0
   combatState: {fileID: 11400000, guid: d316196ed9f621945859442122207eed, type: 2}
-  targetType: {fileID: 11400000, guid: 7d4efedc656a3bd46a113c0392935549, type: 2}
-  grid2D: {fileID: 0}
-  enemyTileHighlighter: {fileID: 0}
-  selectedAction: {fileID: 0}
-  actions: []
   targetCheck: {fileID: 11400000, guid: e7c5c7aa86e8eef4eaa2411685e9bcab, type: 2}
 --- !u!114 &1951614735833151202
 MonoBehaviour:
@@ -434,7 +420,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1260747292266065359}
-        m_TargetAssemblyTypeName: enemyDataHandler, Assembly-CSharp
+        m_TargetAssemblyTypeName: EnemyDataHandler, Assembly-CSharp
         m_MethodName: takeDamage
         m_Mode: 1
         m_Arguments:

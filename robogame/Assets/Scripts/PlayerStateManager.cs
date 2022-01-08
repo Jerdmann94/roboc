@@ -36,14 +36,14 @@ public class PlayerStateManager : MonoBehaviour
     //----------UNITY METHODS --------------//
     void Awake() {
         playerScript = player.GetComponent<PlayerScript>();
-        deckSet.items = new List<CardSO>();
-        handSet.items = new List<CardSO>();
-        discardSet.items = new List<CardSO>();
+        deckSet.items = new List<CardAbs>();
+        handSet.items = new List<CardAbs>();
+        discardSet.items = new List<CardAbs>();
         handUIArray.items = new List<GameObject>();
         foreach (var cardSo in deckData.deck) {
-            deckSet.add((CardSO) cardSo);
+            deckSet.add( cardSo);
         }
-        deckSet.items = Shuffle<CardSO>(deckSet.items);
+        deckSet.items = Shuffle<CardAbs>(deckSet.items);
         playPhase.Value = false;
         
         drawHand();
@@ -62,6 +62,7 @@ public class PlayerStateManager : MonoBehaviour
         switch (playerState.CurrentRound.name) {
             case"GetEnergy":
                 refillEnergy();
+                mouseHandler.cc.checkWhichCardsCanBePlayed();
                 playerState.nextState();
                 break;
             case"Draw":
@@ -75,6 +76,7 @@ public class PlayerStateManager : MonoBehaviour
                 reduceHandToMaxHandSize();
                 break;
             case"EndTurn":
+                mouseHandler.cc.checkWhichCardsCanBePlayed();
                 combatManager.combatState.nextState();
                 break;
             default:
@@ -131,8 +133,8 @@ public class PlayerStateManager : MonoBehaviour
     private void drawCard() {
         if (deckSet.items.Count == 0) {
             if (discardSet.items.Count > 0) {
-                deckSet.items = Shuffle<CardSO>(discardSet.items);
-                discardSet.items = new List<CardSO>();
+                deckSet.items = Shuffle<CardAbs>(discardSet.items);
+                discardSet.items = new List<CardAbs>();
             }
             else {
                 return;
@@ -150,10 +152,10 @@ public class PlayerStateManager : MonoBehaviour
     }
 
     public void createCardUI(int i) {
-        handSet.add((CardSO) deckSet.items[0]);
+        handSet.add((CardAbs) deckSet.items[0]);
         //hand.Add(deck[0]);
 
-        deckSet.remove((CardSO) deckSet.items[0]);
+        deckSet.remove((CardAbs) deckSet.items[0]);
         //deck.RemoveAt(0);
 
         
@@ -161,7 +163,7 @@ public class PlayerStateManager : MonoBehaviour
         Vector3 temp = new Vector3(handPoint1.transform.position.x + Mathf.Abs((xvalue * i)) + Mathf.Abs(xvalue / 2),
             handPoint1.transform.position.y, 0);
         GameObject card = Instantiate(cardUI,temp, quaternion.identity, canvas.transform);
-        card.GetComponent<CardDataScript>().setUpCard((CardSO) handSet.items[i], card.transform.position);
+        card.GetComponent<CardDataScript>().setUpCard( handSet.items[i], card.transform.position);
         //card.transform.SetParent(canvas.transform);
         card.transform.localScale = Vector3.one;
         card.GetComponent<Button>().onClick.AddListener(() =>
@@ -188,7 +190,7 @@ public class PlayerStateManager : MonoBehaviour
     }
 
 
-    static List<CardSO> Shuffle<T>(List<CardSO> array) {
+    static List<CardAbs> Shuffle<T>(List<CardAbs> array) {
         int n = array.Count;
         for (int i = 0; i < (n - 1); i++) {
             // Use Next on random instance with an argument.
@@ -204,6 +206,6 @@ public class PlayerStateManager : MonoBehaviour
     }
 
     public void initializePlayerState() {
-        player = Instantiate(player, new Vector3(0.75f, 0, 0), Quaternion.identity);
+        player = Instantiate(player, new Vector3(0, 0, 0), Quaternion.identity);
     }
 }

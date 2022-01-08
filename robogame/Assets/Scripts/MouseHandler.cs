@@ -12,14 +12,10 @@ public class MouseHandler : MonoBehaviour {
 	private MouseInput    mouse;
 	
 	public  Tile          targetTile;
-	public  Tile          attackTile;
-	public  Tile          moveTile;
+	
 	//public  GameObject    player;
 	public  Vector3IntSet targetPos;
-
-	public GORunTimeSet possibleTileGo;
-	//internal List<Tile> possibleTiles;
-	internal List<Vector3Int> possibleTilesPos;
+	public Vector3IntSet possibleTilesPos;
 	public   Tilemap   map;
 	public TileRunTimeSet possibleTileSet;
 
@@ -35,7 +31,8 @@ public class MouseHandler : MonoBehaviour {
 	private void Awake() {
 		mouse = new MouseInput();
 		possibleTileSet.items = new List<Tile>();
-		
+		targetPos.items = new List<Vector3Int>();
+
 	}
 
 	private void OnEnable() {
@@ -56,12 +53,12 @@ public class MouseHandler : MonoBehaviour {
 		Vector3Int gridPos = map.WorldToCell(mousePosition);
 		Tile       tile    = map.GetTile<Tile>(gridPos);
 		if (tile == null) {
-			Debug.Log("tile = null");
+			//Debug.Log("tile = null");
 			return;
 		}
 
-		if (!possibleTilesPos.Contains(gridPos)) {
-			Debug.Log("possible tiles does not contain tile" + possibleTileSet.items.Count);
+		if (!possibleTilesPos.items.Contains(gridPos)) {
+			//Debug.Log("possible tiles does not contain tile " + possibleTileSet.items.Count + " grid position is " + gridPos);
 
 			return;
 		}
@@ -78,11 +75,12 @@ public class MouseHandler : MonoBehaviour {
 	public void confirm() {
 		if (!playPhase.Value) return;
 		cc.cardConfirmed();
+		
 		resetTiles();
 		targetPos.items = new List<Vector3Int>();
 	}
 
-	public void playCard(CardSO card) {
+	public void playCard(CardAbs card) {
 		if (!playPhase.Value) return;
 		
 		resetTiles();
@@ -95,11 +93,11 @@ public class MouseHandler : MonoBehaviour {
 
 	public void resetTiles() {
 		for (int i = 0; i < possibleTileSet.items.Count; i++) {
-			map.SetTile((Vector3Int) possibleTilesPos[i], (TileBase) possibleTileSet.items[i]);
+			map.SetTile((Vector3Int) possibleTilesPos.items[i], (TileBase) possibleTileSet.items[i]);
 		}
 
 		possibleTileSet.items = new List<Tile>();
-		possibleTilesPos = new List<Vector3Int>();
+		possibleTilesPos.items = new List<Vector3Int>();
 		
 	}
 	private void checkLastTile() {

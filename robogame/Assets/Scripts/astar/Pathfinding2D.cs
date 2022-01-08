@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using ScriptableObjects.Sets;
 using UnityEngine.Tilemaps;
 
@@ -32,6 +33,7 @@ public class Pathfinding2D : MonoBehaviour {
     {
         //get player and target position in grid coords
         
+//        Debug.Log("start pos " + startPos + " target pos " + targetPos);
         seekerNode = grid.NodeFromWorldPoint(startPos);
         targetNode = grid.NodeFromWorldPoint(targetPos);
 
@@ -61,15 +63,23 @@ public class Pathfinding2D : MonoBehaviour {
             if (node == targetNode)
             {
                 RetracePath(seekerNode, targetNode);
+                
                 return;
             }
             
             //adds neighbor nodes to openSet
             foreach (Node2D neighbour in grid.GetNeighbors(node))
             {
-                if (neighbour.obstacle || closedSet.Contains(neighbour)||neighbour.enemy != null)
+                if (neighbour.obstacle || closedSet.Contains(neighbour))
                 {
                     continue;
+                }
+
+                if (neighbour.getEnemy()!= null) {
+                    if (!neighbour.getEnemy().CompareTag("Player")) {
+                        continue;
+                    }
+                    
                 }
 
                 int newCostToNeighbour = node.gCost + GetDistance(node, neighbour);

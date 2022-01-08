@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace ScriptableObjects.Sets {
-	[CreateAssetMenu]
+	[CreateAssetMenu(fileName = "new Card", menuName = "RunTimeSets/GameObjectRunTimeSet")]
 	public class GORunTimeSet : RunTimeSet<GameObject>
 	{
   

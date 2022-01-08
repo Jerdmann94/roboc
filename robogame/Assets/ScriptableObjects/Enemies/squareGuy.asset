@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e5d6bfda0354964989175cf6adcdfcb, type: 3}
   m_Name: squareGuy
   m_EditorClassIdentifier: 
-  cost: 0
+  cost: 1
   name: Square
   health: 100
   attack: 1

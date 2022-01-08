@@ -9,7 +9,7 @@ using System.Collections;
 using UnityEngine.EventSystems;
 
 public class CardDataScript : MonoBehaviour , IPointerEnterHandler, IPointerExitHandler{
-    public CardSO card;
+    public CardAbs card;
 
     public Text nameText;
 
@@ -29,20 +29,20 @@ public class CardDataScript : MonoBehaviour , IPointerEnterHandler, IPointerExit
         
     }
 
-    public void setUpCard(CardSO card,Vector3 initPosition) {
-        this.card = card;
-        nameText.text = card.name;
-        if (card.cost.cost.Length > 1)
+    public void setUpCard(CardAbs cardInfo,Vector3 initPosition) {
+        this.card = cardInfo;
+        nameText.text = cardInfo.name;
+        if (cardInfo.cost.cost.Length > 1)
         {
-            Debug.Log("need to set up multiple card costs still");
+            Debug.Log("need to set up multiple cardInfo costs still");
         }
         else
         {
-            cardCost.text = card.cost.cost[0].ToString();
+            cardCost.text = cardInfo.cost.cost[0].ToString();
         }
         
-        cardDescription.text = card.cardDescription;
-        cardFlavor.text = card.cardFlavor;
+        cardDescription.text = cardInfo.cardDescription;
+        cardFlavor.text = cardInfo.cardFlavor;
         startPosition = initPosition;
         target = startPosition;
         

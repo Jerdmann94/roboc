@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using ScriptableObjects.Sets;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -9,19 +11,37 @@ public class EnemyBasicAttack : AbsAction
 {
 	public Tile attackTile;
 	private EnemyDataHandler _enemyDataHandler;
+	public playerStatBlockSO stats;
+	
 	public override void Execute(GameObject enemy) {
 		
 		Grid2D grid2D = _enemyDataHandler.grid2D;
 		grid2D.setEnemyAtPosition(enemy);
+		Tilemap tilemap = grid2D.defaultTileMap;
+		foreach (var node in _enemyDataHandler.highlightedNodes) {
+			if (tilemap.WorldToCell(node.getWorldPosition()) != tilemap.WorldToCell(_enemyDataHandler.target.transform.position)) {
+				return;
+			}
+
+			if (_enemyDataHandler.target.CompareTag("Player")) {
+				stats.health.Value -= _enemyDataHandler.attack;
+			}
+			else {
+				_enemyDataHandler.target.GetComponent<EnemyDataHandler>().takeDamage(_enemyDataHandler.attack);
+			}
+		}
+
+		
+		
+
+		
 		//Debug.Log("Attacking not implemented yet");
 	}
-	// private void enemyAttack( GameObject enemy) {
-	//     Node2D node =_grid2D.NodeFromWorldPoint(enemy.transform.position);
-	//     node.enemy = enemy;
-	//     // List<Node2D> path = enemy.GetComponent<EnemyDataHandler>().path;
-	//     // Vector3Int gridPos = tilemap.WorldToCell(path[0].worldPosition);
-	//     // tilemap.SetTile(gridPos, attackTile);
-	// }
+
+	private void doPlayerDamage() {
+		throw new System.NotImplementedException();
+	}
+
 
 	public override bool Check(GameObject enemy) {
 
@@ -58,7 +78,7 @@ public class EnemyBasicAttack : AbsAction
 
 	private bool MeleeCheck(GameObject enemy) {
 		EnemyDataHandler enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();
-		if (enemyDataHandler.path.Count <= enemyDataHandler.attackRange) { 
+		if (enemyDataHandler.getPath().Count <= enemyDataHandler.attackRange) { 
 			// ARE WE WITHIN RANGE OF OUR TARGET
 			return true;
 		}

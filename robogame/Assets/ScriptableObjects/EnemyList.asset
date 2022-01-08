@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 186b10428f8985142a2b8f56976bfb53, type: 3}
-  m_Name: testEnemyDeck
+  m_Script: {fileID: 11500000, guid: 27c2f7495db6edd4d99e564094d29967, type: 3}
+  m_Name: EnemyList
   m_EditorClassIdentifier: 
   deck:
   - {fileID: 11400000, guid: d8f9941fc69a3e24babcfb85ef3c549f, type: 2}

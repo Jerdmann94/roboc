@@ -5,8 +5,7 @@ using ScriptableObjects.Sets;
 using UnityEngine;
 using System.Linq;
 using System.Linq.Expressions;
-
-
+using UnityEngine.UI;
 
 
 public class CardConfirmed : MonoBehaviour {
@@ -37,26 +36,10 @@ public class CardConfirmed : MonoBehaviour {
 			return;
 		}
 		adjustEnergyValue();
-		switch (selectedCard.Card.name) {
-			case "Move":
-				basicMoveConfirm();
-				break;
-			case "Attack":
-				basicAttackConfirm();
-				break;
-			case "Special Attack":
-				specialAttackConfirm();
-				break;
-			case "Special Move":
-				specialMoveConfirm();
-				break;
-			default:
-				break;
-		}
-
-
+		selectedCard.Card.Execute();
+		
 		int r = selectedCard.Card.handPosition;
-		Debug.Log(r);
+		
 		Destroy(handUIArray.items[r]);
 		handUIArray.items.RemoveAt(r);
 		discardSet.items.Add(handSet.items[r]);
@@ -75,27 +58,28 @@ public class CardConfirmed : MonoBehaviour {
 			}
 			
 		}
-	}
 
-	private void specialMoveConfirm() {
-		playerStateManager.player.transform.position = mouseHandler.map.GetCellCenterWorld(targetPos.items[0]);
-	}
-
-	private void specialAttackConfirm() {
-		targetPos.items.ForEach(pos => {
-			attackEvent.emit(mouseHandler.map.GetCellCenterWorld(pos));
-		});
-	}
-
-	private void basicMoveConfirm() {
-		playerStateManager.player.transform.position = mouseHandler.map.GetCellCenterWorld(targetPos.items[0]);
-	}
-
-	private void basicAttackConfirm() {
-		targetPos.items.ForEach(pos => {
-			                       // Debug.Log(mouseHandler.map.GetCellCenterWorld(pos));
-			                        attackEvent.emit(mouseHandler.map.GetCellCenterWorld(pos));
-		                        });
+		checkWhichCardsCanBePlayed();
 		
 	}
+
+	public void checkWhichCardsCanBePlayed() {
+		foreach (var card in handUIArray.items) {
+
+			var cd = card.GetComponent<CardDataScript>();
+			var but = card.GetComponent<Button>();
+
+			foreach (var value in energyUIValues) {
+
+				for (int i = 0; i < cd.card.cost.types.Length; i++) {
+					if (value.name == cd.card.cost.types[i].name) {
+						Debug.Log(value.name + " " + cd.card.cost.types[i].name);
+						but.interactable = value.Value >= cd.card.cost.cost[i];
+					}
+				}
+			}
+			
+		}
+	}
+	
 }

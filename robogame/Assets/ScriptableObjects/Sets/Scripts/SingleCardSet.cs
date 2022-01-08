@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace ScriptableObjects.Sets {
-	[CreateAssetMenu]
+	
+	[CreateAssetMenu(fileName = "new Card", menuName = "RunTimeSets/SingleCardSet")]
 	public class SingleCardSet : ScriptableObject {
-		public CardSO Card { get; set; }
+		public CardAbs Card { get; set; }
 	}
 }
