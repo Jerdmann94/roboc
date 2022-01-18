@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: EnemyMeleeMove
   m_EditorClassIdentifier: 
   combatManagerSet: {fileID: 11400000, guid: 24b50521d9b0d11478baef5f792d60bd, type: 2}
+  playerSet: {fileID: 11400000, guid: 4c4c17a4c8cb17e4ea6cb058c3b9cda0, type: 2}
   moveTile: {fileID: 11400000, guid: 4ee1e408284751440a760de87af1ee31, type: 2}

@@ -10,6 +10,7 @@ public class AddMeToSets : MonoBehaviour {
 	// Start is called before the first frame update
 	private void Awake() {
 		foreach (var VARIABLE in sets) {
+			
 			VARIABLE.add(this.gameObject);
 		}
 	}

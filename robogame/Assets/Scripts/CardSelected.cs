@@ -20,7 +20,7 @@ public class CardSelected : MonoBehaviour {
 	public SingleCardSet selectedCard;
 	public MouseHandler  mouseHandler;
 	public PlayerStateManager playerStateManager;
-	public TileRunTimeSet possibleTileSet;
+	//public TileRunTimeSet possibleTileSet;
 	
 
 	public void cardSelected() {

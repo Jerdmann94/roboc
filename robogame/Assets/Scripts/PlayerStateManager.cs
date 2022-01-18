@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using ScriptableObjects.Sets;
 using Unity.Mathematics;
 using UnityEngine;
@@ -141,7 +142,7 @@ public class PlayerStateManager : MonoBehaviour
             }
         }
         
-        createCardUI(0);
+        createCardUI(handSet.items.Count);
         resetHandPosition();
     }
     public void drawHand() {
@@ -164,6 +165,7 @@ public class PlayerStateManager : MonoBehaviour
             handPoint1.transform.position.y, 0);
         GameObject card = Instantiate(cardUI,temp, quaternion.identity, canvas.transform);
         card.GetComponent<CardDataScript>().setUpCard( handSet.items[i], card.transform.position);
+        //Debug.Log(i);
         //card.transform.SetParent(canvas.transform);
         card.transform.localScale = Vector3.one;
         card.GetComponent<Button>().onClick.AddListener(() =>

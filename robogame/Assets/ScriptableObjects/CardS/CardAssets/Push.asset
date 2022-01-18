@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b16441b292398a942844100d33dbcce5, type: 3}
+  m_Name: Push
+  m_EditorClassIdentifier: 
+  cost: {fileID: 11400000, guid: 408237f024d665442a98c1369cf9454a, type: 2}
+  name: Push
+  cardDescription: push it
+  cardFlavor: you did it
+  damage: 5
+  targets: 1
+  tileColor: {fileID: 11400000, guid: a5ab754b138b9cd449eb20bf78f06ce9, type: 2}
+  playerSet: {fileID: 11400000, guid: 4c4c17a4c8cb17e4ea6cb058c3b9cda0, type: 2}
+  tilemapSet: {fileID: 11400000, guid: e1cb19a99de443146927c681d20d98bc, type: 2}
+  targetPos: {fileID: 11400000, guid: 6ddacf19bb63d234b90e1ba16dc0d857, type: 2}
+  formation: {fileID: 9084405614283611479, guid: 62f3cbe11a58822488c7ffdf9bec8805, type: 3}
+  possibleTargets: {fileID: 11400000, guid: b502dff6c79fc274eb62c48733ad29e7, type: 2}
+  possibleTargetsTiles: {fileID: 11400000, guid: f2d280ec65f075d41b5c3c86130ee9e2, type: 2}
+  attackEvent: {fileID: 11400000, guid: 16a7dbce07fcba542b760a2ea59ab75d, type: 2}
+  aliveEnemies: {fileID: 11400000, guid: 4348edecdfc7f844eaab4ad2d9b89740, type: 2}
+  combatManagerSet: {fileID: 11400000, guid: 24b50521d9b0d11478baef5f792d60bd, type: 2}
+  aliveObstacles: {fileID: 11400000, guid: d2c6906d708594748b25d53c5ecaf19c, type: 2}

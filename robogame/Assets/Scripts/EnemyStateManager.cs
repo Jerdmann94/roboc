@@ -39,6 +39,11 @@ public class EnemyStateManager : MonoBehaviour {
                         Debug.Log("THIS ENEMY " + enemy + " HAS NO ACTION THIS TURN FOR SOME REASON");
                         continue;
                     }
+
+                    if (enemy.GetComponent<EnemyDataHandler>().stunned) {
+                        enemy.GetComponent<EnemyDataHandler>().stunned = false;
+                        continue;
+                    }
                     
                     //PERFORM YOUR ACTION YOUR SELECTED LAST TURN;
                     //Debug.Log(enemy.name + " is performing " + enemy.GetComponent<EnemyDataHandler>().selectedAction);
@@ -130,7 +135,7 @@ public class EnemyStateManager : MonoBehaviour {
         foreach (var node in _grid2D.Grid) {
             if (node.getEnemy() == null) continue;
             Instantiate(enemyAtLocation, node.getWorldPosition(), quaternion.identity);
-            Debug.Log("spawning dummy");
+            //Debug.Log("spawning dummy");
         }
     }
 }

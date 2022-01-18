@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: EnemyBasicAttack
   m_EditorClassIdentifier: 
   combatManagerSet: {fileID: 11400000, guid: 24b50521d9b0d11478baef5f792d60bd, type: 2}
+  playerSet: {fileID: 11400000, guid: 4c4c17a4c8cb17e4ea6cb058c3b9cda0, type: 2}
   attackTile: {fileID: 11400000, guid: a5ab754b138b9cd449eb20bf78f06ce9, type: 2}
   stats: {fileID: 11400000, guid: f355416e21619cd4e8738e23132a972a, type: 2}
+  aliveEnemies: {fileID: 11400000, guid: 4348edecdfc7f844eaab4ad2d9b89740, type: 2}

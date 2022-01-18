@@ -96,13 +96,14 @@ public class MouseHandler : MonoBehaviour {
 			map.SetTile((Vector3Int) possibleTilesPos.items[i], (TileBase) possibleTileSet.items[i]);
 		}
 
+		Debug.Log("reseting tiles");
 		possibleTileSet.items = new List<Tile>();
 		possibleTilesPos.items = new List<Vector3Int>();
 		
 	}
 	private void checkLastTile() {
-		Debug.Log(selectedCardSet.Card);
-		Debug.Log(targetPos.items);
+		//Debug.Log(selectedCardSet.Card);
+		//Debug.Log(targetPos.items);
 		if (selectedCardSet.Card.targets >= targetPos.items.Count) {return;}
 		for (int i = targetPos.items.Count-1; i >= selectedCardSet.Card.targets; i--) {
 			map.SetTile(targetPos.items[i], selectedCardSet.Card.tileColor);

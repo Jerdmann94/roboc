@@ -5,12 +5,8 @@ using UnityEngine;
 using UnityEngine.U2D;
 
 [CreateAssetMenu(fileName ="new Enemy", menuName = "Enemy")]
-public class EnemySO : ScriptableObject {
+public class EnemySO : TileMapSO {
     public     int         cost;
-    public new String      name;
-    public     int         health;
-    public     int         attack;
-    public     Sprite      shape;
     public int moveAmount;
     public int attackRange;
     public List<AbsAction> actions;

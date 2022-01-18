@@ -9,7 +9,6 @@ using UnityEngine.Tilemaps;
 [CreateAssetMenu]
 public class EnemyTargetFinder : AbsAction {
 
-	public GORunTimeSet playerSet;
 	public GORunTimeSet aliveEnemies;
 	
 

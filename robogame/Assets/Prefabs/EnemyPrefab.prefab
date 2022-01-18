@@ -397,12 +397,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5de9de9bfec4ed1478308cab058c6fbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSet: {fileID: 11400000, guid: 4c4c17a4c8cb17e4ea6cb058c3b9cda0, type: 2}
   selectedCard: {fileID: 11400000, guid: 6de5deab8cf4f6e42b5a2b1df3af8322, type: 2}
-  slider: {fileID: 407863299355176406}
   damageText: {fileID: 8914688676476180501, guid: d83276dfe421bff40923fef8e0beec23, type: 3}
-  combatState: {fileID: 11400000, guid: d316196ed9f621945859442122207eed, type: 2}
+  health: 0
+  slider: {fileID: 407863299355176406}
+  combatManagerSet: {fileID: 11400000, guid: 24b50521d9b0d11478baef5f792d60bd, type: 2}
+  tilemapSet: {fileID: 11400000, guid: e1cb19a99de443146927c681d20d98bc, type: 2}
   targetCheck: {fileID: 11400000, guid: e7c5c7aa86e8eef4eaa2411685e9bcab, type: 2}
+  stunned: 0
+  stunnedText: {fileID: 7246597917346867796, guid: c200c67bf8db29c4983ca9214494cb38, type: 3}
 --- !u!114 &1951614735833151202
 MonoBehaviour:
   m_ObjectHideFlags: 0

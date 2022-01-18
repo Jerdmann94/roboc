@@ -53,6 +53,7 @@ public class Grid2D : MonoBehaviour
                 
                 
                 if (!defaultTileMap.HasTile((defaultTileMap.WorldToCell(Grid[x,y].getWorldPosition())))) {
+                    Grid[x, y].SetObstacle(true);
                     continue;
                 }
 
@@ -60,26 +61,28 @@ public class Grid2D : MonoBehaviour
                 //if (obstaclemap.HasTile(obstaclemap.WorldToCell(Grid[x, y].worldPosition)))
                     //Grid[x, y].SetObstacle(true);
                     
-                    if (defaultTileMap.GetTile<Tile>((defaultTileMap.WorldToCell(worldPoint))).name == "Blue-Bumps" || !defaultTileMap.HasTile(defaultTileMap.WorldToCell(Grid[x,y].getWorldPosition())) ) {
-                        
-                        Grid[x, y].SetObstacle(true);
-                    }
-                    else {
+                    
+                    
                         Tile tile = defaultTileMap.GetTile<Tile>(defaultTileMap.WorldToCell(worldPoint));
                         if (tile != null) {
                             Grid[x, y].tile = tile;
                             if (tile.name == "Isometric_Block_GlowLightBlue_00_1") {
-                                Grid[x, y].difficultyCost = 40;
+                                Grid[x, y].difficultyCost += 40;
                                 //Debug.Log("setting node difficulty");
                             }
                         }
-                    }
+                    
                     GameObject temp = Instantiate(tiletext, worldPoint,  Quaternion.identity,canvas.transform);
                     temp.transform.localScale = new Vector3(0.05f, 0.05f, 1f);
                     temp.GetComponent<Text>().text = x + " " + y;
                     if (Grid[x,y].obstacle) {
                         //Debug.Log(Grid[x,y].worldPosition + " " + worldPoint + " " + Grid[x,y].obstacle);
                         temp.GetComponent<Text>().color = Color.red;
+                    }
+
+                    if (Grid[x,y].difficultyCost>0) {
+                        temp.GetComponent<Text>().color = Color.yellow;
+                        
                     }
 
             }
@@ -171,30 +174,30 @@ public class Grid2D : MonoBehaviour
         node.setEnemy(enemy);
     }
     
+    //
+    // Draws visual representation of grid
+     void OnDrawGizmos()
+     {
+         Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, gridWorldSize.y, 1));
     
-    //Draws visual representation of grid
-    // void OnDrawGizmos()
-    // {
-    //     Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, gridWorldSize.y, 1));
-    //
-    //     if (Grid != null)
-    //     {
-    //         foreach (Node2D n in Grid)
-    //         {
-    //             if (n == null) {
-    //                 continue;
-    //             }
-    //             if (n.obstacle)
-    //                 Gizmos.color = Color.red;
-    //             else
-    //                 Gizmos.color = Color.clear;
-    //
-    //             //Debug.Log(path.Count);
-    //             if (path != null && path.Contains(n))
-    //                 Gizmos.color = Color.black;
-    //             Gizmos.DrawCube(n.getWorldPosition(), Vector3.one * (nodeRadius));
-    //
-    //         }
-    //     }
-    // }
+         if (Grid != null)
+         {
+             foreach (Node2D n in Grid)
+             {
+                 if (n == null) {
+                     continue;
+                 }
+                 if (n.obstacle)
+                     Gizmos.color = Color.red;
+                 else
+                     Gizmos.color = Color.clear;
+    
+                 //Debug.Log(path.Count);
+                 if (path != null && path.Contains(n))
+                     Gizmos.color = Color.black;
+                 Gizmos.DrawCube(n.getWorldPosition(), Vector3.one * (nodeRadius));
+    
+             }
+         }
+     }
 }

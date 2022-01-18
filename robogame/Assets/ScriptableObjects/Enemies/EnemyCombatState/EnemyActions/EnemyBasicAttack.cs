@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ScriptableObjects.Sets;
 using UnityEngine;
@@ -12,22 +13,27 @@ public class EnemyBasicAttack : AbsAction
 	public Tile attackTile;
 	private EnemyDataHandler _enemyDataHandler;
 	public playerStatBlockSO stats;
+	public GORunTimeSet aliveEnemies;
 	
 	public override void Execute(GameObject enemy) {
-		
-		Grid2D grid2D = _enemyDataHandler.grid2D;
+
+		Grid2D grid2D = combatManagerSet.items[0].GetComponent<Grid2D>();
 		grid2D.setEnemyAtPosition(enemy);
 		Tilemap tilemap = grid2D.defaultTileMap;
 		foreach (var node in _enemyDataHandler.highlightedNodes) {
-			if (tilemap.WorldToCell(node.getWorldPosition()) != tilemap.WorldToCell(_enemyDataHandler.target.transform.position)) {
-				return;
-			}
+			// if (tilemap.WorldToCell(node.getWorldPosition()) != tilemap.WorldToCell(_enemyDataHandler.target.transform.position)) {
+			// 	return;
+			// }
 
-			if (_enemyDataHandler.target.CompareTag("Player")) {
+			if (_enemyDataHandler.target.CompareTag("Player") && 
+			    tilemap.WorldToCell(node.getWorldPosition()) == tilemap.WorldToCell(_enemyDataHandler.target.transform.position)) {
 				stats.health.Value -= _enemyDataHandler.attack;
 			}
 			else {
-				_enemyDataHandler.target.GetComponent<EnemyDataHandler>().takeDamage(_enemyDataHandler.attack);
+				foreach (var otherEnemy in aliveEnemies.items.Where(
+					         otherEnemy => otherEnemy.transform.position == node.getWorldPosition())) {
+					otherEnemy.GetComponent<EnemyDataHandler>().takeDamage(enemy.GetComponent<EnemyDataHandler>().attack);
+				}
 			}
 		}
 
@@ -72,6 +78,8 @@ public class EnemyBasicAttack : AbsAction
 		base.unHighlight(enemy);
 	}
 
+	
+
 	private bool RangedCheck(GameObject enemy) {
 		throw new System.NotImplementedException();
 	}
@@ -87,6 +95,8 @@ public class EnemyBasicAttack : AbsAction
 			return false;
 		}
 	}
-	
+	public override void resetWithNewPosition(GameObject enemy, Vector3 dir, Tile tile) {
+		base.resetWithNewPosition(enemy,dir,attackTile);
+	}
 	
 }

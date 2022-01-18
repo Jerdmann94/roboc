@@ -10,15 +10,11 @@ using UnityEngine.UI;
 
 public class CardConfirmed : MonoBehaviour {
 	public SingleCardSet selectedCard;
-	public MouseHandler  mouseHandler;
-	public Vector3Event  attackEvent;
 	public Vector3IntSet targetPos;
-	public GORunTimeSet   aliveEnemies;
 	public CardUIValue[] energyUIValues;
 	public PlayerStateManager playerStateManager;
 	[SerializeField] private GORunTimeSet handUIArray;
 	public CardSet handSet;
-	public CardSet deckSet;
 	public CardSet discardSet;
 
 	private void Awake()
@@ -73,7 +69,7 @@ public class CardConfirmed : MonoBehaviour {
 
 				for (int i = 0; i < cd.card.cost.types.Length; i++) {
 					if (value.name == cd.card.cost.types[i].name) {
-						Debug.Log(value.name + " " + cd.card.cost.types[i].name);
+						//Debug.Log(value.name + " " + cd.card.cost.types[i].name);
 						but.interactable = value.Value >= cd.card.cost.cost[i];
 					}
 				}

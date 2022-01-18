@@ -56,7 +56,7 @@ public class CombatManager : MonoBehaviour {
 		for (int i = 0; i < enemiesToSpawn.Count; i++) {
 			var        tempPos = getEmptyGridPosition();
 			GameObject enemy   = Instantiate(enemyPrefab, tempPos, Quaternion.identity);
-			enemy.GetComponent<EnemyDataHandler>().setUpEnemy((EnemySO) enemiesToSpawn[i],grid2D);
+			enemy.GetComponent<EnemyDataHandler>().setUpData((EnemySO) enemiesToSpawn[i]);
 			enemy.GetComponent<SpriteRenderer>().sortingOrder = 2;
 			enemy.name = i.ToString();
 			enemy.GetComponent<EnemyDataHandler>().name = i.ToString();

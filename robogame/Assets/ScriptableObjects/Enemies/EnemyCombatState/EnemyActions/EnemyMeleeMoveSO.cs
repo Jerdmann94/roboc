@@ -49,7 +49,7 @@ public class EnemyMeleeMoveSO : AbsAction {
 	
 
 	private void enemyMove( GameObject enemy) {
-		Grid2D grid2D = _enemyDataHandler.grid2D;
+		Grid2D grid2D = combatManagerSet.items[0].GetComponent<Grid2D>();
 		
 		List<Node2D> path = enemy.GetComponent<EnemyDataHandler>().getPath();
 		//GET  MOVE AMOUNT FROM ENEMY DATA
@@ -83,5 +83,9 @@ public class EnemyMeleeMoveSO : AbsAction {
 		//base.returnTileUnderEnemy(enemy);
 
 
+	}
+
+	public override void resetWithNewPosition(GameObject enemy, Vector3 dir, Tile tile) {
+		base.resetWithNewPosition(enemy,dir,moveTile);
 	}
 }

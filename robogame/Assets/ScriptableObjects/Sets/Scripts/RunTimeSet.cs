@@ -7,6 +7,7 @@ namespace ScriptableObjects.Sets {
 		public List<T> items = new List<T>();
 
 		public void add(T t) {
+			
 			if (!items.Contains(t)) items.Add(t);
 		}
 

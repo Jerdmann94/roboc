@@ -2,8 +2,10 @@ using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ScriptableObjects.Sets;
+using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 
 public class Pathfinding2D : MonoBehaviour {
@@ -13,18 +15,13 @@ public class Pathfinding2D : MonoBehaviour {
     public Vector3 seeker, target;
     Grid2D grid;
     Node2D seekerNode, targetNode;
-    public GameObject GridOwner;
+    public GameObject gridOwner;
     public Tilemap tilemap;
 
 
     public void initializePathFinder() {
-       //target = tilemap.WorldToCell(player.items[0].transform.position);
-        //seeker =tilemap.WorldToCell(aliveEnemies.items[0].transform.position);
-        // target = player.items[0].transform.position;
-        // seeker = aliveEnemies.items[0].transform.position;
-        // aliveEnemies.items[0].GetComponent<SpriteRenderer>().color = Color.cyan;
-        //Instantiate grid
-        grid = GridOwner.GetComponent<Grid2D>();
+       
+        grid = gridOwner.GetComponent<Grid2D>();
         
     }
 
@@ -93,7 +90,16 @@ public class Pathfinding2D : MonoBehaviour {
                         openSet.Add(neighbour);
                 }
             }
+            if (openSet.Count < 1 && node != targetNode) {
+                //Debug.Log("path  could not be completed");
+                //Debug.Log(closedSet.Count);
+                RetracePath(seekerNode, closedSet.Last());
+                //maybe they should heal or something here instead of just wandering back and forth
+                return;
+            }
         }
+
+        
     }
 
     //reverses calculated path so first node is closest to seeker
