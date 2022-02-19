@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: aa0babdcc1a3a614aa5e9b6cbced0fe4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - combatManagerSet: {instanceID: 0}
+  - playerSet: {instanceID: 0}
+  - tilemapSet: {fileID: 11400000, guid: e1cb19a99de443146927c681d20d98bc, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

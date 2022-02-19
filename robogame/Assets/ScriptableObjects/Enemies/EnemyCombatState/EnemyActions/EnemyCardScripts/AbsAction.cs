@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ScriptableObjects.Sets;
 using UnityEditor.Animations;
@@ -10,7 +11,8 @@ public abstract class AbsAction:ScriptableObject {
     
     public GORunTimeSet combatManagerSet;
     public GORunTimeSet playerSet;
-    public  abstract void Execute(GameObject enemy);
+    public GORunTimeSet tilemapSet;
+    public   abstract Task Execute(GameObject enemy);
     public abstract bool Check(GameObject enemy);
 
     public virtual void Highlight(GameObject enemy,Tile tile) {
@@ -20,7 +22,9 @@ public abstract class AbsAction:ScriptableObject {
         
         GameObject gridOwner = combatManagerSet.items[0];
         Grid2D grid2D = gridOwner.GetComponent<Grid2D>();
-        Tilemap tilemap = grid2D.defaultTileMap;
+        
+        Tilemap tilemap = tilemapSet.items.SingleOrDefault(obj => obj.name == "TilemapForEnemies")?.GetComponent<Tilemap>();
+        
         int moveAmount = enemy.GetComponent<EnemyDataHandler>().moveAmount;
         for (int i = 0; i < moveAmount; i++) {
             tilemap.SetTile(tilemap.WorldToCell(enemyDataHandler.getPath()[i].getWorldPosition()),tile);
@@ -35,40 +39,31 @@ public abstract class AbsAction:ScriptableObject {
                 grid2D.setEnemyAtPosition(enemy,enemyDataHandler.getPath()[i].getWorldPosition());
             }
             
-            Debug.Log(tilemap.GetTile(tilemap.WorldToCell(enemyDataHandler.getPath()[i].getWorldPosition())).name);
+            //Debug.Log(tilemap.GetTile(tilemap.WorldToCell(enemyDataHandler.getPath()[i].getWorldPosition())).name);
         }
     }
 
     public virtual void unHighlight(GameObject enemy) {
         EnemyDataHandler enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();
-        
-        GameObject gridOwner = combatManagerSet.items[0];
-        Grid2D grid2D = gridOwner.GetComponent<Grid2D>();
-        Tilemap tilemap = grid2D.defaultTileMap;
+        Tilemap tilemap = tilemapSet.items.SingleOrDefault(obj => obj.name == "TilemapForEnemies")?.GetComponent<Tilemap>();
+        // Debug.Log(tilemap.name);
         foreach (var node in enemyDataHandler.highlightedNodes) {
-            tilemap.SetTile(tilemap.WorldToCell(node.getWorldPosition()),node.tile);
+            tilemap.SetTile(tilemap.WorldToCell(node.getWorldPosition()),null);
+            
         }
+        
 
         enemyDataHandler.highlightedNodes = new List<Node2D>();
     }
     
-    public virtual void returnTileUnderEnemy(GameObject enemy) {
-        EnemyDataHandler enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();
-        GameObject gridOwner = combatManagerSet.items[0];
-        Grid2D grid2D = gridOwner.GetComponent<Grid2D>();
-        Tilemap tilemap = grid2D.defaultTileMap;
-        var position = enemy.transform.position;
-        Vector3Int finalPos = tilemap.WorldToCell(position);
-        Node2D finalNode = grid2D.NodeFromWorldPoint(position);
-        tilemap.SetTile(finalPos,finalNode.tile );
-    }
+   
 
     public virtual void resetWithNewPosition(GameObject enemy, Vector3 dir,Tile tile) {    
         unHighlight(enemy);
         
         GameObject gridOwner = combatManagerSet.items[0];
-        Grid2D grid2D = gridOwner.GetComponent<Grid2D>();
-        Tilemap tilemap = grid2D.defaultTileMap;
+        
+        Tilemap tilemap = tilemapSet.items.SingleOrDefault(obj => obj.name == "TilemapForEnemies")?.GetComponent<Tilemap>();
         EnemyDataHandler enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();
 
         var newPath = new List<Node2D>();
@@ -83,6 +78,7 @@ public abstract class AbsAction:ScriptableObject {
                 worldtogridpos.y));
         }
         enemyDataHandler.setPath(newPath);
+        //Debug.Log(tile);
         Highlight(enemy,tile);
     }
 }

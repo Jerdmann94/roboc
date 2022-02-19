@@ -8,7 +8,7 @@ public class AttackScriptBasic : CardAbs
 	public Vector3Event  attackEvent;
 	public override void Execute() {
 		targetPos.items.ForEach(pos => {
-			attackEvent.emit(tilemapSet.items[0].GetComponent<Tilemap>().GetCellCenterWorld(pos));
+			attackEvent.emit(tilemapSet.items[1].GetComponent<Tilemap>().GetCellCenterWorld(pos));
 		});
 		
 	}

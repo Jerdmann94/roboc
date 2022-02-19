@@ -35,7 +35,7 @@ public abstract class TileMapObject: MonoBehaviour {
 	   }
 	   _damObj = Instantiate(damageText, transform);
 	   _damObj.transform.SetParent(canvas.gameObject.transform);
-	   _damObj.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(selectedCard.Card.doDamage().ToString());
+	   _damObj.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(damage.ToString());
       
 	   Destroy(_damObj,5f);
    }

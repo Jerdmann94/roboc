@@ -9,6 +9,6 @@ public class MovementCardSO : CardAbs {
   
     
     public override void Execute() {
-        playerSet.items[0].transform.position = tilemapSet.items[0].GetComponent<Tilemap>().GetCellCenterWorld(targetPos.items[0]);
+        playerSet.items[0].transform.position = tilemapSet.items[2].GetComponent<Tilemap>().GetCellCenterWorld(targetPos.items[0]);
     }
 }

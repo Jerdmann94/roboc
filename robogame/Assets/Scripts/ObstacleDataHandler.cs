@@ -14,7 +14,7 @@ public class ObstacleDataHandler :TileMapObject {
 			setUpData(ifNotDefined);
 		}
 		grid2D = combatManagerSet.items[0].GetComponent<Grid2D>();
-		Tilemap tilemap = tilemapSet.items[0].GetComponent<Tilemap>();
+		Tilemap tilemap = tilemapSet.items[2].GetComponent<Tilemap>();
 		transform.position = tilemap.GetCellCenterWorld(tilemap.WorldToCell(transform.position));
 		grid2D.NodeFromWorldPoint(tilemap.GetCellCenterWorld(tilemap.WorldToCell(transform.position))).obstacle = true;
 	}
@@ -37,7 +37,7 @@ public class ObstacleDataHandler :TileMapObject {
 
 	private void OnDestroy() {
 		grid2D = combatManagerSet.items[0].GetComponent<Grid2D>();
-		Tilemap tilemap = tilemapSet.items[0].GetComponent<Tilemap>();
+		Tilemap tilemap = tilemapSet.items[2].GetComponent<Tilemap>();
 		grid2D.NodeFromWorldPoint(tilemap.GetCellCenterWorld(tilemap.WorldToCell(transform.position))).obstacle = false;
 	}
 }

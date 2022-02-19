@@ -6,6 +6,7 @@ using ScriptableObjects.Sets;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+
 [Serializable]
 public class MouseHandler : MonoBehaviour {
 	//public static MouseHandler  mouseHandler = null;
@@ -16,7 +17,7 @@ public class MouseHandler : MonoBehaviour {
 	//public  GameObject    player;
 	public  Vector3IntSet targetPos;
 	public Vector3IntSet possibleTilesPos;
-	public   Tilemap   map;
+	public   Tilemap   playerMap;
 	public TileRunTimeSet possibleTileSet;
 
 
@@ -49,11 +50,11 @@ public class MouseHandler : MonoBehaviour {
 
 	private void MouseClick() {
 		Vector2 mousePosition = mouse.Mouse.MousePosition.ReadValue<Vector2>();
-		mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-		Vector3Int gridPos = map.WorldToCell(mousePosition);
-		Tile       tile    = map.GetTile<Tile>(gridPos);
+		if (Camera.main != null) mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+		Vector3Int gridPos = playerMap.WorldToCell(mousePosition);
+		Tile       tile    = playerMap.GetTile<Tile>(gridPos);
 		if (tile == null) {
-			//Debug.Log("tile = null");
+			Debug.Log("tile = null");
 			return;
 		}
 
@@ -63,7 +64,7 @@ public class MouseHandler : MonoBehaviour {
 			return;
 		}
 		Vector3Int temp = new Vector3Int(gridPos.x, gridPos.y, 0);
-		map.SetTile(temp, targetTile);
+		playerMap.SetTile(temp, targetTile);
 		targetPos.items.Insert(0,gridPos);
 		checkLastTile();
 	}
@@ -74,8 +75,8 @@ public class MouseHandler : MonoBehaviour {
 
 	public void confirm() {
 		if (!playPhase.Value) return;
+		if (targetPos.items.Count < 1) return;
 		cc.cardConfirmed();
-		
 		resetTiles();
 		targetPos.items = new List<Vector3Int>();
 	}
@@ -92,11 +93,12 @@ public class MouseHandler : MonoBehaviour {
 
 
 	public void resetTiles() {
-		for (int i = 0; i < possibleTileSet.items.Count; i++) {
-			map.SetTile((Vector3Int) possibleTilesPos.items[i], (TileBase) possibleTileSet.items[i]);
-		}
+		// for (int i = 0; i < possibleTileSet.items.Count; i++) {
+		// 	playerMap.SetTile((Vector3Int) possibleTilesPos.items[i], (TileBase) possibleTileSet.items[i]);
+		// }
+		playerMap.ClearAllTiles();
 
-		Debug.Log("reseting tiles");
+		//Debug.Log("reseting tiles");
 		possibleTileSet.items = new List<Tile>();
 		possibleTilesPos.items = new List<Vector3Int>();
 		
@@ -106,7 +108,7 @@ public class MouseHandler : MonoBehaviour {
 		//Debug.Log(targetPos.items);
 		if (selectedCardSet.Card.targets >= targetPos.items.Count) {return;}
 		for (int i = targetPos.items.Count-1; i >= selectedCardSet.Card.targets; i--) {
-			map.SetTile(targetPos.items[i], selectedCardSet.Card.tileColor);
+			playerMap.SetTile(targetPos.items[i], selectedCardSet.Card.tileColor);
 			targetPos.items.RemoveAt(i);
 		}
 	}

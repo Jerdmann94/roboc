@@ -13,7 +13,7 @@ public class Grid2D : MonoBehaviour
     public float nodeRadius;
     public Node2D[,] Grid;
    
-    public Tilemap defaultTileMap;
+    [SerializeField] private Tilemap defaultTileMap;
     public List<Node2D> path;
     Vector3 worldBottomLeft;
     public Canvas canvas;
@@ -65,10 +65,9 @@ public class Grid2D : MonoBehaviour
                     
                         Tile tile = defaultTileMap.GetTile<Tile>(defaultTileMap.WorldToCell(worldPoint));
                         if (tile != null) {
-                            Grid[x, y].tile = tile;
+                            Grid[x, y].Tile = tile;
                             if (tile.name == "Isometric_Block_GlowLightBlue_00_1") {
                                 Grid[x, y].difficultyCost += 40;
-                                //Debug.Log("setting node difficulty");
                             }
                         }
                     
@@ -159,6 +158,7 @@ public class Grid2D : MonoBehaviour
 
         if (x == -1 && y == -1) {
             Debug.Log("Node not found!");
+            return null;
         }
         return Grid[x, y];
         //return Grid[(int) worldPosition.x, (int) worldPosition.y];

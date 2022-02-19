@@ -27,9 +27,11 @@ public abstract class CardAbs : ScriptableObject
 
 	public virtual void highlightTiles() {
 		GameObject form = Instantiate(formation, playerSet.items[0].transform.position,Quaternion.identity);
-		Tilemap tilemap = tilemapSet.items[0].GetComponent<Tilemap>();
+		Tilemap tilemap = tilemapSet.items[1].GetComponent<Tilemap>();
+		
 		foreach (var pos in possibleTargets.items) {
 			tilemap.SetTile(pos,tileColor);
+			//Debug.Log(tileColor);
 		}
 		Destroy(form);
 	}

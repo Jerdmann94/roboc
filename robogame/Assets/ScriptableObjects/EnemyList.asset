@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: EnemyList
   m_EditorClassIdentifier: 
   deck:
-  - {fileID: 11400000, guid: d8f9941fc69a3e24babcfb85ef3c549f, type: 2}
-  - {fileID: 11400000, guid: d8f9941fc69a3e24babcfb85ef3c549f, type: 2}
-  - {fileID: 11400000, guid: d8f9941fc69a3e24babcfb85ef3c549f, type: 2}
+  - {fileID: 11400000, guid: afa3b6f584e601d4eb9afb45a6bec7e4, type: 2}
+  - {fileID: 11400000, guid: afa3b6f584e601d4eb9afb45a6bec7e4, type: 2}
+  - {fileID: 11400000, guid: afa3b6f584e601d4eb9afb45a6bec7e4, type: 2}

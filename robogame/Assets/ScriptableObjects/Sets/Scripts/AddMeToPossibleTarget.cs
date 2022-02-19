@@ -15,11 +15,11 @@ public class AddMeToPossibleTarget : MonoBehaviour {
     // Start is called before the first frame update
     private void Awake() {
         Grid2D grid = gridGameObject.items[0].GetComponent<Grid2D>();
-        Tilemap tilemap = tileMapSet.items[0].GetComponent<Tilemap>();
+        Tilemap tilemap = tileMapSet.items[2].GetComponent<Tilemap>();
         //Debug.Log(grid);
         foreach (var VARIABLE in sets) {
             Vector3 temp = tilemap.GetCellCenterWorld((tilemap.WorldToCell(transform.position)));
-            if (!grid.NodeFromWorldPoint(temp).obstacle) {
+            if (!grid.NodeFromWorldPoint(temp).obstacle && grid.NodeFromWorldPoint(temp).getEnemy() == null) {
                 VARIABLE.add(tilemap.WorldToCell(transform.position));
                 // Debug.Log(grid.NodeFromWorldPoint(transform.position).getWorldPosition() + " " + transform.position);
             }

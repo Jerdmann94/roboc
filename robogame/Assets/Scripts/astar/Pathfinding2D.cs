@@ -30,7 +30,7 @@ public class Pathfinding2D : MonoBehaviour {
     {
         //get player and target position in grid coords
         
-//        Debug.Log("start pos " + startPos + " target pos " + targetPos);
+        //Debug.Log("start pos " + startPos + " target pos " + targetPos);
         seekerNode = grid.NodeFromWorldPoint(startPos);
         targetNode = grid.NodeFromWorldPoint(targetPos);
 

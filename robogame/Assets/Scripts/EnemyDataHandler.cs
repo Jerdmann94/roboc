@@ -14,7 +14,7 @@ public class EnemyDataHandler :TileMapObject {
 	internal GameObject target;
 	internal int moveAmount;
 	internal List<Node2D> highlightedNodes = new List<Node2D>();
-	private List<Node2D> path  = null;
+	private List<Node2D> _path  = null;
 	internal TargetTypeSO targetType;
 	internal AbsAction selectedAction;
 	internal List<AbsAction> actions;
@@ -25,11 +25,11 @@ public class EnemyDataHandler :TileMapObject {
 	public GameObject stunnedText;
 	public void setPath(List<Node2D> path) {
 		//Debug.Log(this.gameObject.name + "'s path is changing to " + path.Count + " data's name " + name );
-		this.path = path;
+		this._path = path;
 	}
 
 	public List<Node2D> getPath (){
-		return path;
+		return _path;
 	}
 
 

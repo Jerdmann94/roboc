@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb84bb771e190894eb9aea2e07b4be88, type: 3}
-  m_Name: EnemyMeleeMove
+  m_Script: {fileID: 11500000, guid: 8db5f717aea38e64caeb7fc351c4f89b, type: 3}
+  m_Name: EnemyTargetFinder
   m_EditorClassIdentifier: 
   combatManagerSet: {fileID: 11400000, guid: 24b50521d9b0d11478baef5f792d60bd, type: 2}
   playerSet: {fileID: 11400000, guid: 4c4c17a4c8cb17e4ea6cb058c3b9cda0, type: 2}
-  moveTile: {fileID: 11400000, guid: 4ee1e408284751440a760de87af1ee31, type: 2}
+  tilemapSet: {fileID: 11400000, guid: e1cb19a99de443146927c681d20d98bc, type: 2}
+  aliveEnemies: {fileID: 11400000, guid: 4348edecdfc7f844eaab4ad2d9b89740, type: 2}

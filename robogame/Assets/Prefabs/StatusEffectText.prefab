@@ -7,6 +7,66 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4527926426138910258, guid: d83276dfe421bff40923fef8e0beec23, type: 3}
+      propertyPath: fadeDuration
+      value: 1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527926426138910258, guid: d83276dfe421bff40923fef8e0beec23, type: 3}
+      propertyPath: maximumOpacityColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527926426138910258, guid: d83276dfe421bff40923fef8e0beec23, type: 3}
+      propertyPath: minimumOpacityColor.a
+      value: 0.02745098
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527926426138910258, guid: d83276dfe421bff40923fef8e0beec23, type: 3}
+      propertyPath: minimumOpacityColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527926426138910258, guid: d83276dfe421bff40923fef8e0beec23, type: 3}
+      propertyPath: minimumOpacityColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527926426138910258, guid: d83276dfe421bff40923fef8e0beec23, type: 3}
+      propertyPath: minimumOpacityColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527926426138910258, guid: d83276dfe421bff40923fef8e0beec23, type: 3}
+      propertyPath: animationCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527926426138910258, guid: d83276dfe421bff40923fef8e0beec23, type: 3}
+      propertyPath: animationCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527926426138910258, guid: d83276dfe421bff40923fef8e0beec23, type: 3}
+      propertyPath: animationCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527926426138910258, guid: d83276dfe421bff40923fef8e0beec23, type: 3}
+      propertyPath: animationCurve.m_Curve.Array.data[0].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527926426138910258, guid: d83276dfe421bff40923fef8e0beec23, type: 3}
+      propertyPath: animationCurve.m_Curve.Array.data[1].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527926426138910258, guid: d83276dfe421bff40923fef8e0beec23, type: 3}
+      propertyPath: animationCurve.m_Curve.Array.data[0].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527926426138910258, guid: d83276dfe421bff40923fef8e0beec23, type: 3}
+      propertyPath: animationCurve.m_Curve.Array.data[1].outSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527926426138910258, guid: d83276dfe421bff40923fef8e0beec23, type: 3}
+      propertyPath: animationCurve.m_Curve.Array.data[0].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527926426138910258, guid: d83276dfe421bff40923fef8e0beec23, type: 3}
+      propertyPath: animationCurve.m_Curve.Array.data[1].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8914688676476180500, guid: d83276dfe421bff40923fef8e0beec23, type: 3}
       propertyPath: m_Controller
       value: 
@@ -73,7 +133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8914688677522707390, guid: d83276dfe421bff40923fef8e0beec23, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 0
+      value: 4278190080
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d83276dfe421bff40923fef8e0beec23, type: 3}

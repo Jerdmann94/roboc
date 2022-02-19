@@ -13,7 +13,15 @@ public class Node2D
 	public int GridX, GridY;
 	public Node2D parent;
 
-	public Tile tile;
+	private Tile tile;
+	public Tile Tile {
+		get => tile;
+		set {
+			tile = value;
+			
+		}
+	}
+
 	private GameObject enemy = null;
 
 

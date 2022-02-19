@@ -16,7 +16,7 @@ public class PushingAttack : CardAbs
 	public override void Execute() {
 		Grid2D grid2D = combatManagerSet.items[0].GetComponent<Grid2D>();
 		targetPos.items.ForEach(pos => {
-			var tilemap = tilemapSet.items[0].GetComponent<Tilemap>();
+			var tilemap = tilemapSet.items[2].GetComponent<Tilemap>();
 			Vector3 worldPos = tilemap.GetCellCenterWorld(pos);
 			attackEvent.emit(worldPos);
 

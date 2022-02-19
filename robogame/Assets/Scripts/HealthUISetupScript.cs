@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using TMPro;
 using UnityEngine;
 
@@ -14,7 +15,7 @@ public class HealthUISetupScript : MonoBehaviour {
     public void setText()
     {
         
-        gameObject.GetComponent<TextMeshProUGUI>().SetText(stats.health.Value.ToString());
+        gameObject.GetComponent<TextMeshProUGUI>().SetText(stats.health.Value.ToString(CultureInfo.CurrentCulture));
        
     }
 }

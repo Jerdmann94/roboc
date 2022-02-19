@@ -6,9 +6,10 @@ using UnityEngine.Tilemaps;
 
 
 
-[CreateAssetMenu(fileName ="new Action", menuName = "EnemyMeleeMovementSO")]
+[CreateAssetMenu(fileName = "new Card", menuName = "EnemyCards/EnemyMeleeMove")]
 public class EnemyMeleeMoveSO : AbsAction {
 	private EnemyDataHandler _enemyDataHandler;
+	
 	
 	public Tile moveTile;
 	
@@ -17,8 +18,9 @@ public class EnemyMeleeMoveSO : AbsAction {
 	//MONSTER NEEDS TO ALREADY BE STORING THE TARGET ON ITSELF FOR THIS TO WORK
 	// NEED A TARGET SETTER ACTION
 
-	public override  void Execute(GameObject monster) {
+	public override async  Task Execute(GameObject monster) {
 		enemyMove(monster);
+		await Task.Yield();
 	}
 
 	public override bool Check(GameObject monster) {

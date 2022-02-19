@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e5d6bfda0354964989175cf6adcdfcb, type: 3}
   m_Name: squareGuy
   m_EditorClassIdentifier: 
-  cost: 1
   name: Square
   health: 100
   attack: 1
   shape: {fileID: 7482667652216324306, guid: e99b9d23bd4577e4f8cb412038b33bc3, type: 3}
+  cost: 1
   moveAmount: 1
   attackRange: 1
   actions:
-  - {fileID: 11400000, guid: 40a6d191b18fbf2499ef1f7c675c9b78, type: 2}
   - {fileID: 11400000, guid: ed72ba2a157ae1341b242694cf427cf7, type: 2}
+  - {fileID: 11400000, guid: 40a6d191b18fbf2499ef1f7c675c9b78, type: 2}
   attackType: {fileID: 11400000, guid: 7305cc35e3e55c84da88970700a10f67, type: 2}
   targetType: {fileID: 11400000, guid: 7d4efedc656a3bd46a113c0392935549, type: 2}

@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "new Card", menuName = "EnemyCards/Attack 1 Square Card")]
 public class EnemyBasicAttack : AbsAction
 {
 	public Tile attackTile;
@@ -15,11 +15,12 @@ public class EnemyBasicAttack : AbsAction
 	public playerStatBlockSO stats;
 	public GORunTimeSet aliveEnemies;
 	
-	public override void Execute(GameObject enemy) {
+	public override async Task Execute(GameObject enemy) {
 
 		Grid2D grid2D = combatManagerSet.items[0].GetComponent<Grid2D>();
 		grid2D.setEnemyAtPosition(enemy);
-		Tilemap tilemap = grid2D.defaultTileMap;
+		Tilemap tilemap = tilemapSet.items.SingleOrDefault(obj => obj.name == "Tilemap")?.GetComponent<Tilemap>();
+		//Debug.Log(tilemap.name);
 		foreach (var node in _enemyDataHandler.highlightedNodes) {
 			// if (tilemap.WorldToCell(node.getWorldPosition()) != tilemap.WorldToCell(_enemyDataHandler.target.transform.position)) {
 			// 	return;
@@ -33,8 +34,10 @@ public class EnemyBasicAttack : AbsAction
 				foreach (var otherEnemy in aliveEnemies.items.Where(
 					         otherEnemy => otherEnemy.transform.position == node.getWorldPosition())) {
 					otherEnemy.GetComponent<EnemyDataHandler>().takeDamage(enemy.GetComponent<EnemyDataHandler>().attack);
+					Debug.Log("didnt hit player but did attack");
 				}
 			}
+			await Task.Delay(300);
 		}
 
 		
@@ -55,10 +58,10 @@ public class EnemyBasicAttack : AbsAction
 		_enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();
 		switch (_enemyDataHandler.attackType.name) {
 			case "Melee":
-				returnable = MeleeCheck(enemy);
+				returnable = meleeCheck(enemy);
 				break;
 			case "Ranged":
-				returnable = RangedCheck(enemy);
+				returnable = rangedCheck(enemy);
 				break;
 			default:
 				Debug.Log("Enemy has no attack type " + enemy);
@@ -74,17 +77,28 @@ public class EnemyBasicAttack : AbsAction
 		base.Highlight(enemy, attackTile);
 
 	}
-	public override void unHighlight(GameObject enemy) {
-		base.unHighlight(enemy);
-	}
+	
 
 	
 
-	private bool RangedCheck(GameObject enemy) {
-		throw new System.NotImplementedException();
+	private bool rangedCheck(GameObject enemy) {
+		var position = enemy.transform.position;
+		RaycastHit2D hit = Physics2D.Raycast(position, playerSet.items[0].transform.position - position);
+
+		if (hit.collider.gameObject.CompareTag("Player")) {
+			Debug.Log("We found Target!");
+			return true;
+			
+		}
+		Debug.Log("I found something else with name = " + hit.collider.name);
+		return false;
+		
+		
+	
+	
 	}
 
-	private bool MeleeCheck(GameObject enemy) {
+	private bool meleeCheck(GameObject enemy) {
 		EnemyDataHandler enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();
 		if (enemyDataHandler.getPath().Count <= enemyDataHandler.attackRange) { 
 			// ARE WE WITHIN RANGE OF OUR TARGET
@@ -97,6 +111,7 @@ public class EnemyBasicAttack : AbsAction
 	}
 	public override void resetWithNewPosition(GameObject enemy, Vector3 dir, Tile tile) {
 		base.resetWithNewPosition(enemy,dir,attackTile);
+		
 	}
 	
 }
