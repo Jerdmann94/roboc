@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using ScriptableObjects.GameEvent;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "new Card", menuName = "GameEvent/GameEvent")]
 public class GameEvent : ScriptableObject {
-	private new List<GameEventListener> listeners = new List<GameEventListener>();
+	private new List<GameEventListener> _listeners = new List<GameEventListener>();
 
 	public void emit() {
-		for (int i = listeners.Count - 1; i >= 0; i--) {
-			listeners[i].onEmit();
+		for (int i = _listeners.Count - 1; i >= 0; i--) {
+			_listeners[i].onEmit();
 		}
 	}
 
 	public void removeListener(GameEventListener gameEventListener) {
-		listeners.Remove(gameEventListener);
+		_listeners.Remove(gameEventListener);
 	}
 
 	public void addListener(GameEventListener gameEventListener) {
-		listeners.Add(gameEventListener);
+		_listeners.Add(gameEventListener);
 	}
 }

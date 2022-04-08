@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using ScriptableObjects.Sets;
 using UnityEditor.Animations;
@@ -9,13 +11,15 @@ using UnityEngine.Tilemaps;
 
 public abstract class AbsAction:ScriptableObject {
     
-    public GORunTimeSet combatManagerSet;
-    public GORunTimeSet playerSet;
-    public GORunTimeSet tilemapSet;
-    public   abstract Task Execute(GameObject enemy);
-    public abstract bool Check(GameObject enemy);
+    public GoRunTimeSet combatManagerSet;
+    public GoRunTimeSet playerSet;
+    public GoRunTimeSet tilemapSet;
+    public TargetTypeSo typeSo;
+    public int damage;
+    public   abstract Task execute(GameObject enemy);
+    public abstract bool check(GameObject enemy);
 
-    public virtual void Highlight(GameObject enemy,Tile tile) {
+    public virtual void highlight(GameObject enemy,Tile tile) {
         
         EnemyDataHandler enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();
         
@@ -27,7 +31,12 @@ public abstract class AbsAction:ScriptableObject {
         
         int moveAmount = enemy.GetComponent<EnemyDataHandler>().moveAmount;
         for (int i = 0; i < moveAmount; i++) {
-            tilemap.SetTile(tilemap.WorldToCell(enemyDataHandler.getPath()[i].getWorldPosition()),tile);
+            if (tilemap != null)
+                if (enemyDataHandler.getPath().Count < i + 1) {
+                    //Debug.Log("breaking movement because path is less than movement");
+                    break;
+                }
+                tilemap.SetTile(tilemap.WorldToCell(enemyDataHandler.getPath()[i].getWorldPosition()), tile);
             //Debug.Log((tilemap.WorldToCell(enemyDataHandler.getPath()[i].getWorldPosition())) +" this cell should be changed to new tile "
                 //+ enemyDataHandler.getPath()[i].getWorldPosition() + " this is the world position of the new tile" );
             enemyDataHandler.highlightedNodes.Add(enemyDataHandler.getPath()[i]);
@@ -36,7 +45,8 @@ public abstract class AbsAction:ScriptableObject {
                 return;
             }
             if (playerSet.items[0].transform.position != enemyDataHandler.getPath()[i].getWorldPosition()) {
-                grid2D.setEnemyAtPosition(enemy,enemyDataHandler.getPath()[i].getWorldPosition());
+                //grid2D.setEnemyAtPosition(enemy,enemyDataHandler.getPath()[i].getWorldPosition());
+                grid2D.setClaimedAtPosition(enemy, enemyDataHandler.getPath()[i].getWorldPosition());
             }
             
             //Debug.Log(tilemap.GetTile(tilemap.WorldToCell(enemyDataHandler.getPath()[i].getWorldPosition())).name);
@@ -60,12 +70,15 @@ public abstract class AbsAction:ScriptableObject {
 
     public virtual void resetWithNewPosition(GameObject enemy, Vector3 dir,Tile tile) {    
         unHighlight(enemy);
-        
         GameObject gridOwner = combatManagerSet.items[0];
+        Grid2D grid2D = gridOwner.GetComponent<Grid2D>();
+
+        var node = grid2D.nodeFromWorldPoint(enemy.transform.position);
+        
         
         Tilemap tilemap = tilemapSet.items.SingleOrDefault(obj => obj.name == "TilemapForEnemies")?.GetComponent<Tilemap>();
         EnemyDataHandler enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();
-
+        
         var newPath = new List<Node2D>();
         foreach (var node2D in enemyDataHandler.getPath()) {
             var pos = tilemap.WorldToCell(node2D.getWorldPosition());
@@ -79,6 +92,49 @@ public abstract class AbsAction:ScriptableObject {
         }
         enemyDataHandler.setPath(newPath);
         //Debug.Log(tile);
-        Highlight(enemy,tile);
+        
+        highlight(enemy,tile);
+        
+    }
+
+    protected async void getPathForTargetType(GameObject enemy) {
+        Pathfinding2D pathfinder = combatManagerSet.items[1].GetComponent<Pathfinding2D>();
+		
+        Grid2D grid2D = combatManagerSet.items[0].GetComponent<Grid2D>();
+		
+        var switchVar = "";
+        EnemyDataHandler enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();
+        if (typeSo != null) {
+            switchVar = typeSo.name;
+        }
+        
+        if (switchVar == null) throw new ArgumentNullException(nameof(switchVar));
+        switch (switchVar) {
+            case "Closest":
+                break;
+            case "Weakest":
+                break;
+            case "Special":
+                if (enemyDataHandler.specialTarget == null) {
+                    pathfinder.FindPath(enemy.transform.position,playerSet.items[0].transform.position);
+                    //Debug.Log("no special target for " + enemy.name);
+                }
+                else {
+                    pathfinder.FindPath(enemy.transform.position,enemyDataHandler.specialTarget.transform.position);
+//                    Debug.Log(enemy.GetComponent<EnemyDataHandler>().specialTarget.name);
+                }
+                enemy.GetComponent<EnemyDataHandler>().setPath(grid2D.path);
+                break;
+            default:
+                // Debug.Log("Target Type for enemy " + enemy + " not given.");
+                enemyDataHandler.target = playerSet.items[0];
+				
+                pathfinder.FindPath(enemy.transform.position,playerSet.items[0].transform.position);
+				
+                enemy.GetComponent<EnemyDataHandler>().setPath(grid2D.path);
+                //Debug.Log(enemy.name + "'s path is  "  + enemyDataHandler.getPath().Count);
+                break;
+        }
+        await Task.Yield();
     }
 }

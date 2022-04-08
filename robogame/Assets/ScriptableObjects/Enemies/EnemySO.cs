@@ -5,12 +5,12 @@ using UnityEngine;
 using UnityEngine.U2D;
 
 [CreateAssetMenu(fileName ="new Enemy", menuName = "Enemy")]
-public class EnemySO : TileMapSO {
-    public     int         cost;
+public class EnemySo : TileMapSo {
+    // public     int         cost;
     public int moveAmount;
-    public int attackRange;
+    // public int attackRange;
     public List<AbsAction> actions;
-    public EnemyAttackType attackType;
-    public TargetTypeSO targetType;
+    // public EnemyAttackType attackType;
+    // public TargetTypeSo targetType;
 }
 

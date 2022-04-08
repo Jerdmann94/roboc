@@ -25,3 +25,5 @@ MonoBehaviour:
   formation: {fileID: 2518917055047883103, guid: 52d401ebf52ce8f4c8993cfdecc6db04, type: 3}
   possibleTargets: {fileID: 11400000, guid: b502dff6c79fc274eb62c48733ad29e7, type: 2}
   possibleTargetsTiles: {fileID: 11400000, guid: f2d280ec65f075d41b5c3c86130ee9e2, type: 2}
+  highlightEnum: {fileID: 11400000, guid: ae1fa62068129224fa5052483d4a2f5f, type: 2}
+  gridGameObject: {fileID: 11400000, guid: 24b50521d9b0d11478baef5f792d60bd, type: 2}

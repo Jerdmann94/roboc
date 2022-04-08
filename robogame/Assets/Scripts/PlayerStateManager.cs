@@ -15,19 +15,19 @@ public class PlayerStateManager : MonoBehaviour
     public MouseHandler mouseHandler;
     public GameObject    player;
 
-    private PlayerScript playerScript;
+    private PlayerScript _playerScript;
     //PLAYER DATA
-    public DeckSO     deckData;
+    public DeckSo     deckData;
     public GameObject cardUI;
     public GameObject canvas;
     public GameObject handPoint1;
     public GameObject handPoint2;
     
-    private int        handSize = 5;
+    private int        _handSize = 5;
     static  Random     _random  = new Random();
     [SerializeField] private BoolValue playPhase;
 
-    [SerializeField] private GORunTimeSet handUIArray;
+    [SerializeField] private GoRunTimeSet handUIArray;
     public CardSet handSet;
     public CardSet deckSet;
     public CardSet discardSet;
@@ -36,7 +36,7 @@ public class PlayerStateManager : MonoBehaviour
     
     //----------UNITY METHODS --------------//
     void Awake() {
-        playerScript = player.GetComponent<PlayerScript>();
+        _playerScript = player.GetComponent<PlayerScript>();
         deckSet.items = new List<CardAbs>();
         handSet.items = new List<CardAbs>();
         discardSet.items = new List<CardAbs>();
@@ -44,8 +44,8 @@ public class PlayerStateManager : MonoBehaviour
         foreach (var cardSo in deckData.deck) {
             deckSet.add( cardSo);
         }
-        deckSet.items = Shuffle<CardAbs>(deckSet.items);
-        playPhase.Value = false;
+        deckSet.items = shuffle<CardAbs>(deckSet.items);
+        playPhase.value = false;
         
         drawHand();
     }
@@ -109,7 +109,7 @@ public class PlayerStateManager : MonoBehaviour
     }
 
     private void startPlayPhaseOfTurn() {
-        playPhase.Value = true;
+        playPhase.value = true;
     }
 
 
@@ -119,13 +119,13 @@ public class PlayerStateManager : MonoBehaviour
         {
             switch (card.name) {
                 case "MagicEnergy" :
-                    card.Value = playerScript.stats.magicEnergy;
+                    card.Value = _playerScript.stats.magicEnergy;
                     break;
                 case "MoveEnergy" :
-                    card.Value = playerScript.stats.moveEnergy;
+                    card.Value = _playerScript.stats.moveEnergy;
                     break;
                 case "PhysicalEnergy" :
-                    card.Value = playerScript.stats.physicalEnergy;
+                    card.Value = _playerScript.stats.physicalEnergy;
                     break;
             }
         }
@@ -134,7 +134,7 @@ public class PlayerStateManager : MonoBehaviour
     private void drawCard() {
         if (deckSet.items.Count == 0) {
             if (discardSet.items.Count > 0) {
-                deckSet.items = Shuffle<CardAbs>(discardSet.items);
+                deckSet.items = shuffle<CardAbs>(discardSet.items);
                 discardSet.items = new List<CardAbs>();
             }
             else {
@@ -146,7 +146,7 @@ public class PlayerStateManager : MonoBehaviour
         resetHandPosition();
     }
     public void drawHand() {
-        for (int i = 0; i < handSize; i++) {
+        for (int i = 0; i < _handSize; i++) {
             createCardUI(i);
         }
         //resetHandPosition();
@@ -160,7 +160,7 @@ public class PlayerStateManager : MonoBehaviour
         //deck.RemoveAt(0);
 
         
-        float xvalue = (handPoint1.transform.position.x - handPoint2.transform.position.x) / handSize;
+        float xvalue = (handPoint1.transform.position.x - handPoint2.transform.position.x) / _handSize;
         Vector3 temp = new Vector3(handPoint1.transform.position.x + Mathf.Abs((xvalue * i)) + Mathf.Abs(xvalue / 2),
             handPoint1.transform.position.y, 0);
         GameObject card = Instantiate(cardUI,temp, quaternion.identity, canvas.transform);
@@ -192,7 +192,7 @@ public class PlayerStateManager : MonoBehaviour
     }
 
 
-    static List<CardAbs> Shuffle<T>(List<CardAbs> array) {
+    static List<CardAbs> shuffle<T>(List<CardAbs> array) {
         int n = array.Count;
         for (int i = 0; i < (n - 1); i++) {
             // Use Next on random instance with an argument.

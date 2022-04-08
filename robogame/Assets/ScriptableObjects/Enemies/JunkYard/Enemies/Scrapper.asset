@@ -12,13 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e5d6bfda0354964989175cf6adcdfcb, type: 3}
   m_Name: Scrapper
   m_EditorClassIdentifier: 
-  name: 
-  health: 0
-  attack: 0
-  shape: {fileID: 0}
-  cost: 0
-  moveAmount: 0
-  attackRange: 0
-  actions: []
-  attackType: {fileID: 0}
-  targetType: {fileID: 0}
+  name: Scrapper
+  health: 40
+  attack: -3
+  shape: {fileID: 21300022, guid: 920d400eca950a54ab5cefe8b8ac67a9, type: 3}
+  moveAmount: 1
+  actions:
+  - {fileID: 11400000, guid: ed72ba2a157ae1341b242694cf427cf7, type: 2}
+  - {fileID: 11400000, guid: 40a6d191b18fbf2499ef1f7c675c9b78, type: 2}

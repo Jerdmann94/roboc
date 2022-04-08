@@ -16,7 +16,7 @@ MonoBehaviour:
   name: Basic Attack
   cardDescription: attack
   cardFlavor: attacking
-  damage: 20
+  damage: -20
   targets: 1
   tileColor: {fileID: 0}
   playerSet: {fileID: 11400000, guid: 4c4c17a4c8cb17e4ea6cb058c3b9cda0, type: 2}
@@ -25,4 +25,6 @@ MonoBehaviour:
   formation: {fileID: 9084405614283611479, guid: 62f3cbe11a58822488c7ffdf9bec8805, type: 3}
   possibleTargets: {fileID: 11400000, guid: b502dff6c79fc274eb62c48733ad29e7, type: 2}
   possibleTargetsTiles: {fileID: 11400000, guid: f2d280ec65f075d41b5c3c86130ee9e2, type: 2}
+  highlightEnum: {fileID: 11400000, guid: 39e953f23fdd272449a51b9e120a458f, type: 2}
+  gridGameObject: {fileID: 11400000, guid: 24b50521d9b0d11478baef5f792d60bd, type: 2}
   attackEvent: {fileID: 11400000, guid: 16a7dbce07fcba542b760a2ea59ab75d, type: 2}

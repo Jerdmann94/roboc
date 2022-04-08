@@ -19,10 +19,10 @@ public class CardDataScript : MonoBehaviour , IPointerEnterHandler, IPointerExit
 
     public Text cardFlavor;
 
-    private Vector3 target;
+    private Vector3 _target;
     public Vector3 startPosition;
-    private float   timeToReachTarget = 0.1f;
-    private float   t;
+    private float   _timeToReachTarget = 0.1f;
+    private float   _t;
 
     
     private void Awake() {
@@ -30,6 +30,7 @@ public class CardDataScript : MonoBehaviour , IPointerEnterHandler, IPointerExit
     }
 
     public void setUpCard(CardAbs cardInfo,Vector3 initPosition) {
+////        Debug.Log(cardInfo);
         this.card = cardInfo;
         nameText.text = cardInfo.name;
         if (cardInfo.cost.cost.Length > 1)
@@ -44,7 +45,7 @@ public class CardDataScript : MonoBehaviour , IPointerEnterHandler, IPointerExit
         cardDescription.text = cardInfo.cardDescription;
         cardFlavor.text = cardInfo.cardFlavor;
         startPosition = initPosition;
-        target = startPosition;
+        _target = startPosition;
         
     }
     public void OnPointerEnter(PointerEventData eventData)
@@ -58,14 +59,14 @@ public class CardDataScript : MonoBehaviour , IPointerEnterHandler, IPointerExit
 
     void Update() 
     {
-        t += Time.deltaTime/timeToReachTarget;
-        transform.position = Vector3.Lerp(startPosition, target, t);
+        _t += Time.deltaTime/_timeToReachTarget;
+        transform.position = Vector3.Lerp(startPosition, _target, _t);
     }
     public void setDestination(Vector3 destination, float time)
     {
-        t = 0;
-        timeToReachTarget = time;
-        target = destination; 
+        _t = 0;
+        _timeToReachTarget = time;
+        _target = destination; 
     }
     
     

@@ -11,10 +11,10 @@ using UnityEngine.Tilemaps;
 [CreateAssetMenu(fileName = "new Card", menuName = "EnemyCards/TargetFinder")]
 public class EnemyTargetFinder : AbsAction {
 
-	public GORunTimeSet aliveEnemies;
+	public GoRunTimeSet aliveEnemies;
 	
 
-	public override async  Task Execute(GameObject enemy) {
+	public override async  Task execute(GameObject enemy) {
 		
 		Pathfinding2D pathfinder = combatManagerSet.items[1].GetComponent<Pathfinding2D>();
 		
@@ -22,32 +22,32 @@ public class EnemyTargetFinder : AbsAction {
 		
 
 		EnemyDataHandler enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();
-		switch (enemyDataHandler.targetType.name) {
-			case "PlayerOnly":
-				if (enemyDataHandler.attackType.name == "Melee") {
-					enemyDataHandler.target = playerSet.items[0];
-				
-					pathfinder.FindPath(enemy.transform.position,playerSet.items[0].transform.position);
-				
-					enemy.GetComponent<EnemyDataHandler>().setPath(grid2D.path);
-					//Debug.Log(enemy.name + "'s path is  "  + enemyDataHandler.getPath().Count);
-					
-				}
-				else {
-					//do ranged stuff for path finding
-					findRangedPath(enemy);
-				}
-				
-				break;
-
-					case "Closest":
-				break;
-			case "Weakest":
-				break;
-			default:
-				Debug.Log("Target Type for enemy " + enemy + " not given.");
-				break;
-		}
+		// switch (enemyDataHandler.targetType.name) {
+		// 	case "PlayerOnly":
+		// 		if (enemyDataHandler.attackType.name == "Melee") {
+		// 			enemyDataHandler.target = playerSet.items[0];
+		// 		
+		// 			pathfinder.FindPath(enemy.transform.position,playerSet.items[0].transform.position);
+		// 		
+		// 			enemy.GetComponent<EnemyDataHandler>().setPath(grid2D.path);
+		// 			//Debug.Log(enemy.name + "'s path is  "  + enemyDataHandler.getPath().Count);
+		// 			
+		// 		}
+		// 		else {
+		// 			//do ranged stuff for path finding
+		// 			findRangedPath(enemy);
+		// 		}
+		// 		
+		// 		break;
+		//
+		// 			case "Closest":
+		// 		break;
+		// 	case "Weakest":
+		// 		break;
+		// 	default:
+		// 		Debug.Log("Target Type for enemy " + enemy + " not given.");
+		// 		break;
+		// }
 		await Task.Yield();
 	}
 
@@ -70,7 +70,7 @@ public class EnemyTargetFinder : AbsAction {
 		var position = enemy.transform.position;
 		var gridpos = tilemap.WorldToCell(position);
 		var pos = new Vector3Int(gridpos.x+1, gridpos.y, gridpos.z);
-		if (grid2D.NodeFromWorldPoint(tilemap.GetCellCenterWorld(pos))!= null) {
+		if (grid2D.nodeFromWorldPoint(tilemap.GetCellCenterWorld(pos))!= null) {
 			//Debug.Log(grid2D.NodeFromWorldPoint(tilemap.GetCellCenterWorld(pos)).getWorldPosition());
 			pathfinder.FindPath(position,pp);
 			//Debug.Log("after find path");
@@ -79,7 +79,7 @@ public class EnemyTargetFinder : AbsAction {
 		
 		
 		pos = new Vector3Int(gridpos.x-1, gridpos.y, gridpos.z);
-		if (grid2D.NodeFromWorldPoint(tilemap.GetCellCenterWorld(pos)) != null) {
+		if (grid2D.nodeFromWorldPoint(tilemap.GetCellCenterWorld(pos)) != null) {
 			//Debug.Log(grid2D.NodeFromWorldPoint(tilemap.GetCellCenterWorld(pos)).getWorldPosition());
 			pathfinder.FindPath(position, pp);
 			paths.Add(grid2D.path);
@@ -87,7 +87,7 @@ public class EnemyTargetFinder : AbsAction {
 
 
 		pos = new Vector3Int(gridpos.x, gridpos.y+1, gridpos.z);
-		if (grid2D.NodeFromWorldPoint(tilemap.GetCellCenterWorld(pos))!= null) {
+		if (grid2D.nodeFromWorldPoint(tilemap.GetCellCenterWorld(pos))!= null) {
 			//Debug.Log(grid2D.NodeFromWorldPoint(tilemap.GetCellCenterWorld(pos)).getWorldPosition());
 			pathfinder.FindPath(position,pp);
 			paths.Add(grid2D.path);
@@ -95,7 +95,7 @@ public class EnemyTargetFinder : AbsAction {
 		
 		
 		pos = new Vector3Int(gridpos.x, gridpos.y-1, gridpos.z);
-		if (grid2D.NodeFromWorldPoint(tilemap.GetCellCenterWorld(pos)) != null) {
+		if (grid2D.nodeFromWorldPoint(tilemap.GetCellCenterWorld(pos)) != null) {
 			
 			pathfinder.FindPath(position, pp);
 			paths.Add(grid2D.path);
@@ -113,7 +113,7 @@ public class EnemyTargetFinder : AbsAction {
 	
 	
 
-	public override bool Check(GameObject enemy) {
+	public override bool check(GameObject enemy) {
 		
 		// EnemyDataHandler enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();
 		// if (enemyDataHandler.target == null|| !aliveEnemies.items.Contains(enemyDataHandler.target)) {

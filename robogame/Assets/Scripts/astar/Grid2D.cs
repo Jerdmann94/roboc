@@ -137,7 +137,7 @@ public class Grid2D : MonoBehaviour
     }
 
 
-    public Node2D NodeFromWorldPoint(Vector3 worldPosition) {
+    public Node2D nodeFromWorldPoint(Vector3 worldPosition) {
         int x = -1;
         int y = -1;
        // int x = Mathf.RoundToInt(worldPosition.x+ (gridSizeX / 2));
@@ -166,11 +166,11 @@ public class Grid2D : MonoBehaviour
 
 
     public void setEnemyAtPosition(GameObject enemy) {
-        Node2D node = NodeFromWorldPoint(enemy.transform.position);
+        Node2D node = nodeFromWorldPoint(enemy.transform.position);
         node.setEnemy(enemy);
     }
     public void setEnemyAtPosition(GameObject enemy,Vector3 position) {
-        Node2D node = NodeFromWorldPoint(position);
+        Node2D node = nodeFromWorldPoint(position);
         node.setEnemy(enemy);
     }
     
@@ -178,26 +178,37 @@ public class Grid2D : MonoBehaviour
     // Draws visual representation of grid
      void OnDrawGizmos()
      {
-         Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, gridWorldSize.y, 1));
-    
-         if (Grid != null)
-         {
-             foreach (Node2D n in Grid)
-             {
-                 if (n == null) {
-                     continue;
-                 }
-                 if (n.obstacle)
-                     Gizmos.color = Color.red;
-                 else
-                     Gizmos.color = Color.clear;
-    
-                 //Debug.Log(path.Count);
-                 if (path != null && path.Contains(n))
-                     Gizmos.color = Color.black;
-                 Gizmos.DrawCube(n.getWorldPosition(), Vector3.one * (nodeRadius));
-    
-             }
-         }
+         // Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, gridWorldSize.y, 1));
+         //
+         // if (Grid != null)
+         // {
+         //     foreach (Node2D n in Grid)
+         //     {
+         //         if (n == null) {
+         //             continue;
+         //         }
+         //         if (n.obstacle)
+         //             Gizmos.color = Color.red;
+         //         else
+         //             Gizmos.color = Color.clear;
+         //
+         //         //Debug.Log(path.Count);
+         //         if (path != null && path.Contains(n))
+         //             Gizmos.color = Color.black;
+         //         Gizmos.DrawCube(n.getWorldPosition(), Vector3.one * (nodeRadius));
+         //
+         //     }
+         // }
      }
+
+     public void setClaimedAtPosition(GameObject enemy, Vector3 position) {
+         Node2D node = nodeFromWorldPoint(position);
+         node.setClaimed(true);
+     }
+
+     public void removeEnemyAtPosition(Vector3 transformPosition) {
+         Node2D node = nodeFromWorldPoint(transformPosition);
+         node.setEnemy(null);
+     }
+     
 }

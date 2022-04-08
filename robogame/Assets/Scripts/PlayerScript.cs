@@ -9,5 +9,5 @@ using Random = System.Random;
 
 public class PlayerScript : MonoBehaviour {
 
-	public playerStatBlockSO stats;
+	public PlayerStatBlockSo stats;
 }

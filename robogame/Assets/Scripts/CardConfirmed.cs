@@ -13,7 +13,7 @@ public class CardConfirmed : MonoBehaviour {
 	public Vector3IntSet targetPos;
 	public CardUIValue[] energyUIValues;
 	public PlayerStateManager playerStateManager;
-	[SerializeField] private GORunTimeSet handUIArray;
+	[SerializeField] private GoRunTimeSet handUIArray;
 	public CardSet handSet;
 	public CardSet discardSet;
 
@@ -32,7 +32,7 @@ public class CardConfirmed : MonoBehaviour {
 			return;
 		}
 		adjustEnergyValue();
-		selectedCard.Card.Execute();
+		selectedCard.Card.execute();
 		
 		int r = selectedCard.Card.handPosition;
 		

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ScriptableObjects.Sets;
 using UnityEngine;
@@ -7,84 +8,47 @@ using UnityEngine.Tilemaps;
 
 
 [CreateAssetMenu(fileName = "new Card", menuName = "EnemyCards/EnemyMeleeMove")]
-public class EnemyMeleeMoveSO : AbsAction {
+public class EnemyMeleeMoveSo : AbsAction {
 	private EnemyDataHandler _enemyDataHandler;
-	
-	
 	public Tile moveTile;
-	
-	//private EnemyTileHighlighter enemyTileHighlighter;
-	
-	//MONSTER NEEDS TO ALREADY BE STORING THE TARGET ON ITSELF FOR THIS TO WORK
-	// NEED A TARGET SETTER ACTION
-
-	public override async  Task Execute(GameObject monster) {
+	public PlayerStatBlockSo stats;
+	public override async  Task execute(GameObject monster) {
 		enemyMove(monster);
 		await Task.Yield();
 	}
 
-	public override bool Check(GameObject monster) {
+	public override bool check(GameObject monster) {
+		getPathForTargetType(monster);
 		_enemyDataHandler = monster.GetComponent<EnemyDataHandler>();
-		if (_enemyDataHandler.getPath() == null) {
-			Debug.Log(monster.name);
-			return false;
-		}
-		if (_enemyDataHandler.getPath().Count > _enemyDataHandler.attackRange) {
-			// IS PATH LONGER THAN THE DISTANCE TO THE TARGET, IF SO, MOVE TOWARDS THE TARGET
-			return true;
-		}
-		else {
-			//ELSE GO TO NEXT ACTION
-			//Debug.Log(_enemyDataHandler.getPath().Count);
-			return false;
-		}
-		
+		return _enemyDataHandler.getPath() != null;
 	}
 
-	public override void Highlight(GameObject enemy, Tile tile) {
-		base.Highlight(enemy, moveTile);
+	public override void highlight(GameObject enemy, Tile tile) {
+		base.highlight(enemy, moveTile);
 	}
-
-	public override void unHighlight(GameObject enemy) {
-		base.unHighlight(enemy);
-	}
-	
 
 	private void enemyMove( GameObject enemy) {
 		Grid2D grid2D = combatManagerSet.items[0].GetComponent<Grid2D>();
-		
 		List<Node2D> path = enemy.GetComponent<EnemyDataHandler>().getPath();
+		Tilemap tilemap = tilemapSet.items.SingleOrDefault(obj => obj.name == "Tilemap")?.GetComponent<Tilemap>();
 		//GET  MOVE AMOUNT FROM ENEMY DATA
-		int moveAmount = enemy.GetComponent<EnemyDataHandler>().moveAmount;
-        
-		
-        
-		//IS PATH LONGER THAN THE MOVE AMOUNT 
-		if (path.Count <= moveAmount || path.Count == 1) {
-			Debug.Log("path is smaller than move amount");
-			return;
-		}
-		for (int i = 0; i <moveAmount; i++) {//MOVE THE ENEMY 1 SQUARE AT A TIME ALONG PATH FOR AS MANY MOVES AS THEY HAVE
-			//ADD PATH NODES TO ENEMY PATH
-			//enemy.GetComponent<EnemyDataHandler>().highlightedMoveNodes.Add(path[i]);
-                
-                
-			Node2D startNode = grid2D.NodeFromWorldPoint(enemy.transform.position);//CURRENT  NODE
-			//startNode.setEnemy(null); //SETTING CURRENT NODE TO NOT HAVE ENEMY, ALLOWING OTHER ENEMIES TO MOVE HERE - this is for multple move enemies
-                
-			grid2D.setEnemyAtPosition(enemy,path[i].getWorldPosition());
-
-			if (enemy.transform.position == path[i].getWorldPosition()) {
-				Debug.Log("path position is already where you are standing");
+		var moveAmount = enemy.GetComponent<EnemyDataHandler>().moveAmount;
+		for (var i = 0; i <moveAmount; i++) {//MOVE THE ENEMY 1 SQUARE AT A TIME ALONG PATH FOR AS MANY MOVES AS THEY HAVE
+			if (path[i].getEnemy()) {
+				enemy.GetComponent<EnemyDataHandler>().setStun(damage);
+				break;
 			}
+
+			if (tilemap.WorldToCell(path[i].getWorldPosition()) ==
+			    tilemap.WorldToCell(_enemyDataHandler.target.transform.position)) {
+				stats.health.Value -= damage;
+				break;
+			}
+
+			grid2D.removeEnemyAtPosition(enemy.transform.position);
+			grid2D.setEnemyAtPosition(enemy,path[i].getWorldPosition());
 			enemy.transform.position = path[i].getWorldPosition(); //MOVING THE ENEMY TO THE NEXT POSITION
-			//Debug.Log(enemy.transform.position);
-		}  
-            
-		//SETTING TILE BENEATH ENEMY TO ORIGINAL TILE
-		//base.returnTileUnderEnemy(enemy);
-
-
+		}
 	}
 
 	public override void resetWithNewPosition(GameObject enemy, Vector3 dir, Tile tile) {

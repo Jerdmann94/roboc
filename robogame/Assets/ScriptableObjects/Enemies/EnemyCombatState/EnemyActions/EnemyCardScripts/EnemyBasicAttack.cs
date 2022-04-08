@@ -12,29 +12,26 @@ public class EnemyBasicAttack : AbsAction
 {
 	public Tile attackTile;
 	private EnemyDataHandler _enemyDataHandler;
-	public playerStatBlockSO stats;
-	public GORunTimeSet aliveEnemies;
+	public PlayerStatBlockSo stats;
+	public GoRunTimeSet aliveEnemies;
 	
-	public override async Task Execute(GameObject enemy) {
+	public override async Task execute(GameObject enemy) {
 
 		Grid2D grid2D = combatManagerSet.items[0].GetComponent<Grid2D>();
 		grid2D.setEnemyAtPosition(enemy);
 		Tilemap tilemap = tilemapSet.items.SingleOrDefault(obj => obj.name == "Tilemap")?.GetComponent<Tilemap>();
 		//Debug.Log(tilemap.name);
 		foreach (var node in _enemyDataHandler.highlightedNodes) {
-			// if (tilemap.WorldToCell(node.getWorldPosition()) != tilemap.WorldToCell(_enemyDataHandler.target.transform.position)) {
-			// 	return;
-			// }
-
+		
 			if (_enemyDataHandler.target.CompareTag("Player") && 
 			    tilemap.WorldToCell(node.getWorldPosition()) == tilemap.WorldToCell(_enemyDataHandler.target.transform.position)) {
-				stats.health.Value -= _enemyDataHandler.attack;
+				stats.health.Value -= damage;
 			}
 			else {
 				foreach (var otherEnemy in aliveEnemies.items.Where(
-					         otherEnemy => otherEnemy.transform.position == node.getWorldPosition())) {
-					otherEnemy.GetComponent<EnemyDataHandler>().takeDamage(enemy.GetComponent<EnemyDataHandler>().attack);
-					Debug.Log("didnt hit player but did attack");
+					         otherEnemy =>  tilemap.WorldToCell(otherEnemy.transform.position) ==  tilemap.WorldToCell(node.getWorldPosition()))) {
+					otherEnemy.GetComponent<EnemyDataHandler>().takeDamage(damage);
+					Debug.Log(_enemyDataHandler.gameObject.name + " didnt hit player but did attack");
 				}
 			}
 			await Task.Delay(300);
@@ -47,67 +44,37 @@ public class EnemyBasicAttack : AbsAction
 		//Debug.Log("Attacking not implemented yet");
 	}
 
-	private void doPlayerDamage() {
-		throw new System.NotImplementedException();
-	}
+	
 
 
-	public override bool Check(GameObject enemy) {
-
-		bool returnable;
+	public override bool check(GameObject enemy) {
 		_enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();
-		switch (_enemyDataHandler.attackType.name) {
-			case "Melee":
-				returnable = meleeCheck(enemy);
-				break;
-			case "Ranged":
-				returnable = rangedCheck(enemy);
-				break;
-			default:
-				Debug.Log("Enemy has no attack type " + enemy);
-				returnable = false;
-				break;
-		}
-
-		return returnable;
+		getPathForTargetType(enemy);
+		return meleeCheck(enemy);
 	}
 
-	public override void Highlight(GameObject enemy, Tile tile) {
+	public override void highlight(GameObject enemy, Tile tile) {
 
-		base.Highlight(enemy, attackTile);
+		base.highlight(enemy, attackTile);
 
 	}
 	
 
 	
 
-	private bool rangedCheck(GameObject enemy) {
-		var position = enemy.transform.position;
-		RaycastHit2D hit = Physics2D.Raycast(position, playerSet.items[0].transform.position - position);
-
-		if (hit.collider.gameObject.CompareTag("Player")) {
-			Debug.Log("We found Target!");
-			return true;
-			
-		}
-		Debug.Log("I found something else with name = " + hit.collider.name);
-		return false;
-		
-		
 	
-	
-	}
 
 	private bool meleeCheck(GameObject enemy) {
-		EnemyDataHandler enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();
-		if (enemyDataHandler.getPath().Count <= enemyDataHandler.attackRange) { 
-			// ARE WE WITHIN RANGE OF OUR TARGET
+		Tilemap tilemap = tilemapSet.items.SingleOrDefault(obj => obj.name == "Tilemap")?.GetComponent<Tilemap>();
+		_enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();
+		if (tilemap.WorldToCell(_enemyDataHandler.target.transform.position)
+		    == tilemap.WorldToCell(_enemyDataHandler.getPath()[0].getWorldPosition())) {
+			Grid2D grid2D = combatManagerSet.items[0].GetComponent<Grid2D>();
+			grid2D.setEnemyAtPosition(enemy);
 			return true;
 		}
-		else {
-			//ELSE GO TO NEXT ACTION
-			return false;
-		}
+
+		return false;
 	}
 	public override void resetWithNewPosition(GameObject enemy, Vector3 dir, Tile tile) {
 		base.resetWithNewPosition(enemy,dir,attackTile);

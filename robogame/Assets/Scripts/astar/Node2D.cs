@@ -23,7 +23,15 @@ public class Node2D
 	}
 
 	private GameObject enemy = null;
+	private bool claimed = false;
 
+	public void setClaimed(bool claim) {
+		claimed = claim;
+	}
+
+	public bool getClaimed() {
+		return claimed;
+	}
 
 	public void setEnemy(GameObject obj) {
 		enemy = obj;
@@ -49,7 +57,7 @@ public class Node2D
 		{
 			enemyCost =  (enemy==null) ? 100 : 0;
 			if (enemy!= null) {
-				Debug.Log(worldPosition + "has enemy");
+				//Debug.Log(worldPosition + "has enemy");
 			}
 
 			// if (difficultyCost > 0) {
@@ -59,7 +67,10 @@ public class Node2D
 		}
 
 	}
-    
+
+	public int getFCostNoDifficultyOrEnemy() {
+		return gCost + hCost;
+	}
 
 	public void SetObstacle(bool isOb)
 	{

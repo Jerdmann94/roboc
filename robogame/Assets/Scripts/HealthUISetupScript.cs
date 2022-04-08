@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 
 public class HealthUISetupScript : MonoBehaviour {
-    public playerStatBlockSO stats;
+    public PlayerStatBlockSo stats;
  
     void Awake()
     {

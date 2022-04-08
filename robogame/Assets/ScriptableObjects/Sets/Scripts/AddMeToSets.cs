@@ -5,19 +5,19 @@ using ScriptableObjects.Sets;
 using UnityEngine;
 
 public class AddMeToSets : MonoBehaviour {
-	public List<GORunTimeSet> sets;
+	public List<GoRunTimeSet> sets;
 
 	// Start is called before the first frame update
 	private void Awake() {
-		foreach (var VARIABLE in sets) {
+		foreach (var variable in sets) {
 			
-			VARIABLE.add(this.gameObject);
+			variable.add(this.gameObject);
 		}
 	}
 
 	private void OnDisable() {
-		foreach (var VARIABLE in sets) {
-			VARIABLE.remove(this.gameObject);
+		foreach (var variable in sets) {
+			variable.remove(this.gameObject);
 		}
 	}
 }

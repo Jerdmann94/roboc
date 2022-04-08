@@ -71,8 +71,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.361}
-  m_SizeDelta: {x: 60, y: 20}
+  m_AnchoredPosition: {x: 0.0106, y: 0.4867}
+  m_SizeDelta: {x: 99.4265, y: 59.9596}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &407863299355176406
 MonoBehaviour:
@@ -113,7 +113,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 5715056798678729962}
   m_HandleRect: {fileID: 0}
@@ -403,9 +403,11 @@ MonoBehaviour:
   slider: {fileID: 407863299355176406}
   combatManagerSet: {fileID: 11400000, guid: 24b50521d9b0d11478baef5f792d60bd, type: 2}
   tilemapSet: {fileID: 11400000, guid: e1cb19a99de443146927c681d20d98bc, type: 2}
-  targetCheck: {fileID: 11400000, guid: e7c5c7aa86e8eef4eaa2411685e9bcab, type: 2}
+  aliveEnemies: {fileID: 11400000, guid: 4348edecdfc7f844eaab4ad2d9b89740, type: 2}
   stunned: 0
   stunnedText: {fileID: 7246597917346867796, guid: c200c67bf8db29c4983ca9214494cb38, type: 3}
+  specialTarget: {fileID: 0}
+  lateDeathEmitter: {fileID: 11400000, guid: ed92df0eb8178cb46873d097b230cb34, type: 2}
 --- !u!114 &1951614735833151202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -468,7 +470,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: 0, y: 0.00000047683716}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: -0.00000095367}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8459595414152797280

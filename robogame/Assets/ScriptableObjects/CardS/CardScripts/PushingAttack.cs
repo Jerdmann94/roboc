@@ -5,15 +5,17 @@ using ScriptableObjects.Sets;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+
+using static ResetEnemyLocations;
 [CreateAssetMenu(fileName = "new Card", menuName = "PlayerCards/PushingAttack")]
 public class PushingAttack : CardAbs
 {
 	public Vector3Event  attackEvent;
-	public GORunTimeSet aliveEnemies;
-	public GORunTimeSet combatManagerSet;
-	public GORunTimeSet aliveObstacles;
-	private const float TOLERANCE = .5f;
-	public override void Execute() {
+	public GoRunTimeSet aliveEnemies;
+	public GoRunTimeSet combatManagerSet;
+	public GoRunTimeSet aliveObstacles;
+	private const float Tolerance = .5f;
+	public override void execute() {
 		Grid2D grid2D = combatManagerSet.items[0].GetComponent<Grid2D>();
 		targetPos.items.ForEach(pos => {
 			var tilemap = tilemapSet.items[2].GetComponent<Tilemap>();
@@ -115,10 +117,10 @@ public class PushingAttack : CardAbs
 					var dir = new Vector3(x, y, 0);
 					var worldtogridpos = new Vector3Int((int) (pos.x + x), (int) (pos.y + y), 0);
 					//Debug.Log(dir + " " + worldtogridpos);
-					if (grid2D.NodeFromWorldPoint(tilemap.GetCellCenterWorld(worldtogridpos)).obstacle) {
+					if (grid2D.nodeFromWorldPoint(tilemap.GetCellCenterWorld(worldtogridpos)).obstacle) {
 						
 						foreach (var obs in aliveObstacles.items) {
-							if (Math.Abs(obs.transform.position.x - tilemap.GetCellCenterWorld(worldtogridpos).x) > TOLERANCE &&  Math.Abs(obs.transform.position.y - tilemap.GetCellCenterWorld(worldtogridpos).y) > TOLERANCE) {
+							if (Math.Abs(obs.transform.position.x - tilemap.GetCellCenterWorld(worldtogridpos).x) > Tolerance &&  Math.Abs(obs.transform.position.y - tilemap.GetCellCenterWorld(worldtogridpos).y) > Tolerance) {
 								//Debug.Log(obs.transform.position + " "  + tilemap.GetCellCenterWorld(worldtogridpos));
 								continue;
 							}
@@ -128,8 +130,14 @@ public class PushingAttack : CardAbs
 							return;
 						}
 					}
+
+					grid2D.nodeFromWorldPoint(enemy.transform.position).setEnemy(null);
 					enemy.transform.position = tilemap.GetCellCenterWorld(worldtogridpos);
-					enemy.GetComponent<EnemyDataHandler>().selectedAction.resetWithNewPosition(enemy,dir,new Tile());
+					if (enemy.GetComponent<EnemyDataHandler>().selectedAction != null) {
+						enemy.GetComponent<EnemyDataHandler>().selectedAction.resetWithNewPosition(enemy,dir,new Tile());
+
+					}
+					//resetEnemiesOnGrid(grid2D,aliveEnemies);
 				}
 			}
 			

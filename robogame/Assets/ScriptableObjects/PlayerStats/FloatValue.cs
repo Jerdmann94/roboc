@@ -10,7 +10,7 @@ public class FloatValue : ScriptableObject {
 	public float value;
 
 	public GameObject damText;
-	public GORunTimeSet playerSet;
+	public GoRunTimeSet playerSet;
 	public float Value
 	{
 		get => value;

@@ -12,17 +12,18 @@ using Random = UnityEngine.Random;
 [System.Serializable]
 public class CombatManager : MonoBehaviour {
 
-	private List<ScriptableObject> enemiesToSpawn = new List<ScriptableObject>();
+	private List<ScriptableObject> _enemiesToSpawn = new List<ScriptableObject>();
 	public  EnemyList                 enemiesDeck;
 	public  GameObject             enemyPrefab;
 	public  Tilemap                tilemap;
-	public GORunTimeSet aliveEnemies;
+	public GoRunTimeSet aliveEnemies;
 	public TurnState combatState;
 	public PlayerStateManager playerStateManager;
 	public EnemyStateManager enemyStateManager;
 	public Pathfinding2D pathfinder;
 	public Grid2D grid2D;
 	public MouseHandler mouseHandler;
+	public GoRunTimeSet tileMapSet;
 	
 	
 	
@@ -31,8 +32,8 @@ public class CombatManager : MonoBehaviour {
 	private void Awake() {
 
 		
-		foreach (var VARIABLE in enemiesDeck.deck) {
-			enemiesToSpawn.Add(VARIABLE);
+		foreach (var variable in enemiesDeck.deck) {
+			_enemiesToSpawn.Add(variable);
 		}
 		aliveEnemies.items = new List<GameObject>();
 	}
@@ -53,17 +54,17 @@ public class CombatManager : MonoBehaviour {
 	}
 
 	private void spawnEnemies() {
-		for (int i = 0; i < enemiesToSpawn.Count; i++) {
+		for (int i = 0; i < _enemiesToSpawn.Count; i++) {
 			var        tempPos = getEmptyGridPosition();
 			GameObject enemy   = Instantiate(enemyPrefab, tempPos, Quaternion.identity);
-			enemy.GetComponent<EnemyDataHandler>().setUpData((EnemySO) enemiesToSpawn[i]);
+			enemy.GetComponent<EnemyDataHandler>().setUpData((EnemySo) _enemiesToSpawn[i]);
 			enemy.GetComponent<SpriteRenderer>().sortingOrder = 2;
 			enemy.name = i.ToString();
 			enemy.GetComponent<EnemyDataHandler>().name = i.ToString();
 			aliveEnemies.items.Add(enemy);
 		}
 	}
-	private Vector3 getEmptyGridPosition() {
+	public Vector3 getEmptyGridPosition() {
 		ArrayList allPos      = new ArrayList();
 		ArrayList possiblePos = new ArrayList();
 		foreach (var pos in tilemap.cellBounds.allPositionsWithin) {

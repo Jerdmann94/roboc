@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
 using ScriptableObjects.Sets;
 using UnityEngine;
@@ -8,7 +9,7 @@ using UnityEngine.Tilemaps;
 
 public abstract class CardAbs : ScriptableObject
 {
-	public    CardCostSO    cost;
+	public    CardCostSo    cost;
 	public new String name;
 	public     String cardDescription;
 	public     String cardFlavor;
@@ -16,23 +17,88 @@ public abstract class CardAbs : ScriptableObject
 	public int targets;
 	public TileBase tileColor;
 	internal int handPosition;
-	public GORunTimeSet playerSet;
-	public GORunTimeSet tilemapSet;
+	public GoRunTimeSet playerSet;
+	public GoRunTimeSet tilemapSet;
 	public Vector3IntSet targetPos;
 	public GameObject formation;
 	public Vector3IntSet possibleTargets;
 	public TileRunTimeSet possibleTargetsTiles;
-
-	public abstract void Execute();
+	public HighlightEnum highlightEnum;
+	public GoRunTimeSet gridGameObject;
+	public abstract void execute();
 
 	public virtual void highlightTiles() {
-		GameObject form = Instantiate(formation, playerSet.items[0].transform.position,Quaternion.identity);
-		Tilemap tilemap = tilemapSet.items[1].GetComponent<Tilemap>();
-		
-		foreach (var pos in possibleTargets.items) {
-			tilemap.SetTile(pos,tileColor);
-			//Debug.Log(tileColor);
+		if (possibleTargets.items.Count != 0) {
+			possibleTargets.items.Clear();
 		}
+		GameObject form = Instantiate(formation, playerSet.items[0].transform.position,Quaternion.identity);
+		Tilemap tilemap = tilemapSet.items.SingleOrDefault(obj => obj.name == "TilemapForPlayer")?.GetComponent<Tilemap>();
+		Grid2D grid = gridGameObject.items[0].GetComponent<Grid2D>();
+		var removable = new List<Vector3Int>();
+		
+
+
+		switch (highlightEnum.name) {
+			case "Open":
+				foreach (var pos in possibleTargets.items) {
+					if (tilemap != null 
+					    && grid.nodeFromWorldPoint(tilemap.GetCellCenterWorld(pos)).getEnemy() == null
+					    && !grid.nodeFromWorldPoint(tilemap.GetCellCenterWorld(pos)).obstacle) {
+						tilemap.SetTile(pos, tileColor);
+					}
+					else {
+						removable.Add(pos);
+					}
+					
+					
+				}
+				Destroy(form);
+				break;
+			case "All":
+				foreach (var pos in possibleTargets.items) {
+					
+					// if (!grid.NodeFromWorldPoint(temp).obstacle && grid.NodeFromWorldPoint(temp).getEnemy() == null) {
+					// if (!grid.NodeFromWorldPoint(temp).obstacle) {
+					// 	VARIABLE.add(tilemap.WorldToCell(transform.position));
+					// 	// Debug.Log(grid.NodeFromWorldPoint(transform.position).getWorldPosition() + " " + transform.position);
+					// }
+					if (tilemap != null) {
+						tilemap.SetTile(pos, tileColor);
+					}
+					else {
+						removable.Add(pos);
+					}
+					
+					
+				}
+				Destroy(form);
+				break;
+			case "Enemies":
+				foreach (var pos in possibleTargets.items) {
+					if (tilemap != null && grid.nodeFromWorldPoint(tilemap.GetCellCenterWorld(pos)).getEnemy() != null) {
+						tilemap.SetTile(pos, tileColor);
+				
+					}
+					else {
+						removable.Add(pos);
+					}
+					
+					
+				}
+				Destroy(form);
+				break;
+			default:
+				Debug.Log("no case worked");
+				Destroy(form);
+				break;
+		}
+		
+		
+		//REMOVE ANY UNUSED TARGETS FROM POSSIBLE TARGETS
+		foreach (var vector3Int in removable.Where(vector3Int => possibleTargets.items.Contains(vector3Int))) {
+			possibleTargets.items.Remove(vector3Int);
+		}
+		
 		Destroy(form);
 	}
 	

@@ -8,10 +8,10 @@ using UnityEngine.InputSystem.Utilities;
 
 public class @MouseInput : IInputActionCollection, IDisposable
 {
-    public InputActionAsset asset { get; }
+    public InputActionAsset Asset { get; }
     public @MouseInput()
     {
-        asset = InputActionAsset.FromJson(@"{
+        Asset = InputActionAsset.FromJson(@"{
     ""name"": ""mouse"",
     ""maps"": [
         {
@@ -64,38 +64,38 @@ public class @MouseInput : IInputActionCollection, IDisposable
     ""controlSchemes"": []
 }");
         // Mouse
-        m_Mouse = asset.FindActionMap("Mouse", throwIfNotFound: true);
-        m_Mouse_MouseClick = m_Mouse.FindAction("MouseClick", throwIfNotFound: true);
-        m_Mouse_MousePosition = m_Mouse.FindAction("MousePosition", throwIfNotFound: true);
+        _mMouse = Asset.FindActionMap("Mouse", throwIfNotFound: true);
+        _mMouseMouseClick = _mMouse.FindAction("MouseClick", throwIfNotFound: true);
+        _mMouseMousePosition = _mMouse.FindAction("MousePosition", throwIfNotFound: true);
     }
 
     public void Dispose()
     {
-        UnityEngine.Object.Destroy(asset);
+        UnityEngine.Object.Destroy(Asset);
     }
 
     public InputBinding? bindingMask
     {
-        get => asset.bindingMask;
-        set => asset.bindingMask = value;
+        get => Asset.bindingMask;
+        set => Asset.bindingMask = value;
     }
 
     public ReadOnlyArray<InputDevice>? devices
     {
-        get => asset.devices;
-        set => asset.devices = value;
+        get => Asset.devices;
+        set => Asset.devices = value;
     }
 
-    public ReadOnlyArray<InputControlScheme> controlSchemes => asset.controlSchemes;
+    public ReadOnlyArray<InputControlScheme> controlSchemes => Asset.controlSchemes;
 
     public bool Contains(InputAction action)
     {
-        return asset.Contains(action);
+        return Asset.Contains(action);
     }
 
     public IEnumerator<InputAction> GetEnumerator()
     {
-        return asset.GetEnumerator();
+        return Asset.GetEnumerator();
     }
 
     IEnumerator IEnumerable.GetEnumerator()
@@ -105,42 +105,42 @@ public class @MouseInput : IInputActionCollection, IDisposable
 
     public void Enable()
     {
-        asset.Enable();
+        Asset.Enable();
     }
 
     public void Disable()
     {
-        asset.Disable();
+        Asset.Disable();
     }
 
     // Mouse
-    private readonly InputActionMap m_Mouse;
-    private IMouseActions m_MouseActionsCallbackInterface;
-    private readonly InputAction m_Mouse_MouseClick;
-    private readonly InputAction m_Mouse_MousePosition;
+    private readonly InputActionMap _mMouse;
+    private IMouseActions _mMouseActionsCallbackInterface;
+    private readonly InputAction _mMouseMouseClick;
+    private readonly InputAction _mMouseMousePosition;
     public struct MouseActions
     {
-        private @MouseInput m_Wrapper;
-        public MouseActions(@MouseInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @MouseClick => m_Wrapper.m_Mouse_MouseClick;
-        public InputAction @MousePosition => m_Wrapper.m_Mouse_MousePosition;
-        public InputActionMap Get() { return m_Wrapper.m_Mouse; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(MouseActions set) { return set.Get(); }
-        public void SetCallbacks(IMouseActions instance)
+        private @MouseInput _mWrapper;
+        public MouseActions(@MouseInput wrapper) { _mWrapper = wrapper; }
+        public InputAction @MouseClick => _mWrapper._mMouseMouseClick;
+        public InputAction @MousePosition => _mWrapper._mMouseMousePosition;
+        public InputActionMap get() { return _mWrapper._mMouse; }
+        public void enable() { get().Enable(); }
+        public void disable() { get().Disable(); }
+        public bool Enabled => get().enabled;
+        public static implicit operator InputActionMap(MouseActions set) { return set.get(); }
+        public void setCallbacks(IMouseActions instance)
         {
-            if (m_Wrapper.m_MouseActionsCallbackInterface != null)
+            if (_mWrapper._mMouseActionsCallbackInterface != null)
             {
-                @MouseClick.started -= m_Wrapper.m_MouseActionsCallbackInterface.OnMouseClick;
-                @MouseClick.performed -= m_Wrapper.m_MouseActionsCallbackInterface.OnMouseClick;
-                @MouseClick.canceled -= m_Wrapper.m_MouseActionsCallbackInterface.OnMouseClick;
-                @MousePosition.started -= m_Wrapper.m_MouseActionsCallbackInterface.OnMousePosition;
-                @MousePosition.performed -= m_Wrapper.m_MouseActionsCallbackInterface.OnMousePosition;
-                @MousePosition.canceled -= m_Wrapper.m_MouseActionsCallbackInterface.OnMousePosition;
+                @MouseClick.started -= _mWrapper._mMouseActionsCallbackInterface.OnMouseClick;
+                @MouseClick.performed -= _mWrapper._mMouseActionsCallbackInterface.OnMouseClick;
+                @MouseClick.canceled -= _mWrapper._mMouseActionsCallbackInterface.OnMouseClick;
+                @MousePosition.started -= _mWrapper._mMouseActionsCallbackInterface.OnMousePosition;
+                @MousePosition.performed -= _mWrapper._mMouseActionsCallbackInterface.OnMousePosition;
+                @MousePosition.canceled -= _mWrapper._mMouseActionsCallbackInterface.OnMousePosition;
             }
-            m_Wrapper.m_MouseActionsCallbackInterface = instance;
+            _mWrapper._mMouseActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @MouseClick.started += instance.OnMouseClick;

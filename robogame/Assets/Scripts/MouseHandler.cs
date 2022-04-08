@@ -10,7 +10,7 @@ using UnityEngine.Tilemaps;
 [Serializable]
 public class MouseHandler : MonoBehaviour {
 	//public static MouseHandler  mouseHandler = null;
-	private MouseInput    mouse;
+	private MouseInput    _mouse;
 	
 	public  Tile          targetTile;
 	
@@ -30,33 +30,33 @@ public class MouseHandler : MonoBehaviour {
 	public SingleCardSet selectedCardSet;
 
 	private void Awake() {
-		mouse = new MouseInput();
+		_mouse = new MouseInput();
 		possibleTileSet.items = new List<Tile>();
 		targetPos.items = new List<Vector3Int>();
 
 	}
 
 	private void OnEnable() {
-		mouse.Enable();
+		_mouse.Enable();
 	}
 
 	private void OnDisable() {
-		mouse.Disable();
+		_mouse.Disable();
 	}
 
 	void Start() {
-		if (mouse != null) mouse.Mouse.MouseClick.performed += data => MouseClick();
+		if (_mouse != null) _mouse.Mouse.MouseClick.performed += data => mouseClick();
 	}
 
-	private void MouseClick() {
-		Vector2 mousePosition = mouse.Mouse.MousePosition.ReadValue<Vector2>();
+	private void mouseClick() {
+		Vector2 mousePosition = _mouse.Mouse.MousePosition.ReadValue<Vector2>();
 		if (Camera.main != null) mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 		Vector3Int gridPos = playerMap.WorldToCell(mousePosition);
 		Tile       tile    = playerMap.GetTile<Tile>(gridPos);
-		if (tile == null) {
-			Debug.Log("tile = null");
-			return;
-		}
+		// if (tile == null) {
+		// 	Debug.Log("tile = null " + playerMap.name);
+		// 	return;
+		// }
 
 		if (!possibleTilesPos.items.Contains(gridPos)) {
 			//Debug.Log("possible tiles does not contain tile " + possibleTileSet.items.Count + " grid position is " + gridPos);
@@ -74,7 +74,7 @@ public class MouseHandler : MonoBehaviour {
 	//CARD/TILE UTILITY METHODS
 
 	public void confirm() {
-		if (!playPhase.Value) return;
+		if (!playPhase.value) return;
 		if (targetPos.items.Count < 1) return;
 		cc.cardConfirmed();
 		resetTiles();
@@ -82,7 +82,7 @@ public class MouseHandler : MonoBehaviour {
 	}
 
 	public void playCard(CardAbs card) {
-		if (!playPhase.Value) return;
+		if (!playPhase.value) return;
 		
 		resetTiles();
 		//selectedCard = card;

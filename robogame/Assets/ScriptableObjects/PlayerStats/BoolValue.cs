@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu]
 public class BoolValue  : ScriptableObject {
-    public bool Value;
+    [FormerlySerializedAs("Value")] public bool value;
 }
