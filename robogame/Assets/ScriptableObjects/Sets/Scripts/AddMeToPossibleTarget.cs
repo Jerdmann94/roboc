@@ -16,27 +16,15 @@ public class AddMeToPossibleTarget : MonoBehaviour {
     private void Awake() {
         Grid2D grid = gridGameObject.items[0].GetComponent<Grid2D>();
         Tilemap tilemap = tileMapSet.items[2].GetComponent<Tilemap>();
-        //Debug.Log(grid);
+        
         foreach (var variable in sets) {
             Vector3 temp = tilemap.GetCellCenterWorld((tilemap.WorldToCell(transform.position)));
-            
-            // if (!grid.nodeFromWorldPoint(temp).obstacle) {
-                variable.add(tilemap.WorldToCell(transform.position));
-                // Debug.Log(grid.NodeFromWorldPoint(transform.position).getWorldPosition() + " " + transform.position);
-           // }
-           
-            
-           // Debug.Log(transform.position);
-            
+            variable.add(tilemap.WorldToCell(transform.position));
         }
 
         foreach (var variable in tiles) {
             Vector3 temp = tilemap.GetCellCenterWorld((tilemap.WorldToCell(transform.position)));
-            // if (!grid.nodeFromWorldPoint(temp).obstacle) {
-                
-                variable.items.Add(tilemap.GetTile<Tile>(tilemap.WorldToCell(transform.position)));
-                
-            //}
+            variable.items.Add(tilemap.GetTile<Tile>(tilemap.WorldToCell(transform.position)));
         }
     }
 

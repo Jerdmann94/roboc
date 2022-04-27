@@ -10,18 +10,28 @@ public class ObstacleDataHandler :TileMapObject {
 	public bool killable;
 	[SerializeField]
 	private ObstacleSo ifNotDefined;
+	public AbsDeathEffect deathEffect;
+	public bool pushable;
+	public int damageWhenPushed;
+
 	private void Start() {
 		if (ifNotDefined != null) {
 			setUpData(ifNotDefined);
 		}
 		grid2D = combatManagerSet.items[0].GetComponent<Grid2D>();
 		Tilemap tilemap = tilemapSet.items[2].GetComponent<Tilemap>();
-		transform.position = tilemap.GetCellCenterWorld(tilemap.WorldToCell(transform.position));
-		grid2D.nodeFromWorldPoint(tilemap.GetCellCenterWorld(tilemap.WorldToCell(transform.position))).obstacle = true;
+		Transform transform1;
+		(transform1 = transform).position = tilemap.GetCellCenterWorld(tilemap.WorldToCell(transform.position));
+		grid2D.nodeFromWorldPoint(tilemap.GetCellCenterWorld(tilemap.WorldToCell(transform1.position))).obstacle = this;
 	}
 
 	public override void takeDamage() {
+		if (canvas == null) {
+			canvas = GameObject.FindWithTag(
+				"canvas").GetComponent<Canvas>();
+		}
 		damObj = Instantiate(damageText, transform);
+		//Debug.Log(canvas);
 		damObj.transform.SetParent(canvas.gameObject.transform);
 		damObj.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(selectedCard.Card.doDamage().ToString());
 		health += selectedCard.Card.doDamage();
@@ -33,6 +43,7 @@ public class ObstacleDataHandler :TileMapObject {
 			doDeath();
 		}
 	}
+
 	public void takeDamage(int damage) {
 		if (canvas == null) {
 			canvas = GameObject.FindWithTag(
@@ -55,19 +66,25 @@ public class ObstacleDataHandler :TileMapObject {
 		}
 	}
 
-	public override void doDeath() {
+	public override async void doDeath() {
+		if (deathEffect!= null) {
+			await deathEffect.execute(gameObject.transform.position);
+		}
 		Destroy(gameObject);
 	}
 
 	public override void setStun(int damage) {
 		if (killable) {
-			takeDamage(attack);
+			takeDamage(damage);
 		}
 		
 	}
 
-	public  void setUpData(ObstacleSo obstacleSo) {
+	internal void setupData(ObstacleSo obstacleSo) {
 		killable = obstacleSo.killable;
+		pushable = obstacleSo.pushable;
+		damageWhenPushed = obstacleSo.damageWhenPushed;
+		deathEffect = obstacleSo.deathEffect;
 		
 		base.setUpData(obstacleSo);
 		
@@ -78,8 +95,10 @@ public class ObstacleDataHandler :TileMapObject {
 	private void OnDestroy() {
 		grid2D = combatManagerSet.items[0].GetComponent<Grid2D>();
 		Tilemap tilemap = tilemapSet.items[2].GetComponent<Tilemap>();
-		grid2D.nodeFromWorldPoint(tilemap.GetCellCenterWorld(tilemap.WorldToCell(transform.position))).obstacle = false;
+		grid2D.nodeFromWorldPoint(tilemap.GetCellCenterWorld(tilemap.WorldToCell(transform.position))).obstacle = null;
 	}
+
+	
 }
 
 

@@ -77,5 +77,10 @@ public class CardConfirmed : MonoBehaviour {
 			
 		}
 	}
+
+	public void changeEnergyValue(CardUIValue card, int value) {
+		card.Value = value;
+		checkWhichCardsCanBePlayed();
+	}
 	
 }

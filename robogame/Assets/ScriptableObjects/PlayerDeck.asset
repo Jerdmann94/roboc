@@ -13,15 +13,12 @@ MonoBehaviour:
   m_Name: PlayerDeck
   m_EditorClassIdentifier: 
   deck:
-  - {fileID: 11400000, guid: 2b3cb4071c0f65947a7a3ff85d0df45e, type: 2}
-  - {fileID: 11400000, guid: 2b3cb4071c0f65947a7a3ff85d0df45e, type: 2}
-  - {fileID: 11400000, guid: 2b3cb4071c0f65947a7a3ff85d0df45e, type: 2}
-  - {fileID: 11400000, guid: 2b3cb4071c0f65947a7a3ff85d0df45e, type: 2}
-  - {fileID: 11400000, guid: 2b3cb4071c0f65947a7a3ff85d0df45e, type: 2}
-  - {fileID: 11400000, guid: 2b3cb4071c0f65947a7a3ff85d0df45e, type: 2}
-  - {fileID: 11400000, guid: 2b3cb4071c0f65947a7a3ff85d0df45e, type: 2}
-  - {fileID: 11400000, guid: 961a698a7fd20164fa13b47853269511, type: 2}
-  - {fileID: 11400000, guid: 961a698a7fd20164fa13b47853269511, type: 2}
-  - {fileID: 11400000, guid: 961a698a7fd20164fa13b47853269511, type: 2}
-  - {fileID: 11400000, guid: 961a698a7fd20164fa13b47853269511, type: 2}
-  - {fileID: 11400000, guid: 961a698a7fd20164fa13b47853269511, type: 2}
+  - {fileID: 11400000, guid: 957b5dfa161523446830665a15afc935, type: 2}
+  - {fileID: 11400000, guid: 957b5dfa161523446830665a15afc935, type: 2}
+  - {fileID: 11400000, guid: 957b5dfa161523446830665a15afc935, type: 2}
+  - {fileID: 11400000, guid: 957b5dfa161523446830665a15afc935, type: 2}
+  - {fileID: 11400000, guid: 5f93c23980c6eb24eb62b23e8abfcf9d, type: 2}
+  - {fileID: 11400000, guid: 5f93c23980c6eb24eb62b23e8abfcf9d, type: 2}
+  - {fileID: 11400000, guid: 5f93c23980c6eb24eb62b23e8abfcf9d, type: 2}
+  - {fileID: 11400000, guid: 957b5dfa161523446830665a15afc935, type: 2}
+  - {fileID: 11400000, guid: 957b5dfa161523446830665a15afc935, type: 2}

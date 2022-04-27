@@ -49,11 +49,11 @@ public class Grid2D : MonoBehaviour
                 //Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.up * (y * nodeDiameter + nodeRadius);
                 Vector3 worldPoint = defaultTileMap.GetCellCenterWorld(new Vector3Int(x+(int)worldBottomLeft.x, y+(int)worldBottomLeft.y, 0));
                 
-                Grid[x, y] = new Node2D(false, worldPoint, x, y);
+                Grid[x, y] = new Node2D(null, worldPoint, x, y);
                 
                 
                 if (!defaultTileMap.HasTile((defaultTileMap.WorldToCell(Grid[x,y].getWorldPosition())))) {
-                    Grid[x, y].SetObstacle(true);
+                    Grid[x, y].setObstacle(null);
                     continue;
                 }
 

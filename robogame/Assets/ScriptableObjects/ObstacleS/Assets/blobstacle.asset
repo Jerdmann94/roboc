@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Blobstacle
   health: 20
-  attack: 3
   shape: {fileID: 21300008, guid: 806d1e1da06036e41bdb16b4741ab5f1, type: 3}
   killable: 1
+  pushable: 1
+  damageWhenPushed: 24
+  deathEffect: {fileID: 11400000, guid: a46d945cef07217449f1b2fbc75fec53, type: 2}

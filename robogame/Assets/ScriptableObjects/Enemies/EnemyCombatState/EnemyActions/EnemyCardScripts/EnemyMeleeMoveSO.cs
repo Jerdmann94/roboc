@@ -12,14 +12,18 @@ public class EnemyMeleeMoveSo : AbsAction {
 	private EnemyDataHandler _enemyDataHandler;
 	public Tile moveTile;
 	public PlayerStatBlockSo stats;
-	public override async  Task execute(GameObject monster) {
-		enemyMove(monster);
+	public MoveType moveType;
+	public bool ignoreObstacles;
+	[SerializeField] private Vector3Event emitter;
+
+	public override async Task execute(GameObject enemy) {
+		enemyMove(enemy);
 		await Task.Yield();
 	}
 
-	public override bool check(GameObject monster) {
-		getPathForTargetType(monster);
-		_enemyDataHandler = monster.GetComponent<EnemyDataHandler>();
+	public override bool check(GameObject enemy) {
+		getPathForTargetType(enemy,moveType,ignoreObstacles);
+		_enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();
 		return _enemyDataHandler.getPath() != null;
 	}
 
@@ -34,6 +38,9 @@ public class EnemyMeleeMoveSo : AbsAction {
 		//GET  MOVE AMOUNT FROM ENEMY DATA
 		var moveAmount = enemy.GetComponent<EnemyDataHandler>().moveAmount;
 		for (var i = 0; i <moveAmount; i++) {//MOVE THE ENEMY 1 SQUARE AT A TIME ALONG PATH FOR AS MANY MOVES AS THEY HAVE
+			if (i >= path.Count) {
+				break;
+			}
 			if (path[i].getEnemy()) {
 				enemy.GetComponent<EnemyDataHandler>().setStun(damage);
 				break;
@@ -45,9 +52,12 @@ public class EnemyMeleeMoveSo : AbsAction {
 				break;
 			}
 
-			grid2D.removeEnemyAtPosition(enemy.transform.position);
+			var position = enemy.transform.position;
+			grid2D.removeEnemyAtPosition(position);
 			grid2D.setEnemyAtPosition(enemy,path[i].getWorldPosition());
-			enemy.transform.position = path[i].getWorldPosition(); //MOVING THE ENEMY TO THE NEXT POSITION
+			position = path[i].getWorldPosition(); //MOVING THE ENEMY TO THE NEXT POSITION
+			enemy.transform.position = position;
+			emitter.emit(position);
 		}
 	}
 

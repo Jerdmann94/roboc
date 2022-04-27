@@ -19,6 +19,8 @@ public class EnemyStateManager : MonoBehaviour {
 
     [SerializeField] private GameObject enemyAtLocation;
     [SerializeField] private GameObject claimedAtLocation;
+    [SerializeField] private GameEvent enemyTileEffectCounterEmitter;
+    [SerializeField] private GameEvent playerTileEffectCounterEmitter;
     public List<GameObject> enemiesToLateSpawnList;
     public List<GameObject> enemiesToLateKillList;
 
@@ -28,7 +30,7 @@ public class EnemyStateManager : MonoBehaviour {
         switch (enemyState.CurrentRound.name) {
             
             case"EnemyPerformAction":
-                
+                enemyTileEffectCounterEmitter.emit();
                 foreach (var enemy in aliveEnemies.items) {
 
                     if (enemiesToLateKillList.Contains(enemy)) {
@@ -46,7 +48,7 @@ public class EnemyStateManager : MonoBehaviour {
                     
                     //PERFORM YOUR ACTION YOUR SELECTED LAST TURN;
                     //Debug.Log(enemy.name + " is performing " + enemy.GetComponent<EnemyDataHandler>().selectedAction);
-                    await enemy.GetComponent<EnemyDataHandler>().selectedAction.execute(enemy);
+                     await enemy.GetComponent<EnemyDataHandler>().selectedAction.execute(enemy);
 
                     if (enemy.GetComponent<EnemyDataHandler>().selectedAction == null) continue;
                     enemy.GetComponent<EnemyDataHandler>().selectedAction.unHighlight(enemy);
@@ -88,7 +90,7 @@ public class EnemyStateManager : MonoBehaviour {
             case"EndTurn":
 
                 _grid2D = gridOwner.GetComponent<Grid2D>();
-                
+                playerTileEffectCounterEmitter.emit();
                 combatManager.combatState.nextState();
                 break;
             default:

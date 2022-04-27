@@ -22,9 +22,8 @@ public abstract class CardAbs : ScriptableObject
 	public Vector3IntSet targetPos;
 	public GameObject formation;
 	public Vector3IntSet possibleTargets;
-	public TileRunTimeSet possibleTargetsTiles;
 	public HighlightEnum highlightEnum;
-	public GoRunTimeSet gridGameObject;
+	public GoRunTimeSet gridManagerSet;
 	public abstract void execute();
 
 	public virtual void highlightTiles() {
@@ -33,7 +32,7 @@ public abstract class CardAbs : ScriptableObject
 		}
 		GameObject form = Instantiate(formation, playerSet.items[0].transform.position,Quaternion.identity);
 		Tilemap tilemap = tilemapSet.items.SingleOrDefault(obj => obj.name == "TilemapForPlayer")?.GetComponent<Tilemap>();
-		Grid2D grid = gridGameObject.items[0].GetComponent<Grid2D>();
+		Grid2D grid = gridManagerSet.items[0].GetComponent<Grid2D>();
 		var removable = new List<Vector3Int>();
 		
 
@@ -57,11 +56,6 @@ public abstract class CardAbs : ScriptableObject
 			case "All":
 				foreach (var pos in possibleTargets.items) {
 					
-					// if (!grid.NodeFromWorldPoint(temp).obstacle && grid.NodeFromWorldPoint(temp).getEnemy() == null) {
-					// if (!grid.NodeFromWorldPoint(temp).obstacle) {
-					// 	VARIABLE.add(tilemap.WorldToCell(transform.position));
-					// 	// Debug.Log(grid.NodeFromWorldPoint(transform.position).getWorldPosition() + " " + transform.position);
-					// }
 					if (tilemap != null) {
 						tilemap.SetTile(pos, tileColor);
 					}
@@ -79,6 +73,11 @@ public abstract class CardAbs : ScriptableObject
 						tilemap.SetTile(pos, tileColor);
 				
 					}
+					else if (tilemap != null && grid.nodeFromWorldPoint(tilemap.GetCellCenterWorld(pos)).getObstacle() != null) {
+						if (grid.nodeFromWorldPoint(tilemap.GetCellCenterWorld(pos)).getObstacle().pushable) {
+							tilemap.SetTile(pos, tileColor);
+						}
+					}
 					else {
 						removable.Add(pos);
 					}
@@ -86,6 +85,20 @@ public abstract class CardAbs : ScriptableObject
 					
 				}
 				Destroy(form);
+				break;
+			case "Obstacles":
+				break;
+			case "Pushables":
+				foreach (var pos in possibleTargets.items) {
+					if (tilemap != null && grid.nodeFromWorldPoint(tilemap.GetCellCenterWorld(pos)).getEnemy() != null) {
+						tilemap.SetTile(pos, tileColor);
+				
+					}
+					
+					else {
+						removable.Add(pos);
+					}
+				}
 				break;
 			default:
 				Debug.Log("no case worked");
@@ -107,3 +120,4 @@ public abstract class CardAbs : ScriptableObject
 		return damage;
 	}
 }
+

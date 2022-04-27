@@ -15,7 +15,9 @@ public class RangedTargetAttack : AbsAction {
 	[SerializeField] private Vector3IntSet possibleTargets;
 	[SerializeField] private PlayerStatBlockSo stats;
 	[SerializeField] private GoRunTimeSet aliveEnemies;
-	[SerializeField] private int timer;
+	[SerializeField] private int timerBeforeNextCast;
+	[SerializeField] private MoveType moveType;
+	[SerializeField] private bool ignoreObstacle;
 	private int i;
 	public override async Task execute(GameObject enemy) {
 		var _enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();
@@ -44,13 +46,13 @@ public class RangedTargetAttack : AbsAction {
 				}
 			}
 		}
-		await Task.Delay(100);
+		await Task.Yield();
 	}
 
 	public override bool check(GameObject enemy) {
-		getPathForTargetType(enemy);
+		getPathForTargetType(enemy,moveType,ignoreObstacle);
 		i++;
-		if (i <= timer) return false;
+		if (i <= timerBeforeNextCast) return false;
 		i = 0;
 		pathfinder = combatManagerSet.items[1].GetComponent<Pathfinding2D>();
 		var enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();

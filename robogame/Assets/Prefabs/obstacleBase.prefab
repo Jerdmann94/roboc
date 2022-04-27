@@ -300,6 +300,7 @@ GameObject:
   - component: {fileID: 7348704303188094582}
   - component: {fileID: 7552756217158685922}
   - component: {fileID: 8891558008755975330}
+  - component: {fileID: 1158108237330436386}
   m_Layer: 0
   m_Name: obstacleBase
   m_TagString: Untagged
@@ -338,11 +339,13 @@ MonoBehaviour:
   damageText: {fileID: 8914688676476180501, guid: d83276dfe421bff40923fef8e0beec23, type: 3}
   health: 0
   slider: {fileID: 6353982747068948088}
-  combatManagerSet: {fileID: 0}
-  tilemapSet: {fileID: 0}
-  aliveEnemies: {fileID: 0}
-  killable: 0
+  combatManagerSet: {fileID: 11400000, guid: 24b50521d9b0d11478baef5f792d60bd, type: 2}
+  tilemapSet: {fileID: 11400000, guid: e1cb19a99de443146927c681d20d98bc, type: 2}
+  aliveEnemies: {fileID: 11400000, guid: 4348edecdfc7f844eaab4ad2d9b89740, type: 2}
+  killable: 1
   ifNotDefined: {fileID: 0}
+  pushable: 0
+  damageWhenPushed: 0
 --- !u!114 &37200348414939360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,7 +359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sets:
-  - {fileID: 11400000, guid: 4348edecdfc7f844eaab4ad2d9b89740, type: 2}
+  - {fileID: 11400000, guid: d2c6906d708594748b25d53c5ecaf19c, type: 2}
 --- !u!212 &7348704303188094582
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -475,6 +478,34 @@ PolygonCollider2D:
       - {x: -0.7918384, y: -0.04061693}
       - {x: -0.035539806, y: -0.49228883}
       - {x: 0.67506474, y: -0.04061687}
+--- !u!114 &1158108237330436386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8793697105704982128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3672c55b66b0b7498b0b83f297e4380, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emitter: {fileID: 11400000, guid: 16a7dbce07fcba542b760a2ea59ab75d, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3705956376199036219}
+        m_TargetAssemblyTypeName: ObstacleDataHandler, Assembly-CSharp
+        m_MethodName: takeDamage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8909842182351285469
 GameObject:
   m_ObjectHideFlags: 0

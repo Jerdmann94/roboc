@@ -84,6 +84,12 @@ public class CombatManager : MonoBehaviour {
 						//Debug.Log("enemy at this position already");
 					}
 				}
+
+				var vecPos = tilemap.GetCellCenterWorld(pos);
+				var node = grid2D.nodeFromWorldPoint(vecPos);
+				if (node.getClaimed() || node.getEnemy()!= null || node.getObstacle() != null) {
+					shouldAdd = false;
+				}
 				if (shouldAdd) {
 					possiblePos.Add(pos);
 				}

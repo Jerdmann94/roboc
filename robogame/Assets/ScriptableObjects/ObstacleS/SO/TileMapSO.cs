@@ -7,6 +7,8 @@ public class TileMapSo : ScriptableObject
 {
 	public new String      name;
 	public     int         health;
-	public     int         attack;
+
+	public LabelBase[] labelBases;
+	//public     int         attack;
 	public     Sprite      shape;
 }

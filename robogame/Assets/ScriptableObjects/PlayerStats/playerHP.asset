@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21744abb6ea1fec49854399c51e42d24, type: 3}
   m_Name: playerHP
   m_EditorClassIdentifier: 
-  value: 43
+  value: 31
   damText: {fileID: 8914688676476180501, guid: d83276dfe421bff40923fef8e0beec23, type: 3}
   playerSet: {fileID: 11400000, guid: 4c4c17a4c8cb17e4ea6cb058c3b9cda0, type: 2}
+  changeEmitter: {fileID: 11400000, guid: 183ab3585903f7e44abb0478eb87a40c, type: 2}

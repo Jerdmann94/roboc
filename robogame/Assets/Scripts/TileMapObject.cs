@@ -14,13 +14,15 @@ public abstract class TileMapObject: MonoBehaviour {
 	protected GameObject damObj;
 	public    int           health;
 	public     Slider        slider;
-	internal     int           attack;
+	//internal     int           attack;
 	internal    Sprite        shape;
 	internal new String        name;
 	internal Grid2D grid2D;
 	public GoRunTimeSet combatManagerSet;
 	public GoRunTimeSet tilemapSet;
 	public GoRunTimeSet aliveEnemies;
+	public LabelBase[] labelBases;
+	
 	
 	private float TOLERANCE = .2f;
 	private void Start() {
@@ -39,8 +41,9 @@ public abstract class TileMapObject: MonoBehaviour {
 	   
 	   //this.name = enemySo.name;
 	   this.health = tileMapSo.health;
-	   this.attack = tileMapSo.attack;
+	   //this.attack = tileMapSo.attack;
 	   this.shape = tileMapSo.shape;
+	   labelBases = tileMapSo.labelBases;
 	   slider.maxValue = health;
 	   slider.value = health;
 	   

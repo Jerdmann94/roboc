@@ -115,19 +115,13 @@ public class PlayerStateManager : MonoBehaviour
 
     //PLAYER METHODS - THEY NEED TO BE REMOVED FROM PLAYER OBJECT
     private void refillEnergy() {
-        foreach (var card in energyUIValues)
-        {
-            switch (card.name) {
-                case "MagicEnergy" :
-                    card.Value = _playerScript.stats.magicEnergy;
-                    break;
-                case "MoveEnergy" :
-                    card.Value = _playerScript.stats.moveEnergy;
-                    break;
-                case "PhysicalEnergy" :
-                    card.Value = _playerScript.stats.physicalEnergy;
-                    break;
-            }
+        foreach (var card in energyUIValues) {
+            card.Value = card.name switch {
+                "MagicEnergy" => _playerScript.stats.magicEnergy,
+                "MoveEnergy" => _playerScript.stats.moveEnergy,
+                "PhysicalEnergy" => _playerScript.stats.physicalEnergy,
+                _ => card.Value
+            };
         }
     }
 

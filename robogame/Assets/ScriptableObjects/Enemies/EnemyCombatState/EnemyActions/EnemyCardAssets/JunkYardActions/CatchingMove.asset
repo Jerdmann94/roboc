@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d670346541e83d44a0f10b986c4e2ed, type: 3}
+  m_Name: CatchingMove
+  m_EditorClassIdentifier: 
+  combatManagerSet: {fileID: 11400000, guid: 24b50521d9b0d11478baef5f792d60bd, type: 2}
+  playerSet: {fileID: 11400000, guid: 4c4c17a4c8cb17e4ea6cb058c3b9cda0, type: 2}
+  tilemapSet: {fileID: 11400000, guid: e1cb19a99de443146927c681d20d98bc, type: 2}
+  typeSo: {fileID: 11400000, guid: 4602bc6e973dde5439160cf616ae9d11, type: 2}
+  damage: 0
+  ignoreObstacle: 0
+  moveTile: {fileID: 11400000, guid: 0e09b5548d208cb45b391d55002a4824, type: 2}
+  aliveEnemies: {fileID: 11400000, guid: 4348edecdfc7f844eaab4ad2d9b89740, type: 2}
+  moveType: 4

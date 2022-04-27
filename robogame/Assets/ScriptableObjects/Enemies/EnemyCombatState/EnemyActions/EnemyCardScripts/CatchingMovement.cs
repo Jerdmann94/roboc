@@ -9,13 +9,13 @@ using UnityEngine.Tilemaps;
 [CreateAssetMenu(fileName = "new Card", menuName = "EnemyCards/CatchingMove")]
 public class CatchingMovement : AbsAction {
 	private EnemyDataHandler _enemyDataHandler;
-
-
-	
-	
+	//public MoveType moveType;
+	[SerializeField] private bool ignoreObstacle;
 	public Tile moveTile;
 	[SerializeField] private GoRunTimeSet aliveEnemies;
-	
+	[SerializeField] private MoveType moveType;	
+	[SerializeField] private Vector3Event emitter;
+
 	//private EnemyTileHighlighter enemyTileHighlighter;
 	
 	//MONSTER NEEDS TO ALREADY BE STORING THE TARGET ON ITSELF FOR THIS TO WORK
@@ -33,7 +33,7 @@ public class CatchingMovement : AbsAction {
 	}
 
 	public override bool check(GameObject monster) {
-		getPathForTargetType(monster);
+		getPathForTargetType(monster,moveType,ignoreObstacle);
 		_enemyDataHandler = monster.GetComponent<EnemyDataHandler>();
 		if (_enemyDataHandler.getPath() == null || _enemyDataHandler.specialTarget == null) {
 			//Debug.Log(monster.name);
@@ -84,6 +84,7 @@ public class CatchingMovement : AbsAction {
 				Debug.Log("path position is already where you are standing");
 			}
 			enemy.transform.position = path[i].getWorldPosition(); //MOVING THE ENEMY TO THE NEXT POSITION
+			emitter.emit(enemy.transform.position);
 			//Debug.Log(enemy.transform.position);
 			
 		}  

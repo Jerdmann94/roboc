@@ -16,7 +16,7 @@ public abstract class AbsAction:ScriptableObject {
     public GoRunTimeSet tilemapSet;
     public TargetTypeSo typeSo;
     public int damage;
-    public   abstract Task execute(GameObject enemy);
+    public abstract Task execute(GameObject enemy);
     public abstract bool check(GameObject enemy);
 
     public virtual void highlight(GameObject enemy,Tile tile) {
@@ -85,7 +85,7 @@ public abstract class AbsAction:ScriptableObject {
            
             var worldtogridpos = new Vector3Int((int) (pos.x + dir.x), (int) (pos.y + dir.y), 0);
             //Debug.Log(pos + " this is grid position before push. " + worldtogridpos + " this is grid position of node after push. "+ tilemap.GetCellCenterWorld(worldtogridpos) + " this is world position of node");
-            newPath.Add(new Node2D(false,
+            newPath.Add(new Node2D(null,
                 tilemap.GetCellCenterWorld(worldtogridpos),
                 worldtogridpos.x,
                 worldtogridpos.y));
@@ -97,44 +97,76 @@ public abstract class AbsAction:ScriptableObject {
         
     }
 
-    protected async void getPathForTargetType(GameObject enemy) {
+    protected async void getPathForTargetType(GameObject enemy, MoveType moveType,bool ignoreObstacles) {
         Pathfinding2D pathfinder = combatManagerSet.items[1].GetComponent<Pathfinding2D>();
 		
         Grid2D grid2D = combatManagerSet.items[0].GetComponent<Grid2D>();
 		
-        var switchVar = "";
-        EnemyDataHandler enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();
-        if (typeSo != null) {
-            switchVar = typeSo.name;
-        }
         
-        if (switchVar == null) throw new ArgumentNullException(nameof(switchVar));
-        switch (switchVar) {
-            case "Closest":
+        EnemyDataHandler enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();
+        //var switchVar = "";
+        // if (typeSo != null) {
+        //     switchVar = typeSo.name;
+        // }
+        //if (switchVar == null) throw new ArgumentNullException(nameof(switchVar));
+        switch (moveType) {
+            case MoveType.Closest:
                 break;
-            case "Weakest":
+            case MoveType.Weakest:
                 break;
-            case "Special":
-                if (enemyDataHandler.specialTarget == null) {
-                    pathfinder.FindPath(enemy.transform.position,playerSet.items[0].transform.position);
-                    //Debug.Log("no special target for " + enemy.name);
+            case MoveType.Special:
+                if (ignoreObstacles) {
+                    if (enemyDataHandler.specialTarget == null) {
+                        getPathWithOutObstacles(enemy.transform.position,playerSet.items[0].transform.position,playerSet.items[0],enemy);
+                    }
+                    else {
+                        getPathWithOutObstacles(enemy.transform.position,enemyDataHandler.specialTarget.transform.position,enemyDataHandler.specialTarget,enemy);
+                    }
                 }
                 else {
-                    pathfinder.FindPath(enemy.transform.position,enemyDataHandler.specialTarget.transform.position);
-//                    Debug.Log(enemy.GetComponent<EnemyDataHandler>().specialTarget.name);
+                    if (enemyDataHandler.specialTarget == null) {
+                        getPathWithObstacles(enemy.transform.position,playerSet.items[0].transform.position,playerSet.items[0],enemy);
+                    }
+                    else {
+                        getPathWithObstacles(enemy.transform.position,enemyDataHandler.specialTarget.transform.position,enemyDataHandler.specialTarget,enemy);
+                    }
                 }
-                enemy.GetComponent<EnemyDataHandler>().setPath(grid2D.path);
+                //enemy.GetComponent<EnemyDataHandler>().setPath(grid2D.path);
                 break;
             default:
-                // Debug.Log("Target Type for enemy " + enemy + " not given.");
-                enemyDataHandler.target = playerSet.items[0];
-				
-                pathfinder.FindPath(enemy.transform.position,playerSet.items[0].transform.position);
-				
-                enemy.GetComponent<EnemyDataHandler>().setPath(grid2D.path);
-                //Debug.Log(enemy.name + "'s path is  "  + enemyDataHandler.getPath().Count);
+                if (ignoreObstacles) {
+                    getPathWithOutObstacles(enemy.transform.position,playerSet.items[0].transform.position,playerSet.items[0],enemy);
+
+                }
+                else {
+                    getPathWithObstacles(enemy.transform.position,playerSet.items[0].transform.position,playerSet.items[0],enemy);
+                }
                 break;
         }
         await Task.Yield();
     }
+
+    private void getPathWithObstacles(Vector3 start, Vector3 target, GameObject setTarget,GameObject enemy) {
+        Pathfinding2D pathfinder = combatManagerSet.items[1].GetComponent<Pathfinding2D>();
+        Grid2D grid2D = combatManagerSet.items[0].GetComponent<Grid2D>();
+        EnemyDataHandler enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();
+        enemyDataHandler.target = playerSet.items[0];
+        pathfinder.FindPath(start,target);
+        enemyDataHandler.setPath(grid2D.path);
+        enemyDataHandler.target = setTarget;
+    }
+    private void getPathWithOutObstacles(Vector3 start, Vector3 target, GameObject setTarget,GameObject enemy) {
+        Pathfinding2D pathfinder = combatManagerSet.items[1].GetComponent<Pathfinding2D>();
+        EnemyDataHandler enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();
+        var path = pathfinder.findPathWithoutObstacles(start, target);
+        enemyDataHandler.setPath(path);
+        enemyDataHandler.target = setTarget;
+    }
+}
+
+public enum MoveType {
+    a,
+    Closest,
+    Weakest,
+    Special
 }

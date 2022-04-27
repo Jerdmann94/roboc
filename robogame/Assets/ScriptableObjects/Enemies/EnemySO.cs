@@ -8,6 +8,7 @@ using UnityEngine.U2D;
 public class EnemySo : TileMapSo {
     // public     int         cost;
     public int moveAmount;
+
     // public int attackRange;
     public List<AbsAction> actions;
     // public EnemyAttackType attackType;

@@ -57,8 +57,6 @@ public class Pathfinding2D : MonoBehaviour {
             if (node == targetNode)
             {
                 return returnRetracePath(seekerNode, targetNode);
-                
-                
             }
             
             //adds neighbor nodes to openSet
@@ -86,6 +84,72 @@ public class Pathfinding2D : MonoBehaviour {
                 //Debug.Log(closedSet.Count);
                 //RetracePath(seekerNode, closedSet.Last());
                 //maybe they should heal or something here instead of just wandering back and forth
+                return null;
+            }
+        }
+
+        return null;
+    }
+    public List<Node2D> findPathWithoutObstacles(Vector3 startPos, Vector3 targetPos) {
+        //get player and target position in grid coords
+        
+        //Debug.Log("start pos " + startPos + " target pos " + targetPos);
+        seekerNode = grid.nodeFromWorldPoint(startPos);
+        targetNode = grid.nodeFromWorldPoint(targetPos);
+
+        List<Node2D> openSet = new List<Node2D>();
+        HashSet<Node2D> closedSet = new HashSet<Node2D>();
+        openSet.Add(seekerNode);
+        
+        //calculates path for pathfinding
+        while (openSet.Count > 0)
+        {
+
+            //iterates through openSet and finds lowest FCost
+            Node2D node = openSet[0];
+            for (int i = 1; i < openSet.Count; i++)
+            {
+                if (openSet[i].getFCostNoDifficultyOrEnemy() <= node.getFCostNoDifficultyOrEnemy())
+                {
+                    if (openSet[i].hCost < node.hCost)
+                        node = openSet[i];
+                }
+            }
+
+            openSet.Remove(node);
+            closedSet.Add(node);
+
+            //If target found, retrace path
+            if (node == targetNode)
+            {
+                return returnRetracePath(seekerNode, targetNode);
+            }
+            
+            //adds neighbor nodes to openSet
+            foreach (Node2D neighbour in grid.GetNeighbors(node))
+            {
+                if (closedSet.Contains(neighbour)|| neighbour.getClaimed())
+                {
+                    continue;
+                }
+                if (neighbour.getEnemy()!= null) {
+                    if (!neighbour.getEnemy().CompareTag("Player")) {
+                        continue;
+                    }
+                    
+                }
+                int newCostToNeighbour = node.gCost + GetDistance(node, neighbour);
+                if (newCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
+                {
+                    neighbour.gCost = newCostToNeighbour;
+                    neighbour.hCost = GetDistance(neighbour, targetNode);
+                    neighbour.parent = node;
+
+                    if (!openSet.Contains(neighbour))
+                        openSet.Add(neighbour);
+                }
+            }
+            if (openSet.Count < 1 && node != targetNode) {
                 return null;
             }
         }

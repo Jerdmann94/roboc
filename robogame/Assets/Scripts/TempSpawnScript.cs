@@ -10,7 +10,7 @@ public class TempSpawnScript : MonoBehaviour {
   private TileMapSo tileMapSo;
   private EnemyDataHandler spawner;
 
-  public void setUp(GameObject tileMapObject, TileMapSo tileMapSo, EnemyDataHandler spawner) {
+  public void setupData(GameObject tileMapObject, TileMapSo tileMapSo, EnemyDataHandler spawner) {
     this.tileMapObject = tileMapObject;
     this.tileMapSo = tileMapSo;
     this.spawner = spawner;

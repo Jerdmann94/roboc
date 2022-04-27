@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b2bbfde30fd8154698f99b69dddcaa7, type: 3}
+  m_Name: GlibGlobETB
+  m_EditorClassIdentifier: 
+  combatManagerSet: {fileID: 0}
+  playerSet: {fileID: 0}
+  tilemapSet: {fileID: 0}
+  typeSo: {fileID: 0}
+  damage: 0
+  tileEffect: {fileID: 0}
+  spawnableTileEffect: {fileID: 0}
+  enemySo: {fileID: 0}
+  specialEnemyObject: {fileID: 0}
+  enemyPrefab: {fileID: 0}
+  obstacleSo: {fileID: 0}
+  spawnableObstacle: {fileID: 0}
+  _spawnType: 0
+  amountToSpawn: 0
+  onceEveryXTurns: 0

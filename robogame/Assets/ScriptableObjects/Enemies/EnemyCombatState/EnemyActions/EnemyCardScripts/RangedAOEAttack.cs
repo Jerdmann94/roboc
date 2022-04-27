@@ -10,12 +10,16 @@ using UnityEngine.Tilemaps;
 
 [CreateAssetMenu(fileName = "new Card", menuName = "EnemyCards/AOEAttack")]
 public class RangedAOEAttack : AbsAction {
-	public GameObject formation;
-	public Vector3IntSet possibleTargets;
-	public Tile attackTile;
-	public PlayerStatBlockSo stats;
-	public GoRunTimeSet aliveEnemies;
+	[SerializeField] private GameObject formation;
+	[SerializeField] private Vector3IntSet possibleTargets;
+	[SerializeField] private Tile attackTile;
+	[SerializeField] private PlayerStatBlockSo stats;
+	[SerializeField] private MoveType moveType;
 	[SerializeField] private bool directional;
+	[SerializeField] private bool ignoreObstacle;
+	[SerializeField] private bool spawnTileEffect;
+	[SerializeField] private GameObject spawnableTileEffect;
+	[SerializeField] private TileEffectSo tileEffect;
 
 	public override async Task execute(GameObject enemy) {
 		var _enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();
@@ -24,18 +28,18 @@ public class RangedAOEAttack : AbsAction {
 		Tilemap tilemap = tilemapSet.items.SingleOrDefault(obj => obj.name == "Tilemap")?.GetComponent<Tilemap>();
 		
 		foreach (var node in _enemyDataHandler.highlightedNodes) {
+			if (spawnTileEffect) {
+				var temp = Instantiate(spawnableTileEffect, node.getWorldPosition(), quaternion.identity);
+				var handler = temp.GetComponent<TileEffectHandler>();
+				handler.setupData(tileEffect);
+				handler.execute();
+			}
 			if (_enemyDataHandler.target.CompareTag("Player") &&
 			    tilemap.WorldToCell(node.getWorldPosition()) ==
 			    tilemap.WorldToCell(_enemyDataHandler.target.transform.position)) {
 				stats.health.Value -= damage;
 			}
 			else if (node.getEnemy()!= null){
-				// foreach (var otherEnemy in aliveEnemies.items.Where(
-				// 	         otherEnemy =>tilemap.WorldToCell(otherEnemy.transform.position) ==  tilemap.WorldToCell(node.getWorldPosition()))) {
-				// 	otherEnemy.GetComponent<EnemyDataHandler>()
-				// 		.takeDamage(damage);
-				// 	Debug.Log(_enemyDataHandler.gameObject.name + " didnt hit player but did attack");
-				// }
 				node.getEnemy().GetComponent<EnemyDataHandler>()
 					.takeDamage(damage);
 			}
@@ -45,7 +49,7 @@ public class RangedAOEAttack : AbsAction {
 	}
 
 	public override bool check(GameObject enemy) {
-		getPathForTargetType(enemy);
+		getPathForTargetType(enemy,moveType,ignoreObstacle);
 		GameObject gridOwner = combatManagerSet.items[0];
 		Grid2D grid2D = gridOwner.GetComponent<Grid2D>();
 		Tilemap tilemap = tilemapSet.items.SingleOrDefault(obj => obj.name == "Tilemap")?.GetComponent<Tilemap>();
@@ -94,7 +98,7 @@ public class RangedAOEAttack : AbsAction {
 		var form = Instantiate(formation,   directional  ? 
 			position + Cardinal.getCardinalVector3(Cardinal.getCardinalDirection(position,targetPos ))
 			:position ,directional ? temp : Quaternion.identity);
-		Destroy(form,5f);
+		Destroy(form);
 		
 		
 		EnemyDataHandler enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();

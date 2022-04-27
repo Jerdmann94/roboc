@@ -11,6 +11,8 @@ using Random = UnityEngine.Random;
 public class WalkRandom : AbsAction {
     [SerializeField] private int chance;
     [SerializeField]private Tile moveTile;
+    [SerializeField] private Vector3Event emitter;
+
     public override async Task execute(GameObject enemy) {
         List<Node2D> possibleSpaces = new List<Node2D>();
         GameObject gridOwner = combatManagerSet.items[0];
@@ -32,8 +34,11 @@ public class WalkRandom : AbsAction {
         foreach (var node in randomized) {
             //Debug.Log(node.getWorldPosition());
             if (node.getEnemy() != null || node.getClaimed() || node.obstacle) continue;
-            grid2D.nodeFromWorldPoint(enemy.transform.position).setEnemy(null);
-            enemy.transform.position = node.getWorldPosition();
+            var position = enemy.transform.position;
+            grid2D.nodeFromWorldPoint(position).setEnemy(null);
+            position = node.getWorldPosition();
+            enemy.transform.position = position;
+            emitter.emit(position);
             //grid2D.setClaimedAtPosition(enemy, node.getWorldPosition());
             
             break;

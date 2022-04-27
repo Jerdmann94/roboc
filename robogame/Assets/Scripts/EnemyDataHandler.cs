@@ -24,6 +24,7 @@ public class EnemyDataHandler :TileMapObject {
 	public GameObject stunnedText;
 	public GameObject specialTarget;
 	public GameObjectEmitter lateDeathEmitter;
+	
 
 	public void setPath(List<Node2D> path) {
 		//Debug.Log(this.gameObject.name + "'s path is changing to " + path.Count + " data's name " + name );
@@ -50,6 +51,10 @@ public class EnemyDataHandler :TileMapObject {
 	}
 
 	public override void takeDamage() {
+		if (canvas == null) {
+			canvas = GameObject.FindWithTag(
+				"canvas").GetComponent<Canvas>();
+		}
 		damObj = Instantiate(damageText, transform);
 		damObj.transform.SetParent(canvas.gameObject.transform);
 		damObj.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(selectedCard.Card.doDamage().ToString());

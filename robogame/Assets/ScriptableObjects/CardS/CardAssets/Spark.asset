@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb90337ad535a32439cf627825898773, type: 3}
+  m_Name: Spark
+  m_EditorClassIdentifier: 
+  cost: {fileID: 11400000, guid: 408237f024d665442a98c1369cf9454a, type: 2}
+  name: spark
+  cardDescription: zap
+  cardFlavor: zapzap
+  damage: 1
+  targets: 1
+  tileColor: {fileID: 11400000, guid: b6381d18b8154634f96cd99f7e6c9214, type: 2}
+  playerSet: {fileID: 11400000, guid: 4c4c17a4c8cb17e4ea6cb058c3b9cda0, type: 2}
+  tilemapSet: {fileID: 11400000, guid: e1cb19a99de443146927c681d20d98bc, type: 2}
+  targetPos: {fileID: 11400000, guid: 6ddacf19bb63d234b90e1ba16dc0d857, type: 2}
+  formation: {fileID: 2518917055047883103, guid: 52d401ebf52ce8f4c8993cfdecc6db04, type: 3}
+  possibleTargets: {fileID: 11400000, guid: b502dff6c79fc274eb62c48733ad29e7, type: 2}
+  highlightEnum: {fileID: 11400000, guid: 2eaec0de4b382cc4aa30066201827d62, type: 2}
+  gridManagerSet: {fileID: 11400000, guid: 24b50521d9b0d11478baef5f792d60bd, type: 2}
+  tileEffect: {fileID: 11400000, guid: b639390084f66694c8c4ea0e45efc9d8, type: 2}
+  spawnableTileEffect: {fileID: 7383536039213699623, guid: 79957d25b4d552a45bcdd5eb0e73c808, type: 3}
+  combatManagerSet: {fileID: 11400000, guid: 24b50521d9b0d11478baef5f792d60bd, type: 2}

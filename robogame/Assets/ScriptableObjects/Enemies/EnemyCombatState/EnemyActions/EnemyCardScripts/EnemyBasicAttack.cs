@@ -10,19 +10,22 @@ using UnityEngine.Tilemaps;
 [CreateAssetMenu(fileName = "new Card", menuName = "EnemyCards/Attack 1 Square Card")]
 public class EnemyBasicAttack : AbsAction
 {
-	public Tile attackTile;
+	[SerializeField] private Tile attackTile;
 	private EnemyDataHandler _enemyDataHandler;
-	public PlayerStatBlockSo stats;
-	public GoRunTimeSet aliveEnemies;
+	[SerializeField] private PlayerStatBlockSo stats;
+	[SerializeField] private GoRunTimeSet aliveEnemies;
+	[SerializeField] private MoveType moveType;
+	[SerializeField] private bool ignoreObstacle;
+	
 	
 	public override async Task execute(GameObject enemy) {
 
 		Grid2D grid2D = combatManagerSet.items[0].GetComponent<Grid2D>();
 		grid2D.setEnemyAtPosition(enemy);
 		Tilemap tilemap = tilemapSet.items.SingleOrDefault(obj => obj.name == "Tilemap")?.GetComponent<Tilemap>();
-		//Debug.Log(tilemap.name);
 		foreach (var node in _enemyDataHandler.highlightedNodes) {
 		
+			//Debug.Log(_enemyDataHandler.highlightedNodes.Count);
 			if (_enemyDataHandler.target.CompareTag("Player") && 
 			    tilemap.WorldToCell(node.getWorldPosition()) == tilemap.WorldToCell(_enemyDataHandler.target.transform.position)) {
 				stats.health.Value -= damage;
@@ -34,7 +37,7 @@ public class EnemyBasicAttack : AbsAction
 					Debug.Log(_enemyDataHandler.gameObject.name + " didnt hit player but did attack");
 				}
 			}
-			await Task.Delay(300);
+			await Task.Yield();
 		}
 
 		
@@ -49,7 +52,7 @@ public class EnemyBasicAttack : AbsAction
 
 	public override bool check(GameObject enemy) {
 		_enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();
-		getPathForTargetType(enemy);
+		getPathForTargetType(enemy,moveType,ignoreObstacle);
 		return meleeCheck(enemy);
 	}
 
