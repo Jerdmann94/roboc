@@ -7,13 +7,16 @@ public class TileEffectHandler : MonoBehaviour {
 	private TileEffectSo tileEffectSo;
 	private int _counter;
 	public new String name;
+	public LabelBase[] labels;
 	public void setupData(TileEffectSo tileEffect) {
 		var sr = GetComponent<SpriteRenderer>();
 		sr.color = tileEffect.color;
 		this.tileEffectSo = tileEffect;
+		this.labels = tileEffect.labelBases;
 		_counter = tileEffect.counter;
 		name = tileEffect.name;
-		tileEffect.setEffectNew(this.transform.position,this);
+		tileEffectSo.setEffectNew(this.transform.position,this);
+		
 	}
 
 	public void execute() {
@@ -44,5 +47,14 @@ public class TileEffectHandler : MonoBehaviour {
 
 	public void reactWithFire() {
 		tileEffectSo.reactWithFire(this.transform.position);
+	}
+
+	public bool checkLabel(LabelType labelType) {
+		foreach (var label in labels) {
+			if (label.labelType == labelType) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

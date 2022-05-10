@@ -15,10 +15,10 @@ public class CardDataScript : MonoBehaviour , IPointerEnterHandler, IPointerExit
 
     public Text cardCost;
 
-    public Text cardDescription;
+    public Image image;
 
-    public Text cardFlavor;
-
+    public ToolTipTrigger tipTrigger;
+    
     private Vector3 _target;
     public Vector3 startPosition;
     private float   _timeToReachTarget = 0.1f;
@@ -30,9 +30,12 @@ public class CardDataScript : MonoBehaviour , IPointerEnterHandler, IPointerExit
     }
 
     public void setUpCard(CardAbs cardInfo,Vector3 initPosition) {
-////        Debug.Log(cardInfo);
+
         this.card = cardInfo;
         nameText.text = cardInfo.name;
+        image = cardInfo.image;
+        tipTrigger.headerText = cardInfo.name;
+        tipTrigger.bodyText = cardInfo.bodyText;
         if (cardInfo.cost.cost.Length > 1)
         {
             Debug.Log("need to set up multiple cardInfo costs still");
@@ -40,10 +43,8 @@ public class CardDataScript : MonoBehaviour , IPointerEnterHandler, IPointerExit
         else
         {
             cardCost.text = cardInfo.cost.cost[0].ToString();
+            
         }
-        
-        cardDescription.text = cardInfo.cardDescription;
-        cardFlavor.text = cardInfo.cardFlavor;
         startPosition = initPosition;
         _target = startPosition;
         

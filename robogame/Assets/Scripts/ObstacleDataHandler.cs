@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using TMPro;
 using UnityEngine;
@@ -16,10 +17,11 @@ public class ObstacleDataHandler :TileMapObject {
 
 	private void Start() {
 		if (ifNotDefined != null) {
+			Debug.Log(ifNotDefined);
 			setUpData(ifNotDefined);
 		}
-		grid2D = combatManagerSet.items[0].GetComponent<Grid2D>();
-		Tilemap tilemap = tilemapSet.items[2].GetComponent<Tilemap>();
+		
+		Grid2D grid2D = combatManagerSet.items.SingleOrDefault(obj => obj.name == "GridOwner")?.GetComponent<Grid2D>();Tilemap tilemap = tilemapSet.items[2].GetComponent<Tilemap>();
 		Transform transform1;
 		(transform1 = transform).position = tilemap.GetCellCenterWorld(tilemap.WorldToCell(transform.position));
 		grid2D.nodeFromWorldPoint(tilemap.GetCellCenterWorld(tilemap.WorldToCell(transform1.position))).obstacle = this;
@@ -80,7 +82,8 @@ public class ObstacleDataHandler :TileMapObject {
 		
 	}
 
-	internal void setupData(ObstacleSo obstacleSo) {
+	internal void setUpData(ObstacleSo obstacleSo) {
+		Debug.Log(shape);
 		killable = obstacleSo.killable;
 		pushable = obstacleSo.pushable;
 		damageWhenPushed = obstacleSo.damageWhenPushed;
@@ -90,11 +93,11 @@ public class ObstacleDataHandler :TileMapObject {
 		
 		GetComponent<SpriteRenderer>().sprite = shape;
 		
+		
 	}
 
 	private void OnDestroy() {
-		grid2D = combatManagerSet.items[0].GetComponent<Grid2D>();
-		Tilemap tilemap = tilemapSet.items[2].GetComponent<Tilemap>();
+		Grid2D grid2D = combatManagerSet.items.SingleOrDefault(obj => obj.name == "GridOwner")?.GetComponent<Grid2D>();Tilemap tilemap = tilemapSet.items[2].GetComponent<Tilemap>();
 		grid2D.nodeFromWorldPoint(tilemap.GetCellCenterWorld(tilemap.WorldToCell(transform.position))).obstacle = null;
 	}
 

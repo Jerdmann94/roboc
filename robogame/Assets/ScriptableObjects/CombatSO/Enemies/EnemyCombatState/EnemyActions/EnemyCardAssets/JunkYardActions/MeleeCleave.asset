@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01bc88bcefad027458c9be3469ce0f7f, type: 3}
+  m_Name: MeleeCleave
+  m_EditorClassIdentifier: 
+  combatManagerSet: {fileID: 11400000, guid: 24b50521d9b0d11478baef5f792d60bd, type: 2}
+  playerSet: {fileID: 11400000, guid: 4c4c17a4c8cb17e4ea6cb058c3b9cda0, type: 2}
+  tilemapSet: {fileID: 11400000, guid: e1cb19a99de443146927c681d20d98bc, type: 2}
+  typeSo: {fileID: 11400000, guid: cd418e56148bf354581bb0b13b8d5db6, type: 2}
+  damage: 17
+  formation: {fileID: 6104718345626114646, guid: a2c44dbf309dde54abf4142736b77ea9, type: 3}
+  possibleTargets: {fileID: 11400000, guid: b502dff6c79fc274eb62c48733ad29e7, type: 2}
+  attackTile: {fileID: 11400000, guid: 58b98afd27072e943b8ef5b1c3e20983, type: 2}
+  stats: {fileID: 11400000, guid: f355416e21619cd4e8738e23132a972a, type: 2}
+  moveType: 0
+  directional: 1
+  ignoreObstacle: 1
+  spawnTileEffect: 0
+  spawnableTileEffect: {fileID: 0}
+  tileEffect: {fileID: 0}

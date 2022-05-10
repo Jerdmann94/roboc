@@ -23,8 +23,9 @@ public class CombatManager : MonoBehaviour {
 	public Pathfinding2D pathfinder;
 	public Grid2D grid2D;
 	public MouseHandler mouseHandler;
-	public GoRunTimeSet tileMapSet;
-	
+	public GameObject combatObjects;
+	public GameObject mapObjects;
+	public GameObject obstacleMaster;
 	
 	
 
@@ -41,15 +42,24 @@ public class CombatManager : MonoBehaviour {
 	
 
 	private void Start() {
+		setupCombatMap(obstacleMaster);
 		spawnEnemies();
 		// SPAWNING PLAYER THEN ENEMIES;
-		playerStateManager.initializePlayerState();
+		playerStateManager.initializePlayerState(getEmptyGridPosition());
 		pathfinder.initializePathFinder();
 		enemyStateManager.initializeEnemyState();
 		
+		Debug.Log("starting combat");
 		//STARTING COMBAT
 		combatState.startState();
 		
+		
+	}
+
+	private void setupCombatMap(GameObject o) {
+		if (o != null) {
+			Instantiate(o, new Vector3(0, 0, 0), quaternion.identity);
+		}
 		
 	}
 
@@ -120,5 +130,9 @@ public class CombatManager : MonoBehaviour {
 				break;
 		}
 	}
-	
+
+	public void endCombat() {
+		combatObjects.SetActive(true);
+		mapObjects.SetActive(false);
+	}
 }

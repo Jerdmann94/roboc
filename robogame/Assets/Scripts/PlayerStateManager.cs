@@ -140,6 +140,10 @@ public class PlayerStateManager : MonoBehaviour
         resetHandPosition();
     }
     public void drawHand() {
+        if (handPoint1 == null) {
+            handPoint1 = GameObject.FindWithTag("handTag1");
+            handPoint2 = GameObject.FindWithTag("handTag2");
+        }
         for (int i = 0; i < _handSize; i++) {
             createCardUI(i);
         }
@@ -201,7 +205,7 @@ public class PlayerStateManager : MonoBehaviour
         return array;
     }
 
-    public void initializePlayerState() {
-        player = Instantiate(player, new Vector3(0, 0, 0), Quaternion.identity);
+    public void initializePlayerState(Vector3 vector3) {
+        player = Instantiate(player, vector3, Quaternion.identity);
     }
 }

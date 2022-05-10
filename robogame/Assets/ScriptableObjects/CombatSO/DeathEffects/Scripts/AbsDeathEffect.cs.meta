@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 82317fa90a32c154282359cf13dde52e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - playerSet: {fileID: 11400000, guid: 4c4c17a4c8cb17e4ea6cb058c3b9cda0, type: 2}
+  - tilemapSet: {fileID: 11400000, guid: e1cb19a99de443146927c681d20d98bc, type: 2}
+  - targetPos: {instanceID: 0}
+  - formation: {instanceID: 0}
+  - possibleTargets: {instanceID: 0}
+  - gridGameObject: {instanceID: 0}
+  - aliveEnemies: {instanceID: 0}
+  - combatManagerSet: {fileID: 11400000, guid: 24b50521d9b0d11478baef5f792d60bd, type: 2}
+  - aliveObstacles: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

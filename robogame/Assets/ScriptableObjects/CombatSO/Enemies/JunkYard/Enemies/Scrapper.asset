@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e5d6bfda0354964989175cf6adcdfcb, type: 3}
+  m_Name: Scrapper
+  m_EditorClassIdentifier: 
+  name: Scrapper
+  health: 40
+  labelBases: []
+  shape: {fileID: 21300022, guid: 920d400eca950a54ab5cefe8b8ac67a9, type: 3}
+  moveAmount: 1
+  actions:
+  - {fileID: 11400000, guid: 93b58276ada53da4f87edfb21b1478b2, type: 2}
+  - {fileID: 11400000, guid: 40a6d191b18fbf2499ef1f7c675c9b78, type: 2}
+  hasDeathEffect: 0
+  deathEffect: {fileID: 0}

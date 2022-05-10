@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e5d6bfda0354964989175cf6adcdfcb, type: 3}
+  m_Name: Glib-Glob, GraveDigger
+  m_EditorClassIdentifier: 
+  name: Glib-Glob, Gravedigger
+  health: 120
+  labelBases: []
+  shape: {fileID: 21300012, guid: 236870987c672c04daef1ce817cd8c21, type: 3}
+  moveAmount: 1
+  actions:
+  - {fileID: 11400000, guid: 04aac932dd5955a4785738f0039d94d4, type: 2}
+  - {fileID: 11400000, guid: 20551c263f602f34d97982c0515da697, type: 2}
+  - {fileID: 11400000, guid: 3cc6f625441a9364982bc7a543d5020d, type: 2}
+  - {fileID: 11400000, guid: fddabc099e310484d8cd79c0eec64026, type: 2}
+  hasDeathEffect: 1
+  deathEffect: {fileID: 11400000, guid: 5170fe3aa17b3f246ba66b7b8777fa8f, type: 2}

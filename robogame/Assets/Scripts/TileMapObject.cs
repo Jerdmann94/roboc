@@ -21,7 +21,7 @@ public abstract class TileMapObject: MonoBehaviour {
 	public GoRunTimeSet combatManagerSet;
 	public GoRunTimeSet tilemapSet;
 	public GoRunTimeSet aliveEnemies;
-	public LabelBase[] labelBases;
+	public List<LabelBase> labelBases;
 	
 	
 	private float TOLERANCE = .2f;
@@ -51,5 +51,13 @@ public abstract class TileMapObject: MonoBehaviour {
 
    public abstract void doDeath();
    public abstract void setStun(int damage);
+   public bool checkLabel(LabelType labelType) {
+	   foreach (var label in labelBases) {
+		   if (label.labelType == labelType) {
+			   return true;
+		   }
+	   }
+	   return false;
+   }
 
 }

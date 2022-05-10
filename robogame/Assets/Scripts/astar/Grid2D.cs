@@ -50,6 +50,7 @@ public class Grid2D : MonoBehaviour
                 Vector3 worldPoint = defaultTileMap.GetCellCenterWorld(new Vector3Int(x+(int)worldBottomLeft.x, y+(int)worldBottomLeft.y, 0));
                 
                 Grid[x, y] = new Node2D(null, worldPoint, x, y);
+               
                 
                 
                 if (!defaultTileMap.HasTile((defaultTileMap.WorldToCell(Grid[x,y].getWorldPosition())))) {

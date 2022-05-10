@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-
+using System.Linq;
 using ScriptableObjects.Sets;
 using TMPro;
 using Unity.Mathematics;
@@ -24,6 +24,10 @@ public class EnemyDataHandler :TileMapObject {
 	public GameObject stunnedText;
 	public GameObject specialTarget;
 	public GameObjectEmitter lateDeathEmitter;
+
+	[SerializeField] internal bool hasDeathEffect;
+	[SerializeField] private AbsDeathEffect deathEffect;
+	
 	
 
 	public void setPath(List<Node2D> path) {
@@ -42,6 +46,8 @@ public class EnemyDataHandler :TileMapObject {
 		this.moveAmount = enemySo.moveAmount;
 		
 		this.actions = enemySo.actions;
+		this.hasDeathEffect = enemySo.hasDeathEffect;
+		deathEffect = enemySo.deathEffect;
 		
 		
 		base.setUpData(enemySo);
@@ -54,6 +60,17 @@ public class EnemyDataHandler :TileMapObject {
 		if (canvas == null) {
 			canvas = GameObject.FindWithTag(
 				"canvas").GetComponent<Canvas>();
+		}
+
+		if (labelBases!= null) {
+			
+			if (checkLabel(LabelType.Armored)) {
+				Debug.Log("amored");
+				takeDamage(1);
+				labelBases.Remove(labelBases.FirstOrDefault(b => b.labelType == LabelType.Armored));
+				return;
+			}
+			
 		}
 		damObj = Instantiate(damageText, transform);
 		damObj.transform.SetParent(canvas.gameObject.transform);
@@ -72,17 +89,29 @@ public class EnemyDataHandler :TileMapObject {
 			canvas = GameObject.FindWithTag(
 				"canvas").GetComponent<Canvas>();
 		}
-	   
-		if ( health - damage >= slider.maxValue) {
-			Debug.Log("changing damage to so that you heal to max health " + gameObject.name + " " + 
-			          damage + " " + health + " " + slider.maxValue );
-			damage = (int) (slider.maxValue - health);
-		}
+
+		
+		// if ( health - damage >= slider.maxValue) {
+		// 	Debug.Log("changing damage to so that you heal to max health " + gameObject.name + " " + 
+		// 	          damage + " " + health + " " + slider.maxValue );
+		// 	damage = (int) (slider.maxValue - health);
+		// }
 		damObj = Instantiate(damageText, transform);
 		damObj.transform.SetParent(canvas.gameObject.transform);
-		damObj.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(damage.ToString());
+		string max = "MAX";
+		if (damage < 0 && checkLabel(LabelType.DoubleHealer)) {
+			damage *= 2;
+		}
+		if (damage < 0 && damage * -1 + health >= slider.maxValue) {
+			damObj.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(max);
 
-	   
+		}
+		else {
+			damObj.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(damage.ToString());
+		}
+		
+
+	   Debug.Log(damage);
 		health -= damage;
 		slider.value = health;
 		Destroy(damObj,5f);
@@ -107,6 +136,9 @@ public class EnemyDataHandler :TileMapObject {
 			selectedAction = null;
 		}
 
+		if (hasDeathEffect) {
+			deathEffect.execute(transform.position);
+		}
 		GetComponent<SpriteRenderer>().enabled = false;
 		GetComponentInChildren<Canvas>().enabled = false;
 		lateDeathEmitter.emit(this.gameObject);
@@ -121,7 +153,15 @@ public class EnemyDataHandler :TileMapObject {
 			stunObj.transform.GetChild(0).GetComponent<TextMeshPro>().color = Color.black;
 			Destroy(stunObj,2f);
 			stunned = true;
+			selectedAction.unHighlight(this.gameObject);
 		}
-		takeDamage();
+
+		if (damage == -99) {
+			takeDamage();
+		}
+		else {
+			takeDamage(damage);
+		}
+		
 	}
 }

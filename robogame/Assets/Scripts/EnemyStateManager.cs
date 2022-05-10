@@ -91,7 +91,12 @@ public class EnemyStateManager : MonoBehaviour {
 
                 _grid2D = gridOwner.GetComponent<Grid2D>();
                 playerTileEffectCounterEmitter.emit();
-                combatManager.combatState.nextState();
+                if (aliveEnemies.items.Count == 0 && enemiesToLateSpawnList.Count == 0) {
+                    combatManager.endCombat();
+                }
+                else {
+                    combatManager.combatState.nextState();
+                }
                 break;
             default:
                 break;
