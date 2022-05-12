@@ -14,17 +14,25 @@ public class AddMeToPossibleTarget : MonoBehaviour {
 
     // Start is called before the first frame update
     private void Awake() {
-        Grid2D grid = gridGameObject.items[0].GetComponent<Grid2D>();
+       // Grid2D grid = gridGameObject.items[0].GetComponent<Grid2D>();
         Tilemap tilemap = tileMapSet.items[2].GetComponent<Tilemap>();
         
         foreach (var variable in sets) {
-            Vector3 temp = tilemap.GetCellCenterWorld((tilemap.WorldToCell(transform.position)));
-            variable.add(tilemap.WorldToCell(transform.position));
+            var position = transform.position;
+            if (tilemap.HasTile(tilemap.WorldToCell(position))) {
+                variable.add(tilemap.WorldToCell(position));
+            }
+
+            
+            
+            //Vector3 temp = tilemap.GetCellCenterWorld((tilemap.WorldToCell(position)));
+            
         }
 
         foreach (var variable in tiles) {
-            Vector3 temp = tilemap.GetCellCenterWorld((tilemap.WorldToCell(transform.position)));
-            variable.items.Add(tilemap.GetTile<Tile>(tilemap.WorldToCell(transform.position)));
+            var position = transform.position;
+           // Vector3 temp = tilemap.GetCellCenterWorld((tilemap.WorldToCell(position)));
+            variable.items.Add(tilemap.GetTile<Tile>(tilemap.WorldToCell(position)));
         }
     }
 

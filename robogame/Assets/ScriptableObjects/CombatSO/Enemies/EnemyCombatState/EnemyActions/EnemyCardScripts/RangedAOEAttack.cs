@@ -128,6 +128,9 @@ public class RangedAOEAttack : AbsAction {
 		var returnable = false;
 		
 		foreach (var tilePos in possibleTargets.items) {
+			if (grid2D.nodeFromWorldPoint(tilemap.GetCellCenterWorld(tilePos)) == null) {
+				continue;
+			}
 			enemyDataHandler.highlightedNodes.Add(grid2D.nodeFromWorldPoint(tilemap.GetCellCenterWorld(tilePos)));
 			if (tilemap.WorldToCell(target.transform.position) ==tilePos) {
 				returnable = true;

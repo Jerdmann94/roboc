@@ -4485,15 +4485,31 @@ PrefabInstance:
     - target: {fileID: 2742735099260806303, guid: 7bb38c1782b72ec4c931f3dd5486ef42, type: 3}
       propertyPath: enemiesDeck
       value: 
-      objectReference: {fileID: 11400000, guid: b11c52c45b691114ba6fcb8e722a96cc, type: 2}
+      objectReference: {fileID: 11400000, guid: 49aca68740146dc479dc8be2babef852, type: 2}
     - target: {fileID: 2742735099260806303, guid: 7bb38c1782b72ec4c931f3dd5486ef42, type: 3}
       propertyPath: combatObjects
       value: 
       objectReference: {fileID: 2075260312}
+    - target: {fileID: 2742735100250762048, guid: 7bb38c1782b72ec4c931f3dd5486ef42, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2742735100250762048, guid: 7bb38c1782b72ec4c931f3dd5486ef42, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 2742735100250762049, guid: 7bb38c1782b72ec4c931f3dd5486ef42, type: 3}
       propertyPath: canvas
       value: 
       objectReference: {fileID: 333805632}
+    - target: {fileID: 2742735100250762049, guid: 7bb38c1782b72ec4c931f3dd5486ef42, type: 3}
+      propertyPath: gridWorldSize.x
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2742735100250762049, guid: 7bb38c1782b72ec4c931f3dd5486ef42, type: 3}
+      propertyPath: gridWorldSize.y
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7bb38c1782b72ec4c931f3dd5486ef42, type: 3}
 --- !u!1001 &3253960658625861680
