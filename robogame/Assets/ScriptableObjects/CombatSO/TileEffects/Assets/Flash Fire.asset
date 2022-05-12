@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6bf110c630b298448ef5b8324864567, type: 3}
+  m_Name: Flash Fire
+  m_EditorClassIdentifier: 
+  stats: {fileID: 11400000, guid: f355416e21619cd4e8738e23132a972a, type: 2}
+  aliveEnemies: {fileID: 11400000, guid: 4348edecdfc7f844eaab4ad2d9b89740, type: 2}
+  aliveObstacles: {fileID: 11400000, guid: d2c6906d708594748b25d53c5ecaf19c, type: 2}
+  tilemapSet: {fileID: 11400000, guid: e1cb19a99de443146927c681d20d98bc, type: 2}
+  combatManagerSet: {fileID: 11400000, guid: 24b50521d9b0d11478baef5f792d60bd, type: 2}
+  playerCounter: 0
+  counter: 1
+  reactWithFireDamage: 4
+  color: {r: 0.7735849, g: 0.50669324, b: 0.017515108, a: 0}
+  labelBases:
+  - {fileID: 11400000, guid: 6fce334e5225dc84490c5b7db873d921, type: 2}
+  damage: 3
+  playerSet: {fileID: 0}

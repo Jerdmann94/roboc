@@ -9,39 +9,49 @@ using System.Collections;
 using UnityEngine.EventSystems;
 
 public class CardDataScript : MonoBehaviour , IPointerEnterHandler, IPointerExitHandler{
-    public CardSO card;
+    public CardAbs card;
 
     public Text nameText;
 
     public Text cardCost;
 
-    public Text cardDescription;
+    public Image image;
 
-    public Text cardFlavor;
-
-    private Vector3 target;
+    public ToolTipTrigger tipTrigger;
+    
+    private Vector3 _target;
     public Vector3 startPosition;
-    private float   timeToReachTarget = 0.1f;
-    private float   t;
+    private float   _timeToReachTarget = 0.1f;
+    private float   _t;
 
     
     private void Awake() {
         
     }
 
-    public void setUpCard(CardSO card,Vector3 initPosition) {
-        this.card = card;
-        nameText.text = card.name;
-        cardCost.text = card.cost.ToString();
-        cardDescription.text = card.cardDescription;
-        cardFlavor.text = card.cardFlavor;
+    public void setUpCard(CardAbs cardInfo,Vector3 initPosition) {
+
+        this.card = cardInfo;
+        nameText.text = cardInfo.name;
+        image = cardInfo.image;
+        tipTrigger.headerText = cardInfo.name;
+        tipTrigger.bodyText = cardInfo.bodyText;
+        if (cardInfo.cost.cost.Length > 1)
+        {
+            Debug.Log("need to set up multiple cardInfo costs still");
+        }
+        else
+        {
+            cardCost.text = cardInfo.cost.cost[0].ToString();
+            
+        }
         startPosition = initPosition;
-        target = startPosition;
+        _target = startPosition;
         
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        setDestination(new Vector3(transform.position.x, transform.position.y  + 0.8f, 0),0.2f);
+        setDestination(new Vector3(transform.position.x, transform.position.y  + 20f, 0),0.2f);
     }
     public void OnPointerExit(PointerEventData eventData)
     {
@@ -50,14 +60,14 @@ public class CardDataScript : MonoBehaviour , IPointerEnterHandler, IPointerExit
 
     void Update() 
     {
-        t += Time.deltaTime/timeToReachTarget;
-        transform.position = Vector3.Lerp(startPosition, target, t);
+        _t += Time.deltaTime/_timeToReachTarget;
+        transform.position = Vector3.Lerp(startPosition, _target, _t);
     }
     public void setDestination(Vector3 destination, float time)
     {
-        t = 0;
-        timeToReachTarget = time;
-        target = destination; 
+        _t = 0;
+        _timeToReachTarget = time;
+        _target = destination; 
     }
     
     

@@ -1,95 +1,115 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using ScriptableObjects.Sets;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+
 [Serializable]
 public class MouseHandler : MonoBehaviour {
+	//public static MouseHandler  mouseHandler = null;
+	private MouseInput    _mouse;
+	
+	public  Tile          targetTile;
+	
+	//public  GameObject    player;
+	public  Vector3IntSet targetPos;
+	public Vector3IntSet possibleTilesPos;
+	public   Tilemap   playerMap;
+	public TileRunTimeSet possibleTileSet;
 
-    public static MouseHandler  mouseHandler = null;
-    private       MouseInput    mouse;
-    public        Tile          selectedTile;
-    public        Tile          targetTile;
-    public        Tile          attackTile;
-    public        Tile          moveTile;
-    public        GameObject    player;
-    internal      Vector3Int    targetPos;
-    
-    internal      ArrayList     possibleTiles;
-    internal      ArrayList     possibleTilesPos;
-    public        Tilemap       map;
-    public        CardSO        selectedCard;
-    private       CardConfirmed cc;
-    private       CardSelected  cs;
-    
-    private Vector3Int TargetPos {
-        get => targetPos;
-        set {
-            targetPos = value;
-            print(value);
-        } 
-    }
-    
-    
-    private void Awake() {
-        mouseHandler = this;
-        mouse = new MouseInput();
-        possibleTiles = new ArrayList();
-        cc = new CardConfirmed();
-        cs = new CardSelected();
-        player = Instantiate(player, new Vector3(0.75f, 0, 0), Quaternion.identity);
-        
-    }
-    
-    private void OnEnable(){
-        mouse.Enable();
-    }
-    private void OnDisable(){
-            mouse.Disable();
-        }
-    void Start() {
-        
-        if (mouse != null) mouse.Mouse.MouseClick.performed += data => MouseClick();
-        
-    }
-    private void MouseClick(){
-      
-        Vector2 mousePosition = mouse.Mouse.MousePosition.ReadValue<Vector2>();
-        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        Vector3Int gridPos = map.WorldToCell(mousePosition);
-        Tile       tile    = map.GetTile<Tile>(gridPos);
-        if ( tile == null || possibleTiles.Contains(tile)) return;
-        Vector3Int temp = new Vector3Int(gridPos.x, gridPos.y, 0);
-        map.SetTile(temp,targetTile);
-        print(gridPos);
-        TargetPos = gridPos;
-    }
 
-    //CARD/TILE UTILITY METHODS
-    
-    public void confirm() {
-        
-        cc.cardConfirmed(selectedCard);
-        
-        resetTiles();
-    }
-    
-    public void playCard(CardSO card) {
-        resetTiles();
-        selectedCard = card;
-        cs.cardSelected(card);
-    }
-    
-    
-    private void resetTiles() {
-        for (int i = 0; i < possibleTiles.Count; i++) {
-            map.SetTile((Vector3Int) possibleTilesPos[i],(TileBase) possibleTiles[i]);
-        }
-    }
-    
-    
+	//public        CardSO        selectedCard;
+	public CardConfirmed cc;
+	public CardSelected  cs;
 
+	[SerializeField] private BoolValue playPhase;
+
+	public SingleCardSet selectedCardSet;
+
+	private void Awake() {
+		_mouse = new MouseInput();
+		possibleTileSet.items = new List<Tile>();
+		targetPos.items = new List<Vector3Int>();
+
+	}
+
+	private void OnEnable() {
+		_mouse.Enable();
+	}
+
+	private void OnDisable() {
+		_mouse.Disable();
+	}
+
+	void Start() {
+		if (_mouse != null) _mouse.Mouse.MouseClick.performed += data => mouseClick();
+	}
+
+	private void mouseClick() {
+		Vector2 mousePosition = _mouse.Mouse.MousePosition.ReadValue<Vector2>();
+		if (Camera.main != null) mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+		Vector3Int gridPos = playerMap.WorldToCell(mousePosition);
+		Tile       tile    = playerMap.GetTile<Tile>(gridPos);
+		// if (tile == null) {
+		// 	Debug.Log("tile = null " + playerMap.name);
+		// 	return;
+		// }
+
+		if (!possibleTilesPos.items.Contains(gridPos)) {
+			//Debug.Log("possible tiles does not contain tile " + possibleTileSet.items.Count + " grid position is " + gridPos);
+
+			return;
+		}
+		Vector3Int temp = new Vector3Int(gridPos.x, gridPos.y, 0);
+		playerMap.SetTile(temp, targetTile);
+		targetPos.items.Insert(0,gridPos);
+		checkLastTile();
+	}
+
+	
+
+	//CARD/TILE UTILITY METHODS
+
+	public void confirm() {
+		if (!playPhase.value) return;
+		if (targetPos.items.Count < 1) return;
+		cc.cardConfirmed();
+		resetTiles();
+		targetPos.items = new List<Vector3Int>();
+	}
+
+	public void playCard(CardAbs card) {
+		if (!playPhase.value) return;
+		
+		resetTiles();
+		//selectedCard = card;
+		selectedCardSet.Card = card;
+   
+		cs.cardSelected();
+	}
+
+
+	public void resetTiles() {
+		// for (int i = 0; i < possibleTileSet.items.Count; i++) {
+		// 	playerMap.SetTile((Vector3Int) possibleTilesPos.items[i], (TileBase) possibleTileSet.items[i]);
+		// }
+		playerMap.ClearAllTiles();
+
+		//Debug.Log("reseting tiles");
+		possibleTileSet.items = new List<Tile>();
+		possibleTilesPos.items = new List<Vector3Int>();
+		
+	}
+	private void checkLastTile() {
+		//Debug.Log(selectedCardSet.Card);
+		//Debug.Log(targetPos.items);
+		if (selectedCardSet.Card.targets >= targetPos.items.Count) {return;}
+		for (int i = targetPos.items.Count-1; i >= selectedCardSet.Card.targets; i--) {
+			playerMap.SetTile(targetPos.items[i], selectedCardSet.Card.tileColor);
+			targetPos.items.RemoveAt(i);
+		}
+	}
 }
-
-

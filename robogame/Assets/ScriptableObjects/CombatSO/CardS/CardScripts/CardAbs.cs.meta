@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: eefd72630fdfc1948afa491bbb4e8f41
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - cost: {instanceID: 0}
+  - tileColor: {instanceID: 0}
+  - playerSet: {fileID: 11400000, guid: 4c4c17a4c8cb17e4ea6cb058c3b9cda0, type: 2}
+  - tilemapSet: {fileID: 11400000, guid: e1cb19a99de443146927c681d20d98bc, type: 2}
+  - targetPos: {fileID: 11400000, guid: 6ddacf19bb63d234b90e1ba16dc0d857, type: 2}
+  - formation: {instanceID: 0}
+  - possibleTargets: {instanceID: 0}
+  - possibleTargetsTiles: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

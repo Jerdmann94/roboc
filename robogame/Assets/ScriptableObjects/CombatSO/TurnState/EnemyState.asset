@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6293da6c97b5c004bbe301679213d7f5, type: 3}
+  m_Name: EnemyState
+  m_EditorClassIdentifier: 
+  rounds:
+  - {fileID: 11400000, guid: dbb229c06be1c4a44b6a57ddcf3de92e, type: 2}
+  - {fileID: 11400000, guid: 71a1bdde79af22648993c3a4fc609ad8, type: 2}
+  - {fileID: 11400000, guid: 4355b34dbdc4f344f9e070c00e93fcfc, type: 2}
+  roundEmitter: {fileID: 11400000, guid: 31d1fa4a5bc2c7f42aafed5005ebe81f, type: 2}
