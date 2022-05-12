@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="de03cbe7-a59e-4f65-94db-6d5daabd0737" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/01_Basic.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/01_Basic.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/02_FocusOn.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/02_FocusOn.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/03_InfiniteScroll.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/03_InfiniteScroll.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/04_Metaball.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/04_Metaball.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/05_Voronoi.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/05_Voronoi.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/06_LoopTabBar.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/06_LoopTabBar.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/07_ScrollRect.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/07_ScrollRect.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/08_GridView.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/08_GridView.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/09_LoadTexture.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/09_LoadTexture.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/01_Basic.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/01_Basic/Cell.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/01_Basic/Cell.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/01_Basic/Cell.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/01_Basic/Cell.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/01_Basic/CellScroll.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/01_Basic/CellScroll.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/01_Basic/CellScroll.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/01_Basic/CellScroll.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/01_Basic/Example01.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/01_Basic/Example01.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/01_Basic/ItemData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/01_Basic/ItemData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/01_Basic/ScrollView.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/01_Basic/ScrollView.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/02_FocusOn.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/02_FocusOn/Cell.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/02_FocusOn/Cell.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/02_FocusOn/Cell.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/02_FocusOn/Cell.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/02_FocusOn/CellScroll.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/02_FocusOn/CellScroll.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/02_FocusOn/CellScroll.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/02_FocusOn/CellScroll.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/02_FocusOn/Context.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/02_FocusOn/Context.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/02_FocusOn/Example02.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/02_FocusOn/Example02.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/02_FocusOn/ItemData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/02_FocusOn/ItemData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/02_FocusOn/ScrollView.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/02_FocusOn/ScrollView.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/03_InfiniteScroll.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/03_InfiniteScroll/Cell.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/03_InfiniteScroll/Cell.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/03_InfiniteScroll/Cell.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/03_InfiniteScroll/Cell.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/03_InfiniteScroll/CellScroll.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/03_InfiniteScroll/CellScroll.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/03_InfiniteScroll/CellScroll.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/03_InfiniteScroll/CellScroll.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/03_InfiniteScroll/Context.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/03_InfiniteScroll/Context.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/03_InfiniteScroll/Example03.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/03_InfiniteScroll/Example03.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/03_InfiniteScroll/ItemData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/03_InfiniteScroll/ItemData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/03_InfiniteScroll/ScrollView.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/03_InfiniteScroll/ScrollView.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/04_Metaball.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/04_Metaball/Background.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/04_Metaball/Background.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/04_Metaball/Cell.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/04_Metaball/Cell.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/04_Metaball/Cell.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/04_Metaball/Cell.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/04_Metaball/CellScroll.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/04_Metaball/CellScroll.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/04_Metaball/CellScroll.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/04_Metaball/CellScroll.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/04_Metaball/Context.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/04_Metaball/Context.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/04_Metaball/Example04.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/04_Metaball/Example04.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/04_Metaball/ItemData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/04_Metaball/ItemData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/04_Metaball/Metaball.hlsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/04_Metaball/Metaball.hlsl.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/04_Metaball/Metaball.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/04_Metaball/Metaball.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/04_Metaball/Metaball.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/04_Metaball/Metaball.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/04_Metaball/ScrollView.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/04_Metaball/ScrollView.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/05_Voronoi.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/05_Voronoi/Background.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/05_Voronoi/Background.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/05_Voronoi/Cell.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/05_Voronoi/Cell.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/05_Voronoi/Cell.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/05_Voronoi/Cell.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/05_Voronoi/CellScroll.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/05_Voronoi/CellScroll.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/05_Voronoi/CellScroll.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/05_Voronoi/CellScroll.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/05_Voronoi/Context.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/05_Voronoi/Context.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/05_Voronoi/Example05.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/05_Voronoi/Example05.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/05_Voronoi/ItemData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/05_Voronoi/ItemData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/05_Voronoi/ScrollView.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/05_Voronoi/ScrollView.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/05_Voronoi/Voronoi.hlsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/05_Voronoi/Voronoi.hlsl.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/05_Voronoi/Voronoi.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/05_Voronoi/Voronoi.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/05_Voronoi/Voronoi.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/05_Voronoi/Voronoi.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/06_LoopTabBar.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/06_LoopTabBar/Context.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/06_LoopTabBar/Context.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/06_LoopTabBar/Example06.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/06_LoopTabBar/Example06.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/06_LoopTabBar/ItemData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/06_LoopTabBar/ItemData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/06_LoopTabBar/ScrollView.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/06_LoopTabBar/ScrollView.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/06_LoopTabBar/SlideScreenTransition.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/06_LoopTabBar/SlideScreenTransition.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/06_LoopTabBar/Tab.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/06_LoopTabBar/Tab.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/06_LoopTabBar/Tab.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/06_LoopTabBar/Tab.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/06_LoopTabBar/Tab.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/06_LoopTabBar/Tab.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/06_LoopTabBar/Tab.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/06_LoopTabBar/Tab.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/06_LoopTabBar/Window.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/06_LoopTabBar/Window.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/06_LoopTabBar/Window.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/06_LoopTabBar/Window.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/07_ScrollRect.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/07_ScrollRect/Alignment.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/07_ScrollRect/Alignment.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/07_ScrollRect/Cell.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/07_ScrollRect/Cell.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/07_ScrollRect/Cell.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/07_ScrollRect/Cell.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/07_ScrollRect/Context.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/07_ScrollRect/Context.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/07_ScrollRect/Example07.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/07_ScrollRect/Example07.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/07_ScrollRect/ItemData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/07_ScrollRect/ItemData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/07_ScrollRect/ScrollView.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/07_ScrollRect/ScrollView.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/08_GridView.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/08_GridView/Alignment.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/08_GridView/Alignment.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/08_GridView/Cell.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/08_GridView/Cell.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/08_GridView/Cell.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/08_GridView/Cell.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/08_GridView/Context.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/08_GridView/Context.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/08_GridView/Example08.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/08_GridView/Example08.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/08_GridView/GridView.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/08_GridView/GridView.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/08_GridView/ItemData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/08_GridView/ItemData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/09_LoadTexture.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/09_LoadTexture/Cell.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/09_LoadTexture/Cell.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/09_LoadTexture/Cell.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/09_LoadTexture/Cell.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/09_LoadTexture/Example09.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/09_LoadTexture/Example09.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/09_LoadTexture/ItemData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/09_LoadTexture/ItemData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/09_LoadTexture/ScrollView.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/09_LoadTexture/ScrollView.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/09_LoadTexture/TextureLoader.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/09_LoadTexture/TextureLoader.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/Common.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/Common/CellIn.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/Common/CellIn.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/Common/CellOut.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/Common/CellOut.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/Common/CellSelect.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/Common/CellSelect.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/Common/Common.cginc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Examples/Sources/Common/Common.cginc.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/README.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/README.pdf.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Editor.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Editor/FancyScrollView.Editor.asmdef" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Editor/FancyScrollView.Editor.asmdef.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Editor/ScrollerEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Editor/ScrollerEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/Core.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/Core/FancyCell.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/Core/FancyCell.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/Core/FancyScrollView.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/Core/FancyScrollView.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/FancyScrollView.asmdef" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/FancyScrollView.asmdef.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/GridView.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/GridView/FancyCellGroup.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/GridView/FancyCellGroup.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/GridView/FancyGridView.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/GridView/FancyGridView.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/GridView/FancyGridViewCell.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/GridView/FancyGridViewCell.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/GridView/FancyGridViewContext.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/GridView/FancyGridViewContext.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/GridView/IFancyCellGroupContext.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/GridView/IFancyCellGroupContext.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/GridView/IFancyGridViewContext.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/GridView/IFancyGridViewContext.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/ScrollRect.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/ScrollRect/FancyScrollRect.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/ScrollRect/FancyScrollRect.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/ScrollRect/FancyScrollRectCell.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/ScrollRect/FancyScrollRectCell.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/ScrollRect/FancyScrollRectContext.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/ScrollRect/FancyScrollRectContext.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/ScrollRect/IFancyScrollRectContext.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/ScrollRect/IFancyScrollRectContext.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/Scroller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/Scroller/EasingCore.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/Scroller/EasingCore.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/Scroller/MovementDirection.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/Scroller/MovementDirection.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/Scroller/MovementType.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/Scroller/MovementType.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/Scroller/ScrollDirection.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/Scroller/ScrollDirection.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/Scroller/Scroller.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FancyScrollView/Sources/Runtime/Scroller/Scroller.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/ClearColor/Isometric_BlockBlue_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/ClearColor/Isometric_BlockBlue_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/ClearColor/Isometric_Block_ClearBlack_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/ClearColor/Isometric_Block_ClearBlack_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/ClearColor/Isometric_Block_ClearBrown_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/ClearColor/Isometric_Block_ClearBrown_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/ClearColor/Isometric_Block_ClearGreen_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/ClearColor/Isometric_Block_ClearGreen_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/ClearColor/Isometric_Block_ClearLightBlue_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/ClearColor/Isometric_Block_ClearLightBlue_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/ClearColor/Isometric_Block_ClearLimeGreen_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/ClearColor/Isometric_Block_ClearLimeGreen_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/ClearColor/Isometric_Block_ClearOrange_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/ClearColor/Isometric_Block_ClearOrange_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/ClearColor/Isometric_Block_ClearPink_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/ClearColor/Isometric_Block_ClearPink_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/ClearColor/Isometric_Block_ClearRainbow_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/ClearColor/Isometric_Block_ClearRainbow_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/ClearColor/Isometric_Block_ClearRed_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/ClearColor/Isometric_Block_ClearRed_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/ClearColor/Isometric_Block_ClearViolet_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/ClearColor/Isometric_Block_ClearViolet_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/ClearColor/Isometric_Block_ClearWhite_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/ClearColor/Isometric_Block_ClearWhite_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/ClearColor/Isometric_Block_ClearYellow_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/ClearColor/Isometric_Block_ClearYellow_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Glow/Isometric_Block_GlowBlue_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Glow/Isometric_Block_GlowBlue_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Glow/Isometric_Block_GlowGreen_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Glow/Isometric_Block_GlowGreen_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Glow/Isometric_Block_GlowLightBlue_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Glow/Isometric_Block_GlowLightBlue_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Glow/Isometric_Block_GlowLimeGreen_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Glow/Isometric_Block_GlowLimeGreen_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Glow/Isometric_Block_GlowOrange_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Glow/Isometric_Block_GlowOrange_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Glow/Isometric_Block_GlowPink_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Glow/Isometric_Block_GlowPink_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Glow/Isometric_Block_GlowRed_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Glow/Isometric_Block_GlowRed_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Glow/Isometric_Block_GlowTurquoise_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Glow/Isometric_Block_GlowTurquoise_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Glow/Isometric_Block_GlowViolet_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Glow/Isometric_Block_GlowViolet_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Glow/Isometric_Block_GlowYellow_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Glow/Isometric_Block_GlowYellow_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Marble/Isometric_Block_MarbleBlack_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Marble/Isometric_Block_MarbleBlack_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Marble/Isometric_Block_MarbleBlue_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Marble/Isometric_Block_MarbleBlue_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Marble/Isometric_Block_MarbleCopper_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Marble/Isometric_Block_MarbleCopper_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Marble/Isometric_Block_MarbleGold_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Marble/Isometric_Block_MarbleGold_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Marble/Isometric_Block_MarbleGray_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Marble/Isometric_Block_MarbleGray_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Marble/Isometric_Block_MarbleGreen_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Marble/Isometric_Block_MarbleGreen_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Marble/Isometric_Block_MarbleLightBlue_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Marble/Isometric_Block_MarbleLightBlue_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Marble/Isometric_Block_MarbleOrange_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Marble/Isometric_Block_MarbleOrange_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Marble/Isometric_Block_MarblePink_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Marble/Isometric_Block_MarblePink_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Marble/Isometric_Block_MarbleRed_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Marble/Isometric_Block_MarbleRed_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Marble/Isometric_Block_MarbleViolet_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Marble/Isometric_Block_MarbleViolet_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Marble/Isometric_Block_MarbleWhiteGold_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Marble/Isometric_Block_MarbleWhiteGold_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Marble/Isometric_Block_MarbleYellow_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Marble/Isometric_Block_MarbleYellow_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/MatteColor/Isometric_Block_Black_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/MatteColor/Isometric_Block_Black_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/MatteColor/Isometric_Block_Blue_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/MatteColor/Isometric_Block_Blue_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/MatteColor/Isometric_Block_Brown_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/MatteColor/Isometric_Block_Brown_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/MatteColor/Isometric_Block_Green_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/MatteColor/Isometric_Block_Green_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/MatteColor/Isometric_Block_LightBlue_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/MatteColor/Isometric_Block_LightBlue_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/MatteColor/Isometric_Block_LimeGreen_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/MatteColor/Isometric_Block_LimeGreen_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/MatteColor/Isometric_Block_Orange_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/MatteColor/Isometric_Block_Orange_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/MatteColor/Isometric_Block_Pink_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/MatteColor/Isometric_Block_Pink_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/MatteColor/Isometric_Block_Rainbow_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/MatteColor/Isometric_Block_Rainbow_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/MatteColor/Isometric_Block_Red_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/MatteColor/Isometric_Block_Red_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/MatteColor/Isometric_Block_Violet_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/MatteColor/Isometric_Block_Violet_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/MatteColor/Isometric_Block_White_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/MatteColor/Isometric_Block_White_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/MatteColor/Isometric_Block_Yellow_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/MatteColor/Isometric_Block_Yellow_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Metallic/Isometric_Block_MetallicBlack_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Metallic/Isometric_Block_MetallicBlack_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Metallic/Isometric_Block_MetallicBlue_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Metallic/Isometric_Block_MetallicBlue_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Metallic/Isometric_Block_MetallicGold_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Metallic/Isometric_Block_MetallicGold_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Metallic/Isometric_Block_MetallicGreen_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Metallic/Isometric_Block_MetallicGreen_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Metallic/Isometric_Block_MetallicLightBlue_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Metallic/Isometric_Block_MetallicLightBlue_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Metallic/Isometric_Block_MetallicLimeGreen_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Metallic/Isometric_Block_MetallicLimeGreen_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Metallic/Isometric_Block_MetallicOrange_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Metallic/Isometric_Block_MetallicOrange_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Metallic/Isometric_Block_MetallicPink_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Metallic/Isometric_Block_MetallicPink_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Metallic/Isometric_Block_MetallicRed_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Metallic/Isometric_Block_MetallicRed_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Metallic/Isometric_Block_MetallicViolet_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Metallic/Isometric_Block_MetallicViolet_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Metallic/Isometric_Block_MetallicWhite_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Metallic/Isometric_Block_MetallicWhite_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Metallic/Isometric_Block_MetallicYellow_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Metallic/Isometric_Block_MetallicYellow_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Isometric Block/Metallic/Isometric_Block_Metallic_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Isometric Block/Metallic/Isometric_Block_Metallic_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Scenes/BarrelField/Circle.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scenes/BarrelField/Circle.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Scenes/BarrelField/IsometricDiamond.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scenes/BarrelField/IsometricDiamond.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Scenes/BarrelField/Isometric_Block_GlowGreen_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scenes/BarrelField/Isometric_Block_GlowGreen_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Scenes/BarrelField/Isometric_Block_GlowLightBlue_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scenes/BarrelField/Isometric_Block_GlowLightBlue_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Scenes/BarrelField/Isometric_Block_GlowLimeGreen_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scenes/BarrelField/Isometric_Block_GlowLimeGreen_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Scenes/BarrelField/Isometric_Block_White_00.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scenes/BarrelField/Isometric_Block_White_00.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Scenes/BarrelField/Square.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scenes/BarrelField/Square.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ScriptableObjects/CombatSO/Enemies/Square.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../ScriptableObjects/CombatSO/Enemies/Square.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ProjectSettings/ProjectVersion.txt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/../CardConfirmed.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MapCarouselView.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="28yzwfKmYdAav75yFTO7U82KARE" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="de03cbe7-a59e-4f65-94db-6d5daabd0737" name="Changes" comment="" />
+      <created>1652203854881</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1652203854881</updated>
+      <workItem from="1652203860526" duration="376000" />
+      <workItem from="1652204285818" duration="245000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+</project>
