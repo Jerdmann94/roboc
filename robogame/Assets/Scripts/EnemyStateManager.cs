@@ -26,7 +26,7 @@ public class EnemyStateManager : MonoBehaviour {
 
 
     public async void enemyOnStateChange() {
-        
+        //Debug.Log(enemyState.CurrentRound.name);
         switch (enemyState.CurrentRound.name) {
             
             case"EnemyPerformAction":
@@ -110,11 +110,11 @@ public class EnemyStateManager : MonoBehaviour {
         InvokeRepeating("debugger", 0.0f, 1f);
     }
 
-    public void initializeEnemyState() {
+    public async Task initializeEnemyState() {
         _grid2D = gridOwner.GetComponent<Grid2D>();
         foreach (var enemy in aliveEnemies.items) {
             _grid2D.setEnemyAtPosition(enemy);
-            decideNextTurn(enemy);
+            await decideNextTurn(enemy);
             // pathfinder.FindPath(enemy.transform.position,playerSet.items[0].transform.position);
             // enemy.GetComponent<EnemyDataHandler>().path = _grid2D.path;
         }
@@ -123,40 +123,34 @@ public class EnemyStateManager : MonoBehaviour {
 
     private async Task decideNextTurn(GameObject enemy) {
         EnemyDataHandler enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();
-        
-        // if (enemyDataHandler.targetCheck.check(enemy)) { //IF THIS ENEMY DOES NOT HAVE A TARGET, FIND ONE
-        //     await enemyDataHandler.targetCheck.execute(enemy);
-        // }
         if (enemyDataHandler.selectedAction != null) {
             Debug.Log("This creature should have a null action " + enemy.name);
         }
-//        Debug.Log("passed getting a path" + enemy.name);
         foreach (var action in enemyDataHandler.actions) {
-            if (!action.check(enemy)) {
-                //Debug.Log(action.name + " has failed check");
-                continue;
-            }
-//            Debug.Log("setting next action as " + action.name);
+            var check = await action.check(enemy);
+            if (!check) { continue; }
             enemyDataHandler.selectedAction = action;
             break;
         }
-        if (enemy.GetComponent<EnemyDataHandler>().selectedAction == null) {
+        if (enemyDataHandler.selectedAction != null) {
             //Debug.Log("THIS ENEMY " + enemy + " HAS NO ACTION THIS TURN FOR SOME REASON");
-            return;
+            await enemyDataHandler.selectedAction.highlight(enemy,ScriptableObject.CreateInstance<Tile>());
+            //return;
         }
 
         
         //enemyDataHandler.selectedAction.unHighlight(enemy);
-        enemyDataHandler.selectedAction.highlight(enemy,ScriptableObject.CreateInstance<Tile>());
-        await Task.Delay(100);
+        
+        await Task.Yield();
     }
 
     public void debugger() {
         foreach (var enemy in aliveEnemies.items) {
-            if (enemy.GetComponent<EnemyDataHandler>().getPath() == null) {
+            var enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();
+            if (enemyDataHandler.getPath() == null) {
                 continue;
             }
-            List<Node2D> p = enemy.GetComponent<EnemyDataHandler>().getPath();
+            List<Node2D> p = enemyDataHandler.getPath();
             // Debug.Log(p.Count);
             Node2D n = p[0];
             foreach (var t in p) {

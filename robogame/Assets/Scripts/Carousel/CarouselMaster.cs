@@ -7,7 +7,7 @@ using UnityEngine;
 	{
 		[SerializeField] private MapCarouselView _carouselView = default;
 		[SerializeField, Range(1, 8)] private int _bannerCount = 3;
-		[SerializeField] private CarouselDataSo[] cData;
+		public CarouselDataSo[] cData;
 
 		private void Start()
 		{
@@ -24,7 +24,7 @@ using UnityEngine;
 				var spriteResourceKey = i.background;
 				var text = i.name;
 				int id = counter++;
-				return new CarouselData(spriteResourceKey, text,counter);
+				return new CarouselData(spriteResourceKey, text,id);
 			}).ToArray();
 			_carouselView.Setup(items);
 		}

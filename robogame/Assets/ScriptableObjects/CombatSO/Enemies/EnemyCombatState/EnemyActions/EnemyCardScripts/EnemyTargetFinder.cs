@@ -111,7 +111,7 @@ public class EnemyTargetFinder : AbsAction {
 	
 	
 
-	public override bool check(GameObject enemy) {
+	public override async Task<bool> check(GameObject enemy) {
 		
 		// EnemyDataHandler enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();
 		// if (enemyDataHandler.target == null|| !aliveEnemies.items.Contains(enemyDataHandler.target)) {

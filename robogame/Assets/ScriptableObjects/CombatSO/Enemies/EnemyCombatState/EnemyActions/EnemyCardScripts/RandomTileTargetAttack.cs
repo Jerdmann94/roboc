@@ -79,7 +79,7 @@ public class RandomTileTargetAttack : AbsAction {
         temp.GetComponent<TileEffectHandler>().setupData(tileEffect);
     }
 
-    public override bool check(GameObject enemy) {
+    public override async Task<bool> check(GameObject enemy) {
          Grid2D grid2D = combatManagerSet.items.SingleOrDefault(obj => obj.name == "GridOwner")?.GetComponent<Grid2D>();        var enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();
         var combatManager = combatManagerSet.items.SingleOrDefault(obj => obj.name == "CombatManager")?.GetComponent<CombatManager>();
 
@@ -92,17 +92,19 @@ public class RandomTileTargetAttack : AbsAction {
             enemyDataHandler.highlightedNodes.Add(node);
             grid2D.setClaimedAtPosition(enemy,pos);
         }
+        await Task.Yield();
         return true;
 
     }
-    public override void highlight(GameObject enemy, Tile tile) {
+    public override async Task  highlight(GameObject enemy, Tile tile) {
         var enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();
         var tilemap = tilemapSet.items.SingleOrDefault(obj => obj.name == "TilemapForEnemies")?.GetComponent<Tilemap>();
         foreach (var node in enemyDataHandler.highlightedNodes) {
-			
             var intPosition = tilemap.WorldToCell(node.getWorldPosition());
             tilemap.SetTile(intPosition,summonTile);
         }
+
+        await Task.Yield();
     }
 }
 

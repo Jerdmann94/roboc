@@ -49,7 +49,7 @@ public class RangedTargetAttack : AbsAction {
 		await Task.Yield();
 	}
 
-	public override bool check(GameObject enemy) {
+	public override async Task<bool> check(GameObject enemy) {
 		getPathForTargetType(enemy,moveType,ignoreObstacle);
 		i++;
 		if (i <= timerBeforeNextCast) return false;
@@ -83,21 +83,18 @@ public class RangedTargetAttack : AbsAction {
 			enemyDataHandler.highlightedNodes.Add(grid2D.nodeFromWorldPoint(tilemap.GetCellCenterWorld(tilePos)));
 
 		}
-
+		await Task.Yield();
 		return true;
 
 	}
 
-	public override void highlight(GameObject enemy, Tile tile) {
+	public override async Task  highlight(GameObject enemy, Tile tile) {
 		
 		EnemyDataHandler enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();
 		//RESPAWN FORM TO RESET ENEMY TARGET TILES
 		var form = Instantiate(formation, enemyDataHandler.target.transform.position, Quaternion.identity);
 		Destroy(form);
 		
-		
-        
-        
 		Grid2D grid2D = combatManagerSet.items.SingleOrDefault(obj => obj.name == "GridOwner")?.GetComponent<Grid2D>();
         
 		Tilemap tilemapForEnemies = tilemapSet.items.SingleOrDefault(obj => obj.name == "TilemapForEnemies")?.GetComponent<Tilemap>();
@@ -118,6 +115,8 @@ public class RangedTargetAttack : AbsAction {
             
 			
 		}
+
+		await Task.Yield();
 	}
 	public override void resetWithNewPosition(GameObject enemy, Vector3 dir, Tile tile) {
 		unHighlight(enemy);

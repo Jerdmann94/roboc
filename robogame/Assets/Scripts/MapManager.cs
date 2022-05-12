@@ -17,6 +17,7 @@ public class MapManager : MonoBehaviour {
     private List<EnemyList> enemyLists;
     public EnemyDeckLists enemyListSo;
     public GoRunTimeSet obstacleMasterList;
+    
 
     static Random rnd = new Random();
     public void Awake() {

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f41749265ba0b7f478cf9c5810a90669, type: 3}
+  m_Name: Combat
+  m_EditorClassIdentifier: 
+  name: COMBAT
+  background: {fileID: 21300000, guid: 84df86d4477d4a54eab1c7563cee7b1b, type: 3}
+  choiceType: 0
+  icons:
+  - {fileID: 21300000, guid: ffb02d288a83f3d4f9ec608f2dc6c1bb, type: 3}
+  - {fileID: 21300000, guid: 519f04815e94d0e47a030c18fd0d83be, type: 3}
+  - {fileID: 21300000, guid: 4a5934b590c8f06498d1bda2d5a53a2a, type: 3}

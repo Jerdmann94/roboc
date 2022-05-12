@@ -46,10 +46,11 @@ public class WalkRandom : AbsAction {
         await Task.Delay(100);
     }
 
-    public override bool check(GameObject enemy) {
+    public override async Task<bool> check(GameObject enemy) {
+        await Task.Yield();
         return Random.Range(0, 100) <= chance;
     }
-    public override void highlight(GameObject enemy, Tile tile) {
-        
+    public override async Task  highlight(GameObject enemy, Tile tile) {
+        await Task.Yield();
     }
 }

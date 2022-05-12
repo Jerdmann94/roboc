@@ -32,20 +32,21 @@ public class CatchingMovement : AbsAction {
 		await Task.Yield();
 	}
 
-	public override bool check(GameObject monster) {
+	public override async Task<bool> check(GameObject monster) {
+		
 		getPathForTargetType(monster,moveType,ignoreObstacle);
 		_enemyDataHandler = monster.GetComponent<EnemyDataHandler>();
 		if (_enemyDataHandler.getPath() == null || _enemyDataHandler.specialTarget == null) {
 			//Debug.Log(monster.name);
 			return false;
 		}
-
+		await Task.Yield();
 		return true;
 
 	}
 
-	public override void highlight(GameObject enemy, Tile tile) {
-		base.highlight(enemy, moveTile);
+	public override async Task highlight(GameObject enemy, Tile tile) {
+		await base.highlight(enemy, moveTile);
 	}
 
 	public override void unHighlight(GameObject enemy) {
@@ -90,7 +91,7 @@ public class CatchingMovement : AbsAction {
             
 		//SETTING TILE BENEATH ENEMY TO ORIGINAL TILE
 		//base.returnTileUnderEnemy(enemy);
-
+		
 
 	}
 

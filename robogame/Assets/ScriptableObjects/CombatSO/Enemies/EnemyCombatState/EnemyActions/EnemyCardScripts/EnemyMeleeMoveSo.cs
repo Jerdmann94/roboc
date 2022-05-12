@@ -21,18 +21,20 @@ public class EnemyMeleeMoveSo : AbsAction {
 		await Task.Yield();
 	}
 
-	public override bool check(GameObject enemy) {
+	public override async Task<bool> check(GameObject enemy) {
 		getPathForTargetType(enemy,moveType,ignoreObstacles);
 		_enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();
+		//Debug.Log(_enemyDataHandler.getPath());
+		await Task.Yield();
 		return _enemyDataHandler.getPath() != null;
 	}
 
-	public override void highlight(GameObject enemy, Tile tile) {
-		base.highlight(enemy, moveTile);
+	public override async Task  highlight(GameObject enemy, Tile tile) {
+		await base.highlight(enemy, moveTile);
 	}
 
 	private void enemyMove( GameObject enemy) {
-		Pathfinding2D pathfinder = combatManagerSet.items.SingleOrDefault(obj => obj.name == "CombatManager")?.GetComponent<Pathfinding2D>();
+		
 		Grid2D grid2D = combatManagerSet.items.SingleOrDefault(obj => obj.name == "GridOwner")?.GetComponent<Grid2D>();
 		List<Node2D> path = enemy.GetComponent<EnemyDataHandler>().getPath();
 		Tilemap tilemap = tilemapSet.items.SingleOrDefault(obj => obj.name == "Tilemap")?.GetComponent<Tilemap>();

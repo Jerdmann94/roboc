@@ -7,5 +7,7 @@ using UnityEngine.UI;
 public class CarouselDataSo : ScriptableObject {
 	public string name;
 	public Sprite background;
-	
+	public ChoiceType choiceType;
+	public Sprite[] icons;
+
 }

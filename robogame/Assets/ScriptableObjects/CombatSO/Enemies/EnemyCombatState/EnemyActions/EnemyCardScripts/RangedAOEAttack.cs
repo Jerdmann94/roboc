@@ -96,9 +96,11 @@ public class RangedAOEAttack : AbsAction {
 		}
 	}
 
-	public override bool check(GameObject enemy) {
+	public override async Task<bool> check(GameObject enemy) {
 		getPathForTargetType(enemy,moveType,ignoreObstacle);
 
+		possibleTargets.items.Clear();
+		
 		Grid2D grid2D = combatManagerSet.items.SingleOrDefault(obj => obj.name == "GridOwner")?.GetComponent<Grid2D>();
 		Tilemap tilemap = tilemapSet.items.SingleOrDefault(obj => obj.name == "Tilemap")?.GetComponent<Tilemap>();
 		var enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();
@@ -129,6 +131,7 @@ public class RangedAOEAttack : AbsAction {
 			enemyDataHandler.highlightedNodes.Add(grid2D.nodeFromWorldPoint(tilemap.GetCellCenterWorld(tilePos)));
 			if (tilemap.WorldToCell(target.transform.position) ==tilePos) {
 				returnable = true;
+				//Debug.Log(tilePos + "  " + tilemap.WorldToCell(target.transform.position));
 			}
 		}
 
@@ -155,9 +158,11 @@ public class RangedAOEAttack : AbsAction {
 		if (!returnable) {
 			enemyDataHandler.highlightedNodes.Clear();
 		}
+
+		await Task.Yield();
 		return returnable;
 	}
-	public override void highlight(GameObject enemy, Tile tile) {
+	public override async Task highlight(GameObject enemy, Tile tile) {
 		
 		//RESPAWN FORM TO RESET ENEMY TARGET TILES
 		var position = enemy.transform.position;
@@ -189,20 +194,12 @@ public class RangedAOEAttack : AbsAction {
 			else {
 				tilemapForEnemies.SetTile(tilePos, attackTile);
 			}
-			
-		
-			
-			
-			if (playerSet.items[0] == null) {
-				Debug.Log("player is null");
-				return;
-			}
 			if (tilemap.WorldToCell(playerSet.items[0].transform.position) != tilePos) {
 				grid2D.setClaimedAtPosition(enemy, tilemap.GetCellCenterWorld(tilePos));
 			}
-            
-			
 		}
+
+		await Task.Yield();
 
 	}
 

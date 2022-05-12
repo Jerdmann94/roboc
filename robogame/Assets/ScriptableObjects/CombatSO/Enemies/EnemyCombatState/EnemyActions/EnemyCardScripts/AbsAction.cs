@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using ScriptableObjects.Sets;
-using UnityEditor.Animations;
+
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -16,9 +16,9 @@ public abstract class AbsAction:ScriptableObject {
     public GoRunTimeSet tilemapSet;
     public int damage;
     public abstract Task execute(GameObject enemy);
-    public abstract bool check(GameObject enemy);
+    public abstract Task<bool> check(GameObject enemy);
 
-    public virtual void highlight(GameObject enemy,Tile tile) {
+    public virtual async Task highlight(GameObject enemy,Tile tile) {
         
         EnemyDataHandler enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();
         
@@ -43,7 +43,9 @@ public abstract class AbsAction:ScriptableObject {
                 //grid2D.setEnemyAtPosition(enemy,enemyDataHandler.getPath()[i].getWorldPosition());
                 grid2D.setClaimedAtPosition(enemy, enemyDataHandler.getPath()[i].getWorldPosition());
             }
-            
+
+            await Task.Yield();
+
             //Debug.Log(tilemap.GetTile(tilemap.WorldToCell(enemyDataHandler.getPath()[i].getWorldPosition())).name);
         }
     }
@@ -149,7 +151,7 @@ public abstract class AbsAction:ScriptableObject {
         enemyDataHandler.target = playerSet.items[0];
        
         pathfinder.FindPath(start,target);
-        Debug.Log(enemyDataHandler);
+        //Debug.Log(enemyDataHandler);
         enemyDataHandler.setPath(grid2D.path);
         enemyDataHandler.target = setTarget;
     }

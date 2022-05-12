@@ -51,15 +51,16 @@ public class EnemyBasicAttack : AbsAction
 	
 
 
-	public override bool check(GameObject enemy) {
+	public override async Task<bool> check(GameObject enemy) {
 		_enemyDataHandler = enemy.GetComponent<EnemyDataHandler>();
 		getPathForTargetType(enemy,moveType,ignoreObstacle);
+		await Task.Yield();
 		return meleeCheck(enemy);
 	}
 
-	public override void highlight(GameObject enemy, Tile tile) {
+	public override async Task highlight(GameObject enemy, Tile tile) {
 
-		base.highlight(enemy, attackTile);
+		await base.highlight(enemy, attackTile);
 
 	}
 	
