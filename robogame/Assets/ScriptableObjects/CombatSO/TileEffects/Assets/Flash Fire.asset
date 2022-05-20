@@ -16,12 +16,12 @@ MonoBehaviour:
   aliveEnemies: {fileID: 11400000, guid: 4348edecdfc7f844eaab4ad2d9b89740, type: 2}
   aliveObstacles: {fileID: 11400000, guid: d2c6906d708594748b25d53c5ecaf19c, type: 2}
   tilemapSet: {fileID: 11400000, guid: e1cb19a99de443146927c681d20d98bc, type: 2}
+  playerSet: {fileID: 11400000, guid: 4c4c17a4c8cb17e4ea6cb058c3b9cda0, type: 2}
   combatManagerSet: {fileID: 11400000, guid: 24b50521d9b0d11478baef5f792d60bd, type: 2}
   playerCounter: 0
   counter: 1
   reactWithFireDamage: 4
-  color: {r: 0.7735849, g: 0.50669324, b: 0.017515108, a: 0}
+  color: {r: 0.7735849, g: 0.50669324, b: 0.017515108, a: 0.92156863}
   labelBases:
   - {fileID: 11400000, guid: 6fce334e5225dc84490c5b7db873d921, type: 2}
   damage: 3
-  playerSet: {fileID: 0}

@@ -37,6 +37,14 @@ public class SpawnTileEffect : CardAbs {
 		
 
 	}
+
+	public override void displayAttackFormation(Vector3Int pos) {
+		throw new System.NotImplementedException();
+	}
+
+	public override void removeAttackFormation(Vector3Int pos) {
+		throw new System.NotImplementedException();
+	}
 }
 
 

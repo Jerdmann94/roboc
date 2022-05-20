@@ -19,7 +19,7 @@ public class EnemyDataHandler :TileMapObject {
 	internal List<AbsAction> actions;
 
 	internal EnemyAttackType attackType;
-	private bool _stunnable = true;
+	
 	public bool stunned = false;
 	public GameObject stunnedText;
 	public GameObject specialTarget;
@@ -74,8 +74,8 @@ public class EnemyDataHandler :TileMapObject {
 		}
 		damObj = Instantiate(damageText, transform);
 		damObj.transform.SetParent(canvas.gameObject.transform);
-		damObj.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(selectedCard.Card.doDamage().ToString());
-		health += selectedCard.Card.doDamage();
+		damObj.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(selectedCard.Card.card.doDamage().ToString());
+		health += selectedCard.Card.card.doDamage();
 		slider.value = health;
 		
 		
@@ -145,7 +145,7 @@ public class EnemyDataHandler :TileMapObject {
 	}
 
 	public override void setStun(int damage) {
-		if (_stunnable) {
+		if (checkLabel(LabelType.Stunnable)) {
 			
 			var stunObj = Instantiate(stunnedText, transform);
 			stunObj.transform.SetParent(canvas.gameObject.transform);

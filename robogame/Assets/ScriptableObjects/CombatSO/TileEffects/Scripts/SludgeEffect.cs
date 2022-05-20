@@ -15,7 +15,7 @@ public class SludgeEffect : TileEffectSo {
 	[SerializeField] private GameObject tileEffectPrefab;
 	[SerializeField] private TileEffectSo reactionToFireEffect;
 	[SerializeField] private CardUIValue moveCard;
-	[SerializeField] private GoRunTimeSet playerSet;
+
 	private Vector3Int[] checkArray = {
 		new Vector3Int(0,-1,0),
 		new Vector3Int(0,1,0),
@@ -53,7 +53,7 @@ public class SludgeEffect : TileEffectSo {
 			var cc = GameObject.Find("CombatManager").GetComponent<CardConfirmed>();
 			cc.changeEnergyValue(moveCard,0);
 			cc.checkWhichCardsCanBePlayed();
-			stats.health.Value -= 4;
+			stats.health.takeDamage(-4);;
 		}
 		
 		await Task.Yield();
@@ -104,7 +104,7 @@ public class SludgeEffect : TileEffectSo {
 				node.getEnemy().GetComponent<EnemyDataHandler>().takeDamage(reactWithFireDamage);
 			}
 			else if (tilemap.WorldToCell(node.getWorldPosition()) == tilemap.WorldToCell(playerSet.items[0].transform.position)) {
-				stats.health.Value -= reactWithFireDamage;
+				stats.health.takeDamage(reactWithFireDamage);
 			}
 			//REMOVE THIS EFFECT FROM NODE
 			var pos =node.getWorldPosition();

@@ -12,10 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b16441b292398a942844100d33dbcce5, type: 3}
   m_Name: Push
   m_EditorClassIdentifier: 
-  cost: {fileID: 11400000, guid: 408237f024d665442a98c1369cf9454a, type: 2}
   name: Push
-  cardDescription: push it
-  cardFlavor: you did it
+  cost: {fileID: 11400000, guid: 408237f024d665442a98c1369cf9454a, type: 2}
   damage: -2
   targets: 1
   tileColor: {fileID: 11400000, guid: b6381d18b8154634f96cd99f7e6c9214, type: 2}
@@ -23,9 +21,15 @@ MonoBehaviour:
   tilemapSet: {fileID: 11400000, guid: e1cb19a99de443146927c681d20d98bc, type: 2}
   targetPos: {fileID: 11400000, guid: 6ddacf19bb63d234b90e1ba16dc0d857, type: 2}
   formation: {fileID: 9084405614283611479, guid: 62f3cbe11a58822488c7ffdf9bec8805, type: 3}
-  possibleTargets: {fileID: 11400000, guid: b502dff6c79fc274eb62c48733ad29e7, type: 2}
+  hasAoeAttackFormation: 0
+  possibleTilePos: {fileID: 11400000, guid: b502dff6c79fc274eb62c48733ad29e7, type: 2}
   highlightEnum: {fileID: 11400000, guid: 39e953f23fdd272449a51b9e120a458f, type: 2}
   gridManagerSet: {fileID: 11400000, guid: 24b50521d9b0d11478baef5f792d60bd, type: 2}
+  cardAttributes: []
+  image: {fileID: 0}
+  headerText: 
+  bodyText: 
+  handPosition: 0
   attackEvent: {fileID: 11400000, guid: 16a7dbce07fcba542b760a2ea59ab75d, type: 2}
   aliveEnemies: {fileID: 11400000, guid: 4348edecdfc7f844eaab4ad2d9b89740, type: 2}
   combatManagerSet: {fileID: 11400000, guid: 24b50521d9b0d11478baef5f792d60bd, type: 2}

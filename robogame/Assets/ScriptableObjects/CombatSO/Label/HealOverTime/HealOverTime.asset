@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca5f1d3bd3ad7cb4eaebd0919773f1bd, type: 3}
+  m_Name: HealOverTime
+  m_EditorClassIdentifier: 
+  labelType: 8
+  stats: {fileID: 11400000, guid: f355416e21619cd4e8738e23132a972a, type: 2}
+  healTimer: 0
+  healAmount: 0
+  currentTurn: 0

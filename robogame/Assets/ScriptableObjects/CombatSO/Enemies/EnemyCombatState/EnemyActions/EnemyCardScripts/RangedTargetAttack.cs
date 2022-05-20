@@ -31,7 +31,7 @@ public class RangedTargetAttack : AbsAction {
 					.takeDamage(damage);
 			}
 			else if (node.getWorldPosition() == playerSet.items[0].transform.position) {
-				stats.health.Value -= damage;
+				stats.health.takeDamage(damage);
 			}
 			
 

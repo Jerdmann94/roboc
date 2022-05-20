@@ -4,13 +4,13 @@ using UnityEngine;
 namespace ScriptableObjects.Sets {
 	[CreateAssetMenu(fileName = "new Card", menuName = "RunTimeSets/CardSet")]
 	public class CardSet : ScriptableObject {
-		public List<CardAbs> items = new List<CardAbs>();
+		public List<GameCard> items;
 
-		public void add(CardAbs t) {
+		public void add(GameCard t) {
 			items.Add(t);
 		}
 
-		public void remove(CardAbs t) {
+		public void remove(GameCard t) {
 			if (items.Contains(t)) items.Remove(t);
 		}
 	}

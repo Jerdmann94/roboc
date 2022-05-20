@@ -63,13 +63,25 @@ public class MouseHandler : MonoBehaviour {
 
 			return;
 		}
+
+		if (selectedCardSet.Card.card.hasAoeAttackFormation) {
+			removeAttackFormation(gridPos);
+			displayAttackFormation(gridPos);
+		}
 		Vector3Int temp = new Vector3Int(gridPos.x, gridPos.y, 0);
 		playerMap.SetTile(temp, targetTile);
 		targetPos.items.Insert(0,gridPos);
 		checkLastTile();
 	}
 
-	
+	private void removeAttackFormation(Vector3Int pos) {
+		selectedCardSet.Card.card.removeAttackFormation(pos);
+	}
+
+	private void displayAttackFormation(Vector3Int pos) {
+		selectedCardSet.Card.card.displayAttackFormation(pos);
+	}
+
 
 	//CARD/TILE UTILITY METHODS
 
@@ -81,12 +93,12 @@ public class MouseHandler : MonoBehaviour {
 		targetPos.items = new List<Vector3Int>();
 	}
 
-	public void playCard(CardAbs card) {
+	public void playCard(GameCard gameCard) {
 		if (!playPhase.value) return;
 		
 		resetTiles();
 		//selectedCard = card;
-		selectedCardSet.Card = card;
+		selectedCardSet.Card = gameCard;
    
 		cs.cardSelected();
 	}
@@ -106,9 +118,9 @@ public class MouseHandler : MonoBehaviour {
 	private void checkLastTile() {
 		//Debug.Log(selectedCardSet.Card);
 		//Debug.Log(targetPos.items);
-		if (selectedCardSet.Card.targets >= targetPos.items.Count) {return;}
-		for (int i = targetPos.items.Count-1; i >= selectedCardSet.Card.targets; i--) {
-			playerMap.SetTile(targetPos.items[i], selectedCardSet.Card.tileColor);
+		if (selectedCardSet.Card.card.targets >= targetPos.items.Count) {return;}
+		for (int i = targetPos.items.Count-1; i >= selectedCardSet.Card.card.targets; i--) {
+			playerMap.SetTile(targetPos.items[i], selectedCardSet.Card.card.tileColor);
 			targetPos.items.RemoveAt(i);
 		}
 	}

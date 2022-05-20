@@ -4418,10 +4418,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2075260313}
     m_Modifications:
+    - target: {fileID: 395802074940901418, guid: 7bb38c1782b72ec4c931f3dd5486ef42, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2742735099260806288, guid: 7bb38c1782b72ec4c931f3dd5486ef42, type: 3}
       propertyPath: m_Name
       value: CombatManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2742735099260806298, guid: 7bb38c1782b72ec4c931f3dd5486ef42, type: 3}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 11400000, guid: f355416e21619cd4e8738e23132a972a, type: 2}
     - target: {fileID: 2742735099260806298, guid: 7bb38c1782b72ec4c931f3dd5486ef42, type: 3}
       propertyPath: canvas
       value: 
@@ -4434,6 +4442,10 @@ PrefabInstance:
       propertyPath: handPoint2
       value: 
       objectReference: {fileID: 1764352258}
+    - target: {fileID: 2742735099260806298, guid: 7bb38c1782b72ec4c931f3dd5486ef42, type: 3}
+      propertyPath: masterPlayerDeck
+      value: 
+      objectReference: {fileID: 11400000, guid: 3391af3f6e83a7043951ed8e66c53e15, type: 2}
     - target: {fileID: 2742735099260806302, guid: 7bb38c1782b72ec4c931f3dd5486ef42, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -4479,6 +4491,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2742735099260806303, guid: 7bb38c1782b72ec4c931f3dd5486ef42, type: 3}
+      propertyPath: playDeck
+      value: 
+      objectReference: {fileID: 11400000, guid: 349c93ea0ac51344f86c5af0640cdc35, type: 2}
+    - target: {fileID: 2742735099260806303, guid: 7bb38c1782b72ec4c931f3dd5486ef42, type: 3}
       propertyPath: mapObjects
       value: 
       objectReference: {fileID: 1059989248}
@@ -4490,9 +4506,13 @@ PrefabInstance:
       propertyPath: combatObjects
       value: 
       objectReference: {fileID: 2075260312}
+    - target: {fileID: 2742735099260806303, guid: 7bb38c1782b72ec4c931f3dd5486ef42, type: 3}
+      propertyPath: masterPlayerDeck
+      value: 
+      objectReference: {fileID: 11400000, guid: 3391af3f6e83a7043951ed8e66c53e15, type: 2}
     - target: {fileID: 2742735100250762048, guid: 7bb38c1782b72ec4c931f3dd5486ef42, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 2742735100250762048, guid: 7bb38c1782b72ec4c931f3dd5486ef42, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4503,12 +4523,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 333805632}
     - target: {fileID: 2742735100250762049, guid: 7bb38c1782b72ec4c931f3dd5486ef42, type: 3}
+      propertyPath: tilemapSet
+      value: 
+      objectReference: {fileID: 11400000, guid: e1cb19a99de443146927c681d20d98bc, type: 2}
+    - target: {fileID: 2742735100250762049, guid: 7bb38c1782b72ec4c931f3dd5486ef42, type: 3}
       propertyPath: gridWorldSize.x
-      value: 12
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2742735100250762049, guid: 7bb38c1782b72ec4c931f3dd5486ef42, type: 3}
       propertyPath: gridWorldSize.y
-      value: 12
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8496420115031919017, guid: 7bb38c1782b72ec4c931f3dd5486ef42, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7bb38c1782b72ec4c931f3dd5486ef42, type: 3}

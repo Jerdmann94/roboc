@@ -6,6 +6,6 @@ namespace ScriptableObjects.Sets {
 	
 	[CreateAssetMenu(fileName = "new Card", menuName = "RunTimeSets/SingleCardSet")]
 	public class SingleCardSet : ScriptableObject {
-		public CardAbs Card { get; set; }
+		public GameCard Card { get; set; }
 	}
 }

@@ -29,7 +29,7 @@ public class EnemyBasicAttack : AbsAction
 			//Debug.Log(_enemyDataHandler.highlightedNodes.Count);
 			Debug.Log(tilemap.WorldToCell(node.getWorldPosition()) + " " + tilemap.WorldToCell(playerSet.items[0].transform.position));
 			if (tilemap.WorldToCell(node.getWorldPosition()) == tilemap.WorldToCell(playerSet.items[0].transform.position)) {
-				stats.health.Value -= damage;
+				stats.health.takeDamage(damage);
 			}
 			else {
 				foreach (var otherEnemy in aliveEnemies.items.Where(

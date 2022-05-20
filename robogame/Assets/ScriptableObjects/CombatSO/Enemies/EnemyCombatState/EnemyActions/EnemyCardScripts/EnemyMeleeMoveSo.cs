@@ -51,7 +51,7 @@ public class EnemyMeleeMoveSo : AbsAction {
 
 			if (tilemap.WorldToCell(path[i].getWorldPosition()) ==
 			    tilemap.WorldToCell(_enemyDataHandler.target.transform.position)) {
-				stats.health.Value -= damage;
+				stats.health.takeDamage(damage);
 				break;
 			}
 

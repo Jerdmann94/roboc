@@ -27,8 +27,11 @@ public class CombatManager : MonoBehaviour {
 	public GameObject mapObjects;
 	public GameObject obstacleMaster;
 	
+	
+	
 	private void Awake() {
 
+		
 		
 		foreach (var variable in enemiesDeck.deck) {
 			_enemiesToSpawn.Add(variable);

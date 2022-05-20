@@ -84,7 +84,7 @@ public class RangedAOEAttack : AbsAction {
 			// 	stats.health.Value -= damage;
 			// }
 			if (tilemap.WorldToCell(playerSet.items[0].transform.position) == tilemap.WorldToCell(node.getWorldPosition())) {
-				stats.health.Value -= damage;
+				stats.health.takeDamage(damage);
 				
 			}
 			else if (node.getEnemy()!= null && node.getEnemy()!= enemy) {
@@ -110,11 +110,9 @@ public class RangedAOEAttack : AbsAction {
 		var targetPos = enemy.GetComponent<EnemyDataHandler>().target.transform.position;
 		
 		var dir = Cardinal.getCardinalVector3(position, targetPos);
-		//spawn attack formation, check if target is within
-		
-		
 		var rotation = enemy.transform.rotation;
 		var temp = rotation * dir;
+		
 		//NEED TO SPAWN FORM 1 SPACE IN THE DIRECTION OF THE CARDINAL STILL    
 		//SPAWNING OBJECT BASED ON DIRECTIONAL BOOL
 		var tempForm = getFormation(Cardinal.getCardinalDirection(position,targetPos));

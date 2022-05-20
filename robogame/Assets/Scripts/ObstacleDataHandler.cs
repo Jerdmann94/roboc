@@ -35,8 +35,8 @@ public class ObstacleDataHandler :TileMapObject {
 		damObj = Instantiate(damageText, transform);
 		//Debug.Log(canvas);
 		damObj.transform.SetParent(canvas.gameObject.transform);
-		damObj.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(selectedCard.Card.doDamage().ToString());
-		health += selectedCard.Card.doDamage();
+		damObj.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(selectedCard.Card.card.doDamage().ToString());
+		health += selectedCard.Card.card.doDamage();
 		slider.value = health;
 		
 		

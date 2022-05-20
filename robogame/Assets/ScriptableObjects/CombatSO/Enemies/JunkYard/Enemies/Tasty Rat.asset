@@ -14,8 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Tasty Rat
   health: 1
-  attack: -1
+  labelBases:
+  - {fileID: 11400000, guid: bf32aee06aa66db4fac435e93cba635b, type: 2}
   shape: {fileID: 21300020, guid: 61bfcb50652cfcb4491825ff70184543, type: 3}
   moveAmount: 1
   actions:
   - {fileID: 11400000, guid: fddabc099e310484d8cd79c0eec64026, type: 2}
+  hasDeathEffect: 0
+  deathEffect: {fileID: 0}

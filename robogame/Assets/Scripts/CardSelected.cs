@@ -10,7 +10,7 @@ public class CardSelected : MonoBehaviour {
 	public SingleCardSet selectedCard;
 	
 	public void cardSelected() {
-		selectedCard.Card.highlightTiles();
+		selectedCard.Card.card.highlightTiles();
 		
 	}
 

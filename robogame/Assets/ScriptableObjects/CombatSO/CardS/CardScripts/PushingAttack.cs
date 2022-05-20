@@ -105,7 +105,13 @@ public class PushingAttack : CardAbs {
 		});
 	}
 
+	public override void displayAttackFormation(Vector3Int pos) {
+		throw new NotImplementedException();
+	}
 
+	public override void removeAttackFormation(Vector3Int pos) {
+		throw new NotImplementedException();
+	}
 
 
 	private Vector3 getDirection(Vector3 worldPos) {

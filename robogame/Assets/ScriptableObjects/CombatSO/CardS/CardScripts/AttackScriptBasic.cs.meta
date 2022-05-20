@@ -3,7 +3,18 @@ guid: 48a2a8909cf3fff43a2a029a5807647a
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - cost: {fileID: 11400000, guid: 7ba28078c3677da4abc79cc06ec17049, type: 2}
+  - tileColor: {fileID: 11400000, guid: b6381d18b8154634f96cd99f7e6c9214, type: 2}
+  - playerSet: {instanceID: 0}
+  - tilemapSet: {instanceID: 0}
+  - targetPos: {instanceID: 0}
+  - formation: {instanceID: 0}
+  - possibleTargets: {instanceID: 0}
+  - highlightEnum: {instanceID: 0}
+  - gridManagerSet: {instanceID: 0}
+  - image: {instanceID: 0}
+  - attackEvent: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

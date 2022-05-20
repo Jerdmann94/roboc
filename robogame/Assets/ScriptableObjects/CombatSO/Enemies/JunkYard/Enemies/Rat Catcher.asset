@@ -14,9 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Rat Catcher
   health: 13
-  attack: -2
+  labelBases:
+  - {fileID: 11400000, guid: bf32aee06aa66db4fac435e93cba635b, type: 2}
   shape: {fileID: 21300020, guid: 806d1e1da06036e41bdb16b4741ab5f1, type: 3}
   moveAmount: 2
   actions:
   - {fileID: 11400000, guid: c1a6f03e5bdff1e4f889485c31dd7e6f, type: 2}
   - {fileID: 11400000, guid: 2acc956d7c5d18742965b011f7955461, type: 2}
+  hasDeathEffect: 0
+  deathEffect: {fileID: 0}

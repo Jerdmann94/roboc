@@ -20,7 +20,7 @@ MonoBehaviour:
   playerCounter: 0
   counter: 8
   reactWithFireDamage: 20
-  color: {r: 0.25819108, g: 0.38679248, b: 0.16201495, a: 0.6745098}
+  color: {r: 0.13254271, g: 0.21698111, b: 0.06857421, a: 0.8784314}
   labelBases:
   - {fileID: 11400000, guid: 6d95eb50acb229845895a7cf55cc9178, type: 2}
   formation: {fileID: 9084405614283611479, guid: 62f3cbe11a58822488c7ffdf9bec8805, type: 3}

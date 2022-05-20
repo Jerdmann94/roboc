@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Grub
   health: 2
-  labelBases: []
+  labelBases:
+  - {fileID: 11400000, guid: bf32aee06aa66db4fac435e93cba635b, type: 2}
   shape: {fileID: 21300022, guid: 8cc1e79b140f89d4fbcb24849b5ab519, type: 3}
   moveAmount: 1
   actions:

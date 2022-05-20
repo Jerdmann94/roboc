@@ -12,4 +12,12 @@ public class MovementCardSo : CardAbs {
         playerSet.items[0].transform.position = tilemapSet.items[2].GetComponent<Tilemap>().GetCellCenterWorld(targetPos.items[0]);
         emitter.emit(playerSet.items[0].transform.position);
     }
+
+    public override void displayAttackFormation(Vector3Int pos) {
+	    throw new System.NotImplementedException();
+    }
+
+    public override void removeAttackFormation(Vector3Int pos) {
+	    throw new System.NotImplementedException();
+    }
 }

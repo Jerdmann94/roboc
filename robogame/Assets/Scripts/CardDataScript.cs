@@ -9,7 +9,7 @@ using System.Collections;
 using UnityEngine.EventSystems;
 
 public class CardDataScript : MonoBehaviour , IPointerEnterHandler, IPointerExitHandler{
-    public CardAbs card;
+    public GameCard card;
 
     public Text nameText;
 
@@ -29,21 +29,17 @@ public class CardDataScript : MonoBehaviour , IPointerEnterHandler, IPointerExit
         
     }
 
-    public void setUpCard(CardAbs cardInfo,Vector3 initPosition) {
-
+    public void setUpCard(GameCard cardInfo,Vector3 initPosition) {
         this.card = cardInfo;
-        nameText.text = cardInfo.name;
-        image = cardInfo.image;
-        tipTrigger.headerText = cardInfo.name;
-        tipTrigger.bodyText = cardInfo.bodyText;
-        if (cardInfo.cost.cost.Length > 1)
-        {
+        nameText.text = cardInfo.card.name;
+        image = cardInfo.card.image;
+        tipTrigger.headerText = cardInfo.card.name;
+        tipTrigger.bodyText = cardInfo.card.bodyText;
+        if (cardInfo.card.cost.cost.Length > 1) {
             Debug.Log("need to set up multiple cardInfo costs still");
         }
-        else
-        {
-            cardCost.text = cardInfo.cost.cost[0].ToString();
-            
+        else {
+            cardCost.text = cardInfo.card.cost.cost[0].ToString();
         }
         startPosition = initPosition;
         _target = startPosition;
@@ -58,13 +54,11 @@ public class CardDataScript : MonoBehaviour , IPointerEnterHandler, IPointerExit
         setDestination(startPosition,0.2f);
     }
 
-    void Update() 
-    {
+    void Update() {
         _t += Time.deltaTime/_timeToReachTarget;
         transform.position = Vector3.Lerp(startPosition, _target, _t);
     }
-    public void setDestination(Vector3 destination, float time)
-    {
+    public void setDestination(Vector3 destination, float time) {
         _t = 0;
         _timeToReachTarget = time;
         _target = destination; 

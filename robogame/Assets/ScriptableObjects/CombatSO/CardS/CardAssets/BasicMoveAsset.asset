@@ -12,10 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b64cc0d8747f19b44966f5430ea632a5, type: 3}
   m_Name: BasicMoveAsset
   m_EditorClassIdentifier: 
-  cost: {fileID: 11400000, guid: 2efbc42fea8a269418faa5466a9e31bb, type: 2}
   name: Move
-  cardDescription: Basic movemtn
-  cardFlavor: do it
+  cost: {fileID: 11400000, guid: 2efbc42fea8a269418faa5466a9e31bb, type: 2}
   damage: 0
   targets: 1
   tileColor: {fileID: 11400000, guid: ee7d82bcb8656374d9f38ba630250027, type: 2}
@@ -23,7 +21,13 @@ MonoBehaviour:
   tilemapSet: {fileID: 11400000, guid: e1cb19a99de443146927c681d20d98bc, type: 2}
   targetPos: {fileID: 11400000, guid: 6ddacf19bb63d234b90e1ba16dc0d857, type: 2}
   formation: {fileID: 9084405614283611479, guid: 62f3cbe11a58822488c7ffdf9bec8805, type: 3}
-  possibleTargets: {fileID: 11400000, guid: b502dff6c79fc274eb62c48733ad29e7, type: 2}
+  hasAoeAttackFormation: 0
+  possibleTilePos: {fileID: 11400000, guid: b502dff6c79fc274eb62c48733ad29e7, type: 2}
   highlightEnum: {fileID: 11400000, guid: ae1fa62068129224fa5052483d4a2f5f, type: 2}
   gridManagerSet: {fileID: 11400000, guid: 24b50521d9b0d11478baef5f792d60bd, type: 2}
+  cardAttributes: []
+  image: {fileID: 0}
+  headerText: 
+  bodyText: 
+  handPosition: 0
   emitter: {fileID: 11400000, guid: a0a1f27075a34f64f9a1ec6a89775227, type: 2}

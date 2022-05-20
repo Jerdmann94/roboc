@@ -23,7 +23,7 @@ public class CardConfirmed : MonoBehaviour {
 		targetPos.items = new List<Vector3Int>();
 	}
 
-	public void cardConfirmed()
+	public async void cardConfirmed()
 	{
 
 		if (selectedCard.Card == null)
@@ -32,10 +32,47 @@ public class CardConfirmed : MonoBehaviour {
 			return;
 		}
 		adjustEnergyValue();
-		selectedCard.Card.execute();
+		selectedCard.Card.card.execute();
+		selectedCard.Card.gameCardAttributesList.ForEach(async gameCardAttribute => {
+			gameCardAttribute.context = await gameCardAttribute.cardAttribute.execute(selectedCard.Card, gameCardAttribute.context);
+		} );
+
+		if (selectedCard.Card.gameCardAttributesList.Count == 0) {
+			discardCard();
+		}
+		else {
+			selectedCard.Card.gameCardAttributesList.ForEach(async gameCardAttribute => {
+				var context = gameCardAttribute.context;
+				switch (context.attributeContextTypeEnum) {
+					case ShatterContextEnum:
+						var shatterContext = (ShatterContext) context;
+						if (shatterContext.shouldShatter) {
+							shatterCard();
+						}
+						break;
+					default:
+						discardCard();
+						break;
+				}
+			} );
+		}
 		
+		
+	}
+
+	private void shatterCard() {
 		int r = selectedCard.Card.handPosition;
+		Destroy(handUIArray.items[r]);
+		handUIArray.items.RemoveAt(r);
+		handSet.items.RemoveAt(r);
+		playerStateManager.resetHandPosition();
+		targetPos.items = new List<Vector3Int>();
+		Debug.Log("Card Shattered");
 		
+		
+	}
+	private void discardCard() {
+		int r = selectedCard.Card.handPosition;
 		Destroy(handUIArray.items[r]);
 		handUIArray.items.RemoveAt(r);
 		discardSet.items.Add(handSet.items[r]);
@@ -48,9 +85,9 @@ public class CardConfirmed : MonoBehaviour {
 	{
 		foreach (var card in energyUIValues)
 		{
-			for (int i = 0; i < selectedCard.Card.cost.types.Length; i++) {
-				if (card.name != selectedCard.Card.cost.types[i].name) continue;
-				card.Value -= selectedCard.Card.cost.cost[i];
+			for (int i = 0; i < selectedCard.Card.card.cost.types.Length; i++) {
+				if (card.name != selectedCard.Card.card.cost.types[i].name) continue;
+				card.Value -= selectedCard.Card.card.cost.cost[i];
 			}
 			
 		}
@@ -67,10 +104,10 @@ public class CardConfirmed : MonoBehaviour {
 
 			foreach (var value in energyUIValues) {
 
-				for (int i = 0; i < cd.card.cost.types.Length; i++) {
-					if (value.name == cd.card.cost.types[i].name) {
+				for (int i = 0; i < cd.card.card.cost.types.Length; i++) {
+					if (value.name == cd.card.card.cost.types[i].name) {
 						//Debug.Log(value.name + " " + cd.card.cost.types[i].name);
-						but.interactable = value.Value >= cd.card.cost.cost[i];
+						but.interactable = value.Value >= cd.card.card.cost.cost[i];
 					}
 				}
 			}

@@ -14,10 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Cutter
   health: 100
-  attack: -4
+  labelBases:
+  - {fileID: 11400000, guid: f72f7675fb3762f40a70389ffc7800cd, type: 2}
+  - {fileID: 11400000, guid: bf32aee06aa66db4fac435e93cba635b, type: 2}
   shape: {fileID: 21300008, guid: 49648e3d90eb37b4f80c5c417f84fb5d, type: 3}
   moveAmount: 1
   actions:
   - {fileID: 11400000, guid: 36ddb2eef4dca4742b45df964256c7fb, type: 2}
   - {fileID: 11400000, guid: 650861f821514814995c32d88a4c34d5, type: 2}
   - {fileID: 11400000, guid: 40a6d191b18fbf2499ef1f7c675c9b78, type: 2}
+  hasDeathEffect: 0
+  deathEffect: {fileID: 0}

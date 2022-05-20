@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: 
   health: 12
-  labelBases: []
+  labelBases:
+  - {fileID: 11400000, guid: bf32aee06aa66db4fac435e93cba635b, type: 2}
   shape: {fileID: 21300010, guid: 0b716c01c37385b40b977b786731f374, type: 3}
   moveAmount: 1
   actions:

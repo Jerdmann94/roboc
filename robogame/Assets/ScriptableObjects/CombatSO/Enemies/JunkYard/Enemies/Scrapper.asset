@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Scrapper
   health: 40
-  labelBases: []
+  labelBases:
+  - {fileID: 11400000, guid: bf32aee06aa66db4fac435e93cba635b, type: 2}
   shape: {fileID: 21300022, guid: 920d400eca950a54ab5cefe8b8ac67a9, type: 3}
   moveAmount: 1
   actions:

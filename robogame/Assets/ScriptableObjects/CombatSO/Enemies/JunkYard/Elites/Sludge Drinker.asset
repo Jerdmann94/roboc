@@ -16,6 +16,7 @@ MonoBehaviour:
   health: 200
   labelBases:
   - {fileID: 11400000, guid: a68900ee28cdbf543ad6564ed3bf666f, type: 2}
+  - {fileID: 11400000, guid: bf32aee06aa66db4fac435e93cba635b, type: 2}
   shape: {fileID: 21300006, guid: 236870987c672c04daef1ce817cd8c21, type: 3}
   moveAmount: 2
   actions:

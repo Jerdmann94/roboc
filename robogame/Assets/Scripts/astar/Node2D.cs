@@ -11,6 +11,7 @@ public class Node2D
 	public int GridX, GridY;
 	public Node2D parent;
 	private TileEffectHandler _tileEffectHandler;
+	public bool outOfBounds;
 	
 	private Tile tile;
 	public Tile Tile {

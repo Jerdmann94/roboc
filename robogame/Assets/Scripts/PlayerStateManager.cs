@@ -14,10 +14,13 @@ public class PlayerStateManager : MonoBehaviour
     public CombatManager combatManager;
     public MouseHandler mouseHandler;
     public GameObject    player;
+    public PlayerStatBlockSo stats;
+    public List<LabelBase> lablesToRemove;
 
     private PlayerScript _playerScript;
     //PLAYER DATA
-    public DeckSo     deckData;
+    public DeckSo deckData;
+    public DeckSo masterPlayerDeck;
     public GameObject cardUI;
     public GameObject canvas;
     public GameObject handPoint1;
@@ -36,13 +39,15 @@ public class PlayerStateManager : MonoBehaviour
     
     //----------UNITY METHODS --------------//
     void Awake() {
+        deckData.deck.Clear();
+        deckData.deck = masterPlayerDeck.deck;
         _playerScript = player.GetComponent<PlayerScript>();
-        deckSet.items = new List<CardAbs>();
-        handSet.items = new List<CardAbs>();
-        discardSet.items = new List<CardAbs>();
+        deckSet.items = new List<GameCard>();
+        handSet.items = new List<GameCard>();
+        discardSet.items = new List<GameCard>();
         handUIArray.items = new List<GameObject>();
         foreach (var cardSo in deckData.deck) {
-            deckSet.add( cardSo);
+            deckSet.add( new GameCard(cardSo));
         }
         deckSet.items = shuffle<CardAbs>(deckSet.items);
         playPhase.value = false;
@@ -63,6 +68,8 @@ public class PlayerStateManager : MonoBehaviour
         switch (playerState.CurrentRound.name) {
             case"GetEnergy":
                 refillEnergy();
+                checkForLabelEffects();
+                removeExpiredLabels();
                 mouseHandler.cc.checkWhichCardsCanBePlayed();
                 playerState.nextState();
                 break;
@@ -128,8 +135,8 @@ public class PlayerStateManager : MonoBehaviour
     private void drawCard() {
         if (deckSet.items.Count == 0) {
             if (discardSet.items.Count > 0) {
-                deckSet.items = shuffle<CardAbs>(discardSet.items);
-                discardSet.items = new List<CardAbs>();
+                deckSet.items = shuffle<GameCard>(discardSet.items);
+                discardSet.items = new List<GameCard>();
             }
             else {
                 return;
@@ -151,13 +158,8 @@ public class PlayerStateManager : MonoBehaviour
     }
 
     public void createCardUI(int i) {
-        handSet.add((CardAbs) deckSet.items[0]);
-        //hand.Add(deck[0]);
-
-        deckSet.remove((CardAbs) deckSet.items[0]);
-        //deck.RemoveAt(0);
-
-        
+        handSet.add( deckSet.items[0]);
+        deckSet.remove( deckSet.items[0]);
         float xvalue = (handPoint1.transform.position.x - handPoint2.transform.position.x) / _handSize;
         Vector3 temp = new Vector3(handPoint1.transform.position.x + Mathf.Abs((xvalue * i)) + Mathf.Abs(xvalue / 2),
             handPoint1.transform.position.y, 0);
@@ -176,9 +178,10 @@ public class PlayerStateManager : MonoBehaviour
 
     public void resetHandPosition() {
         for (int j = 0; j < handUIArray.items.Count; j++) {
-            float xvalue = (handPoint1.transform.position.x - handPoint2.transform.position.x) / handUIArray.items.Count;
-            Vector3 temp = new Vector3(handPoint1.transform.position.x + Mathf.Abs((xvalue * j)) + Mathf.Abs(xvalue / 2),
-                handPoint1.transform.position.y, 0);
+            var position = handPoint1.transform.position;
+            float xvalue = (position.x - handPoint2.transform.position.x) / handUIArray.items.Count;
+            Vector3 temp = new Vector3(position.x + Mathf.Abs((xvalue * j)) + Mathf.Abs(xvalue / 2),
+                position.y, 0);
             handUIArray.items[j].GetComponent<RectTransform>().anchoredPosition = (temp);
             handUIArray.items[j].GetComponent<CardDataScript>().startPosition = temp;
             handUIArray.items[j].GetComponent<CardDataScript>().setDestination(temp,0.1f);
@@ -190,7 +193,7 @@ public class PlayerStateManager : MonoBehaviour
     }
 
 
-    static List<CardAbs> shuffle<T>(List<CardAbs> array) {
+    static List<GameCard> shuffle<T>(List<GameCard> array) {
         int n = array.Count;
         for (int i = 0; i < (n - 1); i++) {
             // Use Next on random instance with an argument.
@@ -207,5 +210,33 @@ public class PlayerStateManager : MonoBehaviour
 
     public void initializePlayerState(Vector3 vector3) {
         player = Instantiate(player, vector3, Quaternion.identity);
+        stats.labels.Clear();
+    }
+
+    private void checkForLabelEffects() {
+       
+        foreach (var label in stats.labels) {
+            if (label.labelType == LabelType.HealOverTime ) {
+                Debug.Log("found label with heal over time effect");
+                
+                HealOverTime hot = (HealOverTime) label;
+                if (hot.currentTurn < hot.healTimer) {
+                    hot.execute();
+                    hot.currentTurn++;
+                }
+                else {
+                    lablesToRemove.Add(label);
+                }
+               
+            }
+        }
+        
+    }
+
+    private void removeExpiredLabels() {
+        foreach (var label in lablesToRemove) {
+            stats.labels.Remove(label);
+        }
     }
 }
+

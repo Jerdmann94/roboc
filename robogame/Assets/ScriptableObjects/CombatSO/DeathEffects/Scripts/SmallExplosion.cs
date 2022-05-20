@@ -20,7 +20,7 @@ public class SmallExplosion : AbsDeathEffect {
 		foreach (var vector3Int in possibleTargets.items) {
 			
 			if (tilemap.WorldToCell(playerSet.items[0].transform.position) == vector3Int) {
-				stats.health.Value -= damage;
+				stats.health.takeDamage(damage);
 				//Debug.Log("player should take explosion damage");
 				break;
 			}

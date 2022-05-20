@@ -11,6 +11,7 @@ public abstract  class TileEffectSo : ScriptableObject {
 	[SerializeField] internal GoRunTimeSet aliveEnemies;
 	[SerializeField] internal GoRunTimeSet aliveObstacles;
 	[SerializeField] internal GoRunTimeSet tilemapSet;
+	[SerializeField] internal GoRunTimeSet playerSet;
 	[SerializeField] internal GoRunTimeSet combatManagerSet;
 	[SerializeField] internal bool playerCounter;
 	[SerializeField] internal int counter;
@@ -29,8 +30,7 @@ public abstract  class TileEffectSo : ScriptableObject {
 
 	}
 	public void setEffectNew(Vector3 vector3, TileEffectHandler tileEffectHandler) {
-		Debug.Log(this);
-		Debug.Log(combatManagerSet);
+		
 		var grid2D = combatManagerSet.items[0].GetComponent<Grid2D>();
 		var node = grid2D.nodeFromWorldPoint(vector3);
 		if (node.getTileEffect()!= null) {

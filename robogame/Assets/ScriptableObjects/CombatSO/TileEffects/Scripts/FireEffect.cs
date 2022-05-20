@@ -11,7 +11,6 @@ using UnityEngine.Tilemaps;
 
 public class FireEffect : TileEffectSo {
 	[SerializeField] private int damage;
-	[SerializeField] private GoRunTimeSet playerSet;
 	public override async Task execute(Vector3 vector3) {
 
 		var tilemap = tilemapSet.items.SingleOrDefault(obj => obj.name == "Tilemap")?.GetComponent<Tilemap>();
@@ -35,7 +34,7 @@ public class FireEffect : TileEffectSo {
 		}
 
 		if (tilemap.WorldToCell(playerSet.items[0].transform.position) == tilemap.WorldToCell(vector3)) {
-			stats.health.Value -= damage;
+			stats.health.takeDamage(damage);
 		}
 		
 		await Task.Yield();

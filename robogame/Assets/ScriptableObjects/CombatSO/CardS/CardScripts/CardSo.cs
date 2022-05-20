@@ -14,4 +14,12 @@ public class CardSo : CardAbs {
 	public override void execute() {
 		Debug.Log("STOP USING THIS CARD, USE COMMAND CARDS FROM NOW ON");
 	}
+
+	public override void displayAttackFormation(Vector3Int pos) {
+		throw new NotImplementedException();
+	}
+
+	public override void removeAttackFormation(Vector3Int pos) {
+		throw new NotImplementedException();
+	}
 }

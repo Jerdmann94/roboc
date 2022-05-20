@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -27,7 +28,10 @@ public class DamageOnEnter : TileEffectSo {
 			return;
 		}
 
-		stats.health.Value -= damage;
+		if (vector3 == playerSet.items[0].transform.position) {
+			stats.health.takeDamage(damage);
+		}
+		
 		await Task.Yield();
 	}
 

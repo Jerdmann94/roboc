@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Scout
   health: 5
-  labelBases: []
+  labelBases:
+  - {fileID: 11400000, guid: bf32aee06aa66db4fac435e93cba635b, type: 2}
   shape: {fileID: 21300008, guid: cdf8e2fea9c08c34d85cb50dc066771c, type: 3}
   moveAmount: 3
   actions:

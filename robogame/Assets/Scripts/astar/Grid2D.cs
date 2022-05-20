@@ -1,5 +1,7 @@
 
 using System.Collections.Generic;
+using System.Linq;
+using ScriptableObjects.Sets;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
@@ -15,11 +17,11 @@ public class Grid2D : MonoBehaviour
     Vector3 worldBottomLeft;
     public Canvas canvas;
     public GameObject tiletext;
+   
 
     
     float nodeDiameter;
     public int gridSizeX, gridSizeY;
-
     void Awake()
     {
         nodeDiameter = nodeRadius * 2;
@@ -36,22 +38,25 @@ public class Grid2D : MonoBehaviour
     {
         Grid = new Node2D[gridSizeX, gridSizeY];
         worldBottomLeft = transform.position - Vector3.right * gridWorldSize.x / 2 - Vector3.up * gridWorldSize.y / 2;
-        
+//
         for (int x = 0; x < gridSizeX; x++)
         {
             for (int y = 0; y < gridSizeY; y++)
             {
-               
+                /*if (!tilemap.HasTile(new Vector3Int(x,y))) {
+                    continue;
+                }*/
                 
                 //Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.up * (y * nodeDiameter + nodeRadius);
                 Vector3 worldPoint = defaultTileMap.GetCellCenterWorld(new Vector3Int(x+(int)worldBottomLeft.x, y+(int)worldBottomLeft.y, 0));
+
                 
                 Grid[x, y] = new Node2D(null, worldPoint, x, y);
                
                 
                 
                 if (!defaultTileMap.HasTile((defaultTileMap.WorldToCell(Grid[x,y].getWorldPosition())))) {
-                    Grid[x, y].setObstacle(null);
+                    Grid[x, y].outOfBounds = true;
                     continue;
                 }
 
@@ -88,25 +93,35 @@ public class Grid2D : MonoBehaviour
 
 
     //gets the neighboring nodes in the 4 cardinal directions. If you would like to enable diagonal pathfinding, uncomment out that portion of code
-    public List<Node2D> GetNeighbors(Node2D node)
+    public List<Node2D> GetNeighbors(Node2D node,Tilemap tilemap)
     {
+        
         List<Node2D> neighbors = new List<Node2D>();
 
         //checks and adds top neighbor
         if (node.GridX >= 0 && node.GridX < gridSizeX && node.GridY + 1 >= 0 && node.GridY + 1 < gridSizeY)
-            neighbors.Add(Grid[node.GridX, node.GridY + 1]);
+            if (!node.outOfBounds && Grid[node.GridX, node.GridY + 1]!= null) {
+                neighbors.Add(Grid[node.GridX, node.GridY + 1]);
+            }
+            
 
         //checks and adds bottom neighbor
         if (node.GridX >= 0 && node.GridX < gridSizeX && node.GridY - 1 >= 0 && node.GridY - 1 < gridSizeY)
-            neighbors.Add(Grid[node.GridX, node.GridY - 1]);
+            if (!node.outOfBounds && Grid[node.GridX, node.GridY - 1]!= null)  {
+                neighbors.Add(Grid[node.GridX, node.GridY - 1]);
+            }
 
         //checks and adds right neighbor
         if (node.GridX + 1 >= 0 && node.GridX + 1 < gridSizeX && node.GridY >= 0 && node.GridY < gridSizeY)
-            neighbors.Add(Grid[node.GridX + 1, node.GridY]);
+            if (!node.outOfBounds && Grid[node.GridX +1, node.GridY]!= null)  {
+                neighbors.Add(Grid[node.GridX + 1, node.GridY]);
+            }
 
         //checks and adds left neighbor
         if (node.GridX - 1 >= 0 && node.GridX - 1 < gridSizeX && node.GridY >= 0 && node.GridY < gridSizeY)
-            neighbors.Add(Grid[node.GridX - 1, node.GridY]);
+            if (!node.outOfBounds && Grid[node.GridX-1, node.GridY]!= null)  {
+                neighbors.Add(Grid[node.GridX - 1, node.GridY]);
+            }
 
 
 
@@ -143,6 +158,10 @@ public class Grid2D : MonoBehaviour
        // Debug.Log(worldPosition.x + " " + worldPosition.y);
         //Debug.Log(x + " "+y);
         foreach (var VARIABLE in Grid) {
+            if (VARIABLE.outOfBounds) {
+                continue;
+            }
+
             if (VARIABLE.getWorldPosition() == worldPosition) {
                 
                 x = VARIABLE.GridX;
@@ -176,27 +195,30 @@ public class Grid2D : MonoBehaviour
     // Draws visual representation of grid
      void OnDrawGizmos()
      {
-         // Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, gridWorldSize.y, 1));
-         //
-         // if (Grid != null)
-         // {
-         //     foreach (Node2D n in Grid)
-         //     {
-         //         if (n == null) {
-         //             continue;
-         //         }
-         //         if (n.obstacle)
-         //             Gizmos.color = Color.red;
-         //         else
-         //             Gizmos.color = Color.clear;
-         //
-         //         //Debug.Log(path.Count);
-         //         if (path != null && path.Contains(n))
-         //             Gizmos.color = Color.black;
-         //         Gizmos.DrawCube(n.getWorldPosition(), Vector3.one * (nodeRadius));
-         //
-         //     }
-         // }
+          /*Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, gridWorldSize.y, 1));
+         
+          if (Grid != null)
+          {
+              foreach (Node2D n in Grid)
+              {
+                  if (n == null) {
+                      continue;
+                  }
+                  if (n.obstacle)
+                      Gizmos.color = Color.red;
+                  else if (n.outOfBounds) {
+                      Gizmos.color = Color.yellow;
+                  }
+                  else
+                      Gizmos.color = Color.clear;
+         
+                  //Debug.Log(path.Count);
+                  if (path != null && path.Contains(n))
+                      Gizmos.color = Color.black;
+                  Gizmos.DrawCube(n.getWorldPosition(), Vector3.one * (nodeRadius));
+         
+              }
+          }*/
      }
 
      public void setClaimedAtPosition(GameObject enemy, Vector3 position) {

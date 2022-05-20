@@ -60,7 +60,7 @@ public class Pathfinding2D : MonoBehaviour {
             }
             
             //adds neighbor nodes to openSet
-            foreach (Node2D neighbour in grid.GetNeighbors(node))
+            foreach (Node2D neighbour in grid.GetNeighbors(node,tilemap))
             {
                 if (closedSet.Contains(neighbour))
                 {
@@ -126,7 +126,7 @@ public class Pathfinding2D : MonoBehaviour {
             }
             
             //adds neighbor nodes to openSet
-            foreach (Node2D neighbour in grid.GetNeighbors(node))
+            foreach (Node2D neighbour in grid.GetNeighbors(node,tilemap))
             {
                 if (closedSet.Contains(neighbour)|| neighbour.getClaimed())
                 {
@@ -196,7 +196,7 @@ public class Pathfinding2D : MonoBehaviour {
             }
             
             //adds neighbor nodes to openSet
-            foreach (Node2D neighbour in grid.GetNeighbors(node))
+            foreach (Node2D neighbour in grid.GetNeighbors(node,tilemap))
             {
                 if (neighbour.obstacle || closedSet.Contains(neighbour) || neighbour.getClaimed())
                 {

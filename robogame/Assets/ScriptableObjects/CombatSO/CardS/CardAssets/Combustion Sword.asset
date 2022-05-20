@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 481a3a913f3b7634bb04901fa23d85b0, type: 3}
+  m_Name: Combustion Sword
+  m_EditorClassIdentifier: 
+  name: Combustion Sword
+  cost: {fileID: 11400000, guid: 7ba28078c3677da4abc79cc06ec17049, type: 2}
+  damage: -17
+  targets: 1
+  tileColor: {fileID: 11400000, guid: 31cced4d2f776bf4eaee0d2517e8e971, type: 2}
+  playerSet: {fileID: 11400000, guid: 4c4c17a4c8cb17e4ea6cb058c3b9cda0, type: 2}
+  tilemapSet: {fileID: 11400000, guid: e1cb19a99de443146927c681d20d98bc, type: 2}
+  targetPos: {fileID: 11400000, guid: 6ddacf19bb63d234b90e1ba16dc0d857, type: 2}
+  formation: {fileID: 9084405614283611479, guid: 62f3cbe11a58822488c7ffdf9bec8805, type: 3}
+  hasAoeAttackFormation: 1
+  possibleTilePos: {fileID: 11400000, guid: b502dff6c79fc274eb62c48733ad29e7, type: 2}
+  highlightEnum: {fileID: 11400000, guid: 2eaec0de4b382cc4aa30066201827d62, type: 2}
+  gridManagerSet: {fileID: 11400000, guid: 24b50521d9b0d11478baef5f792d60bd, type: 2}
+  cardAttributes:
+  - {fileID: 11400000, guid: 5c799a73e2c362f4faf61dd9f58e9f5e, type: 2}
+  image: {fileID: 0}
+  headerText: 
+  bodyText: boom
+  handPosition: 4
+  attackEvent: {fileID: 11400000, guid: 16a7dbce07fcba542b760a2ea59ab75d, type: 2}
+  attackTile: {fileID: 11400000, guid: b6381d18b8154634f96cd99f7e6c9214, type: 2}
+  playerAttackHighlight: {fileID: 11400000, guid: d7a77e471fdcc1b419df1c2b5aff5ec7, type: 2}
+  leftRightForm: {fileID: 6104718345626114646, guid: a2c44dbf309dde54abf4142736b77ea9, type: 3}
+  upDownForm: {fileID: 2192448899285468774, guid: 98d5a2e9c4fb51649b816e33865e47d3, type: 3}
+  spawnTileEffect: 0
+  leftRightTileEffectFormation: {fileID: 0}
+  upDownTileEffectFormation: {fileID: 0}
+  spawnableTileEffect: {fileID: 0}
+  tileEffect: {fileID: 0}
+  shouldThisMove: 0
+  moveEmitter: {fileID: 0}
